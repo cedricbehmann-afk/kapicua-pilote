@@ -1,0 +1,17 @@
+{
+ "name": "Gestion — Ti'Corail",
+ "short_name": "Ti'Corail",
+ "start_url": "./",
+ "scope": "./",
+ "display": "standalone",
+ "background_color": "#f5f6f8",
+ "theme_color": "#138A8A",
+ "icons": [
+  {
+   "src": "icone.svg",
+   "sizes": "any",
+   "type": "image/svg+xml",
+   "purpose": "any"
+  }
+ ]
+}

@@ -127,14 +127,15 @@ def page(s):
 <section id="carte" class="menu"><div class="wrap">
  <p class="kicker">{t(*s['menu_kicker'])}</p>
  <h2>{t(*s['menu_title'])}</h2>
- <div class="cards">{carte}</div>
+ <div class="cards" id="kp-cartes">{carte}</div>
  {f'<p class="note">{t(*s["menu_note"])}</p>' if s.get('menu_note') else ''}
 </div></section>
+<div id="kp-plus"></div>
 <section id="infos" class="infos-s"><div class="wrap">
  <p class="kicker">{t('Infos pratiques', 'Practical info')}</p>
  <h2>{t('Horaires & accès', 'Hours & directions')}</h2>
  <div class="infos">
-  <div class="box"><h3>{t('Horaires', 'Opening hours')}</h3><table class="hours">{heures}</table>{note_h}</div>
+  <div class="box"><h3>{t('Horaires', 'Opening hours')}</h3><table class="hours"><tbody id="kp-h">{heures}</tbody></table>{note_h}</div>
   <div class="box" id="contact"><h3>{t('Nous trouver', 'Find us')}</h3>
    <ul class="contact-list">
     <li>{t(*s['address'])}</li>
@@ -166,18 +167,80 @@ def page(s):
  set(l);b.onclick=function(){{set(h.getAttribute('data-lang')==='fr'?'en':'fr')}};
 }})();
 </script>
+<script src="config.js"></script>
+<script src="../kp-app/store.js"></script>
+<script src="../kp-app/site.js"></script>
 </body>
 </html>
 """
 
 
+def teinte(hexa, k=0.88):
+    h = hexa.lstrip("#"); r, g, b = int(h[0:2], 16), int(h[2:4], 16), int(h[4:6], 16)
+    return "#%02x%02x%02x" % tuple(round(c + (255 - c) * k) for c in (r, g, b))
+
+
+def config(s):
+    site = dict(
+        horaires=[list(h) for h in s["hours"]],
+        cartes=[dict(fr=c["fr"], en=c["en"], dfr=c["dfr"], den=c["den"], ico=c.get("ico", "")) for c in s["cards"]],
+        annonce="", annonce_en="", ferme=False, ferme_msg="",
+        resa=s["type"] != "boutique", cc=True, creneaux=s["creneaux"])
+    kp = dict(slug=s["slug"], nom=s["name"], type=s["type"], mode=s.get("mode", "demo"),
+              tel=s["tel_display"], email=s["email"], site=site, exemples=s["exemples"])
+    return "window.KP = " + json.dumps(kp, ensure_ascii=False) + ";\n"
+
+
+def gestion(s):
+    ac = s["gestion_couleur"]
+    return f"""<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow">
+<title>Gestion — {html.escape(s['name'])}</title>
+<meta name="theme-color" content="{ac}">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="{html.escape(s['name'])}">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="data:image/svg+xml,{s['favicon']}">
+<link rel="stylesheet" href="../../kp-app/gestion.css">
+<style>:root{{--ac:{ac};--ac2:{teinte(ac)}}}</style>
+</head>
+<body>
+<noscript>Activez JavaScript pour utiliser l'espace de gestion.</noscript>
+<script src="../config.js"></script>
+<script src="../../kp-app/store.js"></script>
+<script src="../../kp-app/gestion.js"></script>
+</body>
+</html>
+"""
+
+
+def manifeste(s):
+    from urllib.parse import unquote
+    return json.dumps({"name": "Gestion — " + s["name"], "short_name": s["name"][:12], "start_url": "./", "scope": "./",
+                       "display": "standalone", "background_color": "#f5f6f8", "theme_color": s["gestion_couleur"],
+                       "icons": [{"src": "icone.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any"}]}, ensure_ascii=False, indent=1)
+
+
 if __name__ == "__main__":
-    import importlib.util, sys
+    import importlib.util, shutil
+    from urllib.parse import unquote
     spec = importlib.util.spec_from_file_location("contenus", os.path.join(ICI, "contenus.py"))
     m = importlib.util.module_from_spec(spec); spec.loader.exec_module(m)
     lot = getattr(m, "LOT", None)
+    pub = os.path.join(ICI, "public")
+    app = os.path.join(pub, "kp-app"); os.makedirs(app, exist_ok=True)
+    for f in ("store.js", "site.js", "gestion.js", "gestion.css"):
+        shutil.copy(os.path.join(ICI, "app", f), os.path.join(app, f))
     for s in m.SITES:
         if lot and s["slug"] not in lot: continue
-        d = os.path.join(ICI, "public", s["slug"]); os.makedirs(d, exist_ok=True)
+        d = os.path.join(pub, s["slug"]); g = os.path.join(d, "gestion"); os.makedirs(g, exist_ok=True)
         open(os.path.join(d, "index.html"), "w", encoding="utf-8").write(page(s))
+        open(os.path.join(d, "config.js"), "w", encoding="utf-8").write(config(s))
+        open(os.path.join(g, "index.html"), "w", encoding="utf-8").write(gestion(s))
+        open(os.path.join(g, "manifest.webmanifest"), "w", encoding="utf-8").write(manifeste(s))
+        open(os.path.join(g, "icone.svg"), "w", encoding="utf-8").write(unquote(s["favicon"]))
         print("ok", s["slug"], os.path.getsize(os.path.join(d, "index.html")) // 1024, "Ko")

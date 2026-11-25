@@ -1,0 +1,17 @@
+{
+ "name": "Gestion — Les Bananiers",
+ "short_name": "Les Bananier",
+ "start_url": "./",
+ "scope": "./",
+ "display": "standalone",
+ "background_color": "#f5f6f8",
+ "theme_color": "#2F6B45",
+ "icons": [
+  {
+   "src": "icone.svg",
+   "sizes": "any",
+   "type": "image/svg+xml",
+   "purpose": "any"
+  }
+ ]
+}

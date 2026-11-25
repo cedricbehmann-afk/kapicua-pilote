@@ -688,3 +688,106 @@ SITES.append(dict(
 ))
 
 LOT = ["les-bananiers", "ti-salon", "ti-corail", "l-esprit", "we-play"]
+
+# ───────────────────────── 9. BRIN D'ÎLE ─────────────────────────
+brin_svg = """
+<svg viewBox="0 0 480 420" role="img" aria-label="Sandales sur le sable">
+ <defs><radialGradient id="sab" cx="50%" cy="55%" r="60%"><stop offset="0" stop-color="#F6E3C6"/><stop offset="1" stop-color="#EBCB9E"/></radialGradient></defs>
+ <circle cx="240" cy="215" r="190" fill="url(#sab)"/>
+ <g fill="#D9B07A" opacity=".55"><ellipse cx="110" cy="320" rx="16" ry="9"/><ellipse cx="135" cy="290" rx="14" ry="8"/><ellipse cx="375" cy="140" rx="16" ry="9"/><ellipse cx="350" cy="110" rx="14" ry="8"/></g>
+ <g transform="translate(118 100) rotate(-12)">
+  <path d="M40 0 C80 0 92 40 88 100 C85 160 80 220 46 230 C12 232 0 170 2 100 C4 40 10 0 40 0Z" fill="#B5532E"/>
+  <path d="M40 8 C74 8 82 42 79 100 C76 158 72 214 46 221 C20 222 10 168 12 100 C14 44 18 8 40 8Z" fill="#F3D9B8"/>
+  <path d="M10 70 C30 95 60 95 82 70" fill="none" stroke="#1F5F5B" stroke-width="16" stroke-linecap="round"/>
+  <path d="M14 130 C34 150 58 150 78 130" fill="none" stroke="#1F5F5B" stroke-width="12" stroke-linecap="round"/>
+ </g>
+ <g transform="translate(275 105) rotate(10)">
+  <path d="M40 0 C80 0 92 40 88 100 C85 160 80 220 46 230 C12 232 0 170 2 100 C4 40 10 0 40 0Z" fill="#B5532E"/>
+  <path d="M40 8 C74 8 82 42 79 100 C76 158 72 214 46 221 C20 222 10 168 12 100 C14 44 18 8 40 8Z" fill="#F3D9B8"/>
+  <path d="M10 70 C30 95 60 95 82 70" fill="none" stroke="#1F5F5B" stroke-width="16" stroke-linecap="round"/>
+  <path d="M14 130 C34 150 58 150 78 130" fill="none" stroke="#1F5F5B" stroke-width="12" stroke-linecap="round"/>
+ </g>
+ <path d="M70 70 q10 -14 20 0 q10 -14 20 0" fill="none" stroke="#1F5F5B" stroke-width="3" stroke-linecap="round" opacity=".5"/>
+</svg>"""
+
+SITES.append(dict(
+    slug="brin-d-ile", name="Brin d'Île", logo="Brin d'Île",
+    title="Brin d'Île — Boutique de chaussures au centre L'Îlot, Lorient, Saint-Barth",
+    meta_desc="Brin d'Île, boutique de chaussures au centre commercial L'Îlot à Lorient, Saint-Barthélemy. Ouvert du lundi au samedi.",
+    theme_color="#1F5F5B", favicon=fav("B", "#B5532E", "#FBF5EC"),
+    fonts=[("DM Serif Display", "dm-serif-display-latin-400-normal.woff2", 400), ("DM Serif Display", "dm-serif-display-latin-400-italic.woff2", 400, "italic"),
+           ("DM Sans", "dm-sans-latin-400-normal.woff2", 400), ("DM Sans", "dm-sans-latin-700-normal.woff2", 700)],
+    vars="--display:'DM Serif Display',Georgia,serif;--body:'DM Sans',system-ui,sans-serif;--bg:#FBF5EC;--ink:#23312F;--accent:#1F5F5B;--onaccent:#fff;--accent2:#B5532E;--card:#fff;--line:rgba(35,49,47,.13);--navbg:rgba(251,245,236,.92);--radius:16px",
+    css="""
+.hero .wrap{display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:center;padding-top:50px;padding-bottom:40px}
+.hero h1{font-size:clamp(46px,7vw,86px)}
+.hero h1 em{color:var(--accent2)}
+.hero p{font-size:19px;margin:16px 0 26px;max-width:460px}
+.menu{background:#F4EADB}
+@media (max-width:760px){.hero .wrap{grid-template-columns:1fr}.hero svg{max-width:360px;margin:0 auto}}
+""",
+    hero=f"""<section class="hero"><div class="wrap">
+ <div>
+  <p class="kicker"><span lang="fr">Centre L'Îlot · Lorient</span><span lang="en">L'Îlot centre · Lorient</span></p>
+  <h1><span lang="fr">Bien chaussé, <em>de la plage à la ville</em></span><span lang="en">Well shod, <em>from beach to town</em></span></h1>
+  <p><span lang="fr">Votre boutique de chaussures à Lorient. Passez essayer, ou réservez en ligne et venez chercher.</span><span lang="en">Your shoe shop in Lorient. Drop in to try on, or reserve online and collect.</span></p>
+  <div class="actions">
+   <a class="btn main" href="tel:+590690754049"><span lang="fr">Appeler · 06 90 75 40 49</span><span lang="en">Call · +590 690 75 40 49</span></a>
+   <a class="btn ghost" href="#infos"><span lang="fr">Horaires</span><span lang="en">Opening hours</span></a>
+  </div>
+ </div>
+ {brin_svg}
+</div></section>""",
+    nav_menu=("La boutique", "The shop"),
+    about_kicker=("La boutique", "The shop"),
+    about_title=("Des chaussures pour la vie sur l'île", "Shoes for island life"),
+    about=("Au centre commercial L'Îlot, à Lorient, Brin d'Île vous accueille du lundi au samedi. "
+           "Prenez le temps d'essayer : on vous conseille pour trouver la bonne paire, pour la plage comme pour la ville.",
+           "At L'Îlot shopping centre in Lorient, Brin d'Île welcomes you Monday to Saturday. "
+           "Take your time trying on: we'll help you find the right pair, for the beach or for town."),
+    menu_kicker=("Chez Brin d'Île", "At Brin d'Île"),
+    menu_title=("Venez essayer", "Come and try on"),
+    cards=[
+        dict(fr="Conseil & essayage", en="Advice & fitting", dfr="On prend le temps de trouver la bonne pointure et le bon modèle.", den="We take the time to find the right size and style.", ico=I_STAR),
+        dict(fr="Pour la plage", en="For the beach", dfr="De quoi marcher pieds au frais, du sable à la terrasse.", den="Cool footwear from the sand to the terrace.", ico=I_SUN),
+        dict(fr="Pour la ville", en="For town", dfr="Des modèles pour tous les jours et les sorties.", den="Styles for every day and evenings out.", ico=I_LEAF),
+        dict(fr="Nouveautés", en="New arrivals", dfr="Passez voir les derniers arrivages en boutique.", den="Drop by to see the latest arrivals.", ico=I_SPARK),
+        dict(fr="Click & collect", en="Click & collect", dfr="Réservez en ligne, essayez et réglez en boutique.", den="Reserve online, try on and pay in store.", ico=I_BAG),
+        dict(fr="Idées cadeaux", en="Gift ideas", dfr="Une paire à offrir ? On vous aide à choisir.", den="A pair as a gift? We'll help you choose.", ico=I_DROP),
+    ],
+    hours=[("Lundi – samedi", "Monday – Saturday", "9h30 – 13h · 15h – 18h30", "9:30 am – 1 pm · 3 – 6:30 pm"),
+           ("Dimanche", "Sunday", "Fermé", "Closed")],
+    address=("Centre commercial L'Îlot, Lorient<br>97133 Saint-Barthélemy", "L'Îlot shopping centre, Lorient<br>97133 St. Barthélemy"),
+    tel_e164="+590690754049", tel_display="06 90 75 40 49", email="brindile.sbh@gmail.com",
+    maps="https://www.google.com/maps/search/?api=1&query=" + quote("Centre commercial L'Îlot, Lorient, Saint-Barthélemy"),
+    cta_call=("Appeler", "Call"),
+))
+
+# ───────── Paramètres de l'espace de gestion (type, créneaux, exemples) ─────────
+GESTION = {
+    "les-bananiers": dict(type="restaurant", gestion_couleur="#2F6B45",
+        creneaux=dict(ouv="11:30", fer="21:30", pas=30, fermes=[0, 1]),
+        exemples=dict(produits=[["Pizza du moment (exemple)", "À emporter, pâte fine."], ["Plat du jour à emporter (exemple)", "Selon les suggestions du chef."]],
+                      stock=[["Farine (exemple)", 3, "sac(s)", 2], ["Mozzarella (exemple)", 4, "kg", 5], ["Vin rouge (exemple)", 24, "bouteille(s)", 12], ["Boîtes à pizza (exemple)", 60, "pièce(s)", 50]])),
+    "ti-salon": dict(type="salon", gestion_couleur="#8A5A44",
+        creneaux=dict(ouv="10:00", fer="18:00", pas=30, fermes=[0, 1]),
+        exemples=dict(produits=[["Soin réparateur (exemple)", "À utiliser à la maison après votre passage au salon."], ["Shampooing doux (exemple)", "Pour cheveux exposés au soleil et au sel."]],
+                      stock=[["Soin réparateur (exemple)", 6, "flacon(s)", 3], ["Shampooing doux (exemple)", 2, "flacon(s)", 3], ["Coloration (exemple)", 12, "tube(s)", 5]])),
+    "ti-corail": dict(type="restaurant", gestion_couleur="#138A8A",
+        creneaux=dict(ouv="12:00", fer="14:30", pas=30, fermes=[0, 1, 2]),
+        exemples=dict(produits=[["Plat du jour à emporter (exemple)", "Selon la pêche du jour."], ["Tartare de poisson à emporter (exemple)", "Avec le poisson du jour."]],
+                      stock=[["Poisson du jour (exemple)", 6, "kg", 3], ["Barquettes à emporter (exemple)", 30, "pièce(s)", 40], ["Citrons verts (exemple)", 50, "pièce(s)", 20]])),
+    "we-play": dict(type="boutique", gestion_couleur="#3A86FF",
+        creneaux=dict(ouv="09:30", fer="18:30", pas=30, fermes=[0]),
+        exemples=dict(produits=[["Jeu de société (exemple)", "Pour jouer en famille."], ["Jouet d'éveil (exemple)", "Pour les tout-petits."], ["Jeu de plage (exemple)", "Pour s'amuser au bord de l'eau."]],
+                      stock=[["Jeu de société (exemple)", 5, "pièce(s)", 2], ["Jouet d'éveil (exemple)", 1, "pièce(s)", 2], ["Jeu de plage (exemple)", 12, "pièce(s)", 4]])),
+    "brin-d-ile": dict(type="boutique", gestion_couleur="#1F5F5B",
+        creneaux=dict(ouv="09:30", fer="18:00", pas=30, fermes=[0]),
+        exemples=dict(produits=[["Sandales (exemple)", "Légères, pour la plage et la ville."], ["Baskets (exemple)", "Pour tous les jours."]],
+                      stock=[["Sandales — pointure 38 (exemple)", 3, "paire(s)", 2], ["Sandales — pointure 40 (exemple)", 1, "paire(s)", 2], ["Baskets — pointure 42 (exemple)", 4, "paire(s)", 2]])),
+}
+for _s in SITES:
+    if _s["slug"] in GESTION:
+        _s.update(GESTION[_s["slug"]])
+
+LOT = ["les-bananiers", "ti-salon", "ti-corail", "we-play", "brin-d-ile"]

@@ -1,0 +1,17 @@
+{
+ "name": "Gestion — Brin d'Île",
+ "short_name": "Brin d'Île",
+ "start_url": "./",
+ "scope": "./",
+ "display": "standalone",
+ "background_color": "#f5f6f8",
+ "theme_color": "#1F5F5B",
+ "icons": [
+  {
+   "src": "icone.svg",
+   "sizes": "any",
+   "type": "image/svg+xml",
+   "purpose": "any"
+  }
+ ]
+}
