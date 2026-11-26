@@ -22,9 +22,18 @@
     targets.forEach(function (el) { el.classList.add("in"); });
   } else {
     var io = new IntersectionObserver(function (entries) {
-      entries.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } });
-    }, { rootMargin: "0px 0px -8% 0px", threshold: 0.08 });
-    targets.forEach(function (el) { io.observe(el); });
+      entries.forEach(function (e) {
+        if (!e.isIntersecting) return;
+        (e.target.__rv || [e.target]).forEach(function (t) { t.classList.add("in"); });
+        io.unobserve(e.target);
+      });
+    }, { rootMargin: "0px 0px -8% 0px", threshold: 0.01 });
+    /* Un titre masqué (clip-path) n'a pas de surface visible : on observe son parent. */
+    targets.forEach(function (el) {
+      var w = el.hasAttribute("data-mask") ? el.parentElement : el;
+      if (w !== el) { (w.__rv = w.__rv || []).push(el); }
+      io.observe(w);
+    });
   }
 
   /* Parallax + header hide on scroll */

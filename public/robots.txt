@@ -1,4 +1,5 @@
 User-agent: *
 Allow: /encargalo/
 Allow: /offre/
+Allow: /confidentialite/
 Disallow: /
