@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es-DO">
+<html lang="es">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -19,6 +19,7 @@
 :root{--ink:#111;--soft:#5b5b5b;--mute:#8d8d8d;--line:#dcdcdc;--bg:#fff;--ivory:#f6f4f0}
 *{box-sizing:border-box;min-width:0}
 html{scroll-behavior:smooth;scroll-padding-top:90px}
+html[lang=fr] body [lang]:not([lang=fr]),html[lang=en] body [lang]:not([lang=en]),html[lang=es] body [lang]:not([lang=es]){display:none}
 body{margin:0;background:var(--bg);color:var(--ink);font:300 15px/1.8 Inter,"Helvetica Neue",Arial,sans-serif;-webkit-font-smoothing:antialiased;overflow-x:clip}
 img{display:block;max-width:100%;height:auto}
 a{color:inherit;text-decoration:none}
@@ -26,7 +27,12 @@ p{margin:0}
 h1,h2,h3{margin:0;font-family:"Cormorant Garamond",Georgia,serif;font-weight:500;letter-spacing:0}
 .caps{font:400 11px/1.4 Inter,sans-serif;letter-spacing:.2em;text-transform:uppercase}
 .w{max-width:1320px;margin:0 auto;padding:0 40px}
-.strip{background:var(--ink);color:#fff;text-align:center;padding:10px 16px}
+.strip{background:var(--ink);color:#fff}
+.strip .w{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;min-height:38px;gap:12px}
+.strip .msg{grid-column:2;text-align:center}
+.langs{grid-column:3;display:flex;justify-content:flex-end;gap:14px}
+.langs button{background:none;border:0;color:#9a9a9a;font:400 11px Inter,sans-serif;letter-spacing:.2em;padding:8px 0;cursor:pointer;border-bottom:1px solid transparent}
+.langs button[aria-pressed=true]{color:#fff;border-bottom-color:#fff}
 header{position:sticky;top:0;z-index:30;background:#fff;border-bottom:1px solid var(--line)}
 .bar{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;height:78px}
 .nav{display:flex;gap:30px}
@@ -84,8 +90,8 @@ input:focus,select:focus{outline:none;border-bottom-color:var(--ink)}
 .ehead h2{font-size:clamp(34px,4vw,54px);line-height:1.05}
 .serv{border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
 .sgrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr))}
-.sgrid div{padding:72px 48px 76px}
-.sgrid div+div{border-left:1px solid var(--line)}
+.sgrid>div{padding:72px 48px 76px}
+.sgrid>div+div{border-left:1px solid var(--line)}
 .sgrid h3{font-size:30px;margin:18px 0 14px}
 .sgrid p{color:var(--soft);max-width:22em}
 .info{padding:130px 0}
@@ -106,8 +112,8 @@ footer{background:var(--ink);color:#fff;padding:96px 0 40px}
 .giant{font:500 clamp(56px,14vw,220px)/.8 "Cormorant Garamond",serif;letter-spacing:.08em;text-transform:uppercase;margin:110px 0 36px;white-space:nowrap;overflow:hidden;text-align:center}
 .legal{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;color:#8d8d8d;border-top:1px solid #333;padding-top:22px}
 .sticky{display:none}
-@media(max-width:1000px){.nav{display:none}.bar{grid-template-columns:auto 1fr auto}.mark{font-size:24px}.cgrid,.igrid{grid-template-columns:minmax(0,1fr);gap:64px}.sgrid{grid-template-columns:minmax(0,1fr)}.sgrid div{padding:56px 0}.sgrid div+div{border-left:0;border-top:1px solid var(--line)}.fgrid{grid-template-columns:repeat(2,minmax(0,1fr))}}
-@media(max-width:700px){.w{padding:0 22px}.bar{height:64px}.act .hide{display:none}.mark{font-size:21px;letter-spacing:.26em}.hero{height:86svh;min-height:520px}.hcopy{bottom:40px}.intro{padding:96px 0 84px}.cotiza,.edit,.info{padding:88px 0}.egrid{grid-template-columns:minmax(0,1fr);gap:48px}.ehead{display:block}.ehead .link{margin-top:18px}.row{gap:18px}.fgrid{grid-template-columns:minmax(0,1fr)}footer{padding-bottom:110px}.side .meta div{grid-template-columns:96px minmax(0,1fr)}
+@media(max-width:1000px){.nav{display:none}.bar{grid-template-columns:auto 1fr auto}.mark{font-size:24px}.cgrid,.igrid{grid-template-columns:minmax(0,1fr);gap:64px}.sgrid{grid-template-columns:minmax(0,1fr)}.sgrid>div{padding:56px 0}.sgrid>div+div{border-left:0;border-top:1px solid var(--line)}.fgrid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:700px){.w{padding:0 22px}.strip .w{grid-template-columns:minmax(0,1fr) auto}.strip .msg{grid-column:1;text-align:left;font-size:10px;letter-spacing:.14em}.langs{grid-column:2;gap:12px}.bar{height:64px}.act .hide{display:none}.mark{font-size:21px;letter-spacing:.26em}.hero{height:86svh;min-height:520px}.hcopy{bottom:40px}.intro{padding:96px 0 84px}.cotiza,.edit,.info{padding:88px 0}.egrid{grid-template-columns:minmax(0,1fr);gap:48px}.ehead{display:block}.ehead .link{margin-top:18px}.row{gap:18px}.fgrid{grid-template-columns:minmax(0,1fr)}footer{padding-bottom:110px}.side .meta div{grid-template-columns:96px minmax(0,1fr)}
 .sticky{display:flex;position:fixed;left:0;right:0;bottom:0;z-index:40;align-items:center;justify-content:space-between;gap:16px;background:#fff;border-top:1px solid var(--line);padding:12px 22px calc(12px + env(safe-area-inset-bottom))}
 .sticky strong{display:block;font:500 28px/1.05 "Cormorant Garamond",serif;white-space:nowrap}
 .sticky a{background:var(--ink);color:#fff;padding:15px 22px;font:400 11px Inter,sans-serif;letter-spacing:.2em;text-transform:uppercase}}
@@ -115,71 +121,74 @@ footer{background:var(--ink);color:#fff;padding:96px 0 40px}
 </style>
 </head>
 <body>
-<div class="strip caps">Pedidos de Navidad hasta el 12 de diciembre</div>
+<div class="strip"><div class="w">
+  <p class="msg caps"><span lang="fr">Commandes de Noël jusqu'au 12 décembre</span><span lang="en">Christmas orders until December 12</span><span lang="es">Pedidos de Navidad hasta el 12 de diciembre</span></p>
+  <div class="langs" role="group" aria-label="Idioma"><button type="button" data-l="es">ES</button><button type="button" data-l="fr">FR</button><button type="button" data-l="en">EN</button></div>
+</div></div>
 <header>
   <div class="w bar">
-    <nav class="nav caps" aria-label="Menú"><a href="#cotiza">Cotizar</a><a href="#seleccion">Selección</a><a href="#servicio">El servicio</a></nav>
-    <a class="mark" href="#top" aria-label="Encárgalo, inicio">Encárgalo</a>
-    <div class="act caps"><a class="hide" href="#info">Información</a><a id="waTop" href="#" target="_blank" rel="noopener noreferrer">WhatsApp</a></div>
+    <nav class="nav caps" aria-label="Menu"><a href="#cotiza"><span lang="fr">Devis</span><span lang="en">Quote</span><span lang="es">Cotizar</span></a><a href="#seleccion"><span lang="fr">Sélection</span><span lang="en">Selection</span><span lang="es">Selección</span></a><a href="#servicio"><span lang="fr">Le service</span><span lang="en">The service</span><span lang="es">El servicio</span></a></nav>
+    <a class="mark" href="#top" aria-label="Encárgalo">Encárgalo</a>
+    <div class="act caps"><a class="hide" href="#info"><span lang="fr">Informations</span><span lang="en">Information</span><span lang="es">Información</span></a><a class="wa" href="#" target="_blank" rel="noopener noreferrer">WhatsApp</a></div>
   </div>
 </header>
 
 <main id="top">
 <section class="hero" aria-label="Encárgalo">
-  <img src="https://images.unsplash.com/photo-1773859096265-b3f034c156f8?auto=format&fit=crop&w=1800&q=72" srcset="https://images.unsplash.com/photo-1773859096265-b3f034c156f8?auto=format&fit=crop&w=800&q=70 800w, https://images.unsplash.com/photo-1773859096265-b3f034c156f8?auto=format&fit=crop&w=1300&q=70 1300w, https://images.unsplash.com/photo-1773859096265-b3f034c156f8?auto=format&fit=crop&w=1800&q=72 1800w" sizes="100vw" alt="Mujer al atardecer con bolsas de compras" fetchpriority="high">
+  <img src="https://images.unsplash.com/photo-1773859096265-b3f034c156f8?auto=format&fit=crop&w=1800&q=72" srcset="https://images.unsplash.com/photo-1773859096265-b3f034c156f8?auto=format&fit=crop&w=800&q=70 800w, https://images.unsplash.com/photo-1773859096265-b3f034c156f8?auto=format&fit=crop&w=1300&q=70 1300w, https://images.unsplash.com/photo-1773859096265-b3f034c156f8?auto=format&fit=crop&w=1800&q=72 1800w" sizes="100vw" alt="" fetchpriority="high">
   <div class="hcopy"><div class="w">
-    <p class="caps">Estados Unidos · Santo Domingo</p>
-    <h1>Lo que deseas, <i>a tu puerta.</i></h1>
-    <a class="link" href="#cotiza">Solicitar una cotización</a>
+    <p class="caps"><span lang="fr">États-Unis · Saint-Domingue</span><span lang="en">United States · Santo Domingo</span><span lang="es">Estados Unidos · Santo Domingo</span></p>
+    <h1><span lang="fr">Ce que vous désirez, <i>à votre porte.</i></span><span lang="en">What you desire, <i>at your door.</i></span><span lang="es">Lo que deseas, <i>a tu puerta.</i></span></h1>
+    <a class="link" href="#cotiza"><span lang="fr">Demander un devis</span><span lang="en">Request a quote</span><span lang="es">Solicitar una cotización</span></a>
   </div></div>
 </section>
 
 <section class="intro">
   <div class="w">
-    <p class="caps">La casa</p>
-    <h2>Compramos por ti en las tiendas de Estados Unidos y te lo entregamos en Santo Domingo, a un solo precio en pesos.</h2>
+    <p class="caps"><span lang="fr">La maison</span><span lang="en">The house</span><span lang="es">La casa</span></p>
+    <h2><span lang="fr">Nous achetons pour vous dans les boutiques des États-Unis et vous livrons à Saint-Domingue, à un prix unique en pesos.</span><span lang="en">We shop for you in United States stores and deliver to you in Santo Domingo, at one single price in pesos.</span><span lang="es">Compramos por ti en las tiendas de Estados Unidos y te lo entregamos en Santo Domingo, a un solo precio en pesos.</span></h2>
   </div>
 </section>
 
 <section class="cotiza" id="cotiza">
   <div class="w cgrid">
     <div class="side">
-      <p class="caps">Cotización</p>
-      <h2>Tu precio, antes de decidir.</h2>
-      <p>Indica el artículo. El total incluye la compra, el envío desde Miami, nuestro servicio y la entrega.</p>
+      <p class="caps"><span lang="fr">Devis</span><span lang="en">Quote</span><span lang="es">Cotización</span></p>
+      <h2><span lang="fr">Votre prix, avant de décider.</span><span lang="en">Your price, before you decide.</span><span lang="es">Tu precio, antes de decidir.</span></h2>
+      <p><span lang="fr">Indiquez l'article. Le total comprend l'achat, l'envoi depuis Miami, notre service et la livraison.</span><span lang="en">Tell us the item. The total includes the purchase, shipping from Miami, our service and delivery.</span><span lang="es">Indica el artículo. El total incluye la compra, el envío desde Miami, nuestro servicio y la entrega.</span></p>
       <div class="meta">
-        <div><span class="caps">Plazo</span><span>De 7 a 12 días</span></div>
-        <div><span class="caps">Pago</span><span>Transferencia en RD o PayPal, después de confirmar el precio</span></div>
-        <div><span class="caps">Garantía</span><span>Reembolso total si el artículo no puede comprarse</span></div>
+        <div><span class="caps"><span lang="fr">Délai</span><span lang="en">Timing</span><span lang="es">Plazo</span></span><span><span lang="fr">De 7 à 12 jours</span><span lang="en">7 to 12 days</span><span lang="es">De 7 a 12 días</span></span></div>
+        <div><span class="caps"><span lang="fr">Paiement</span><span lang="en">Payment</span><span lang="es">Pago</span></span><span><span lang="fr">Virement en RD ou PayPal, après confirmation du prix</span><span lang="en">Bank transfer in the DR or PayPal, after the price is confirmed</span><span lang="es">Transferencia en RD o PayPal, después de confirmar el precio</span></span></div>
+        <div><span class="caps"><span lang="fr">Garantie</span><span lang="en">Guarantee</span><span lang="es">Garantía</span></span><span><span lang="fr">Remboursement total si l'article ne peut pas être acheté</span><span lang="en">Full refund if the item cannot be purchased</span><span lang="es">Reembolso total si el artículo no puede comprarse</span></span></div>
       </div>
     </div>
-    <form id="calc" novalidate aria-label="Cotización">
-      <div class="f"><label for="link">Enlace del artículo</label><input id="link" type="url" inputmode="url" placeholder="https://" autocomplete="off" maxlength="600"><div class="err" id="linkErr" aria-live="polite"></div></div>
+    <form id="calc" novalidate>
+      <div class="f"><label for="link"><span lang="fr">Lien de l'article</span><span lang="en">Item link</span><span lang="es">Enlace del artículo</span></label><input id="link" type="url" inputmode="url" placeholder="https://" autocomplete="off" maxlength="600"><div class="err" id="linkErr" aria-live="polite"></div></div>
       <div class="row">
-        <div class="f"><label for="price">Precio en tienda (US$)</label><input id="price" type="number" inputmode="decimal" min="0" step="0.01" value="25"></div>
-        <div class="f"><label for="qty">Cantidad</label><input id="qty" type="number" inputmode="numeric" min="1" max="20" step="1" value="1"></div>
+        <div class="f"><label for="price"><span lang="fr">Prix en boutique (US$)</span><span lang="en">Store price (US$)</span><span lang="es">Precio en tienda (US$)</span></label><input id="price" type="number" inputmode="decimal" min="0" step="0.01" value="25"></div>
+        <div class="f"><label for="qty"><span lang="fr">Quantité</span><span lang="en">Quantity</span><span lang="es">Cantidad</span></label><input id="qty" type="number" inputmode="numeric" min="1" max="20" step="1" value="1"></div>
       </div>
       <div class="row">
-        <div class="f"><label for="cat">Categoría</label>
+        <div class="f"><label for="cat"><span lang="fr">Catégorie</span><span lang="en">Category</span><span lang="es">Categoría</span></label>
           <select id="cat">
-            <option value="0.5">Accesorios y maquillaje</option>
-            <option value="1" selected>Moda y perfumería</option>
-            <option value="2">Belleza y juguetes</option>
-            <option value="3">Calzado</option>
-            <option value="5">Hogar y pequeños aparatos</option>
-            <option value="0">Otro, indico el peso</option>
+            <option value="0.5" data-t="c1">Accesorios y maquillaje</option>
+            <option value="1" data-t="c2" selected>Moda y perfumería</option>
+            <option value="2" data-t="c3">Belleza y juguetes</option>
+            <option value="3" data-t="c4">Calzado</option>
+            <option value="5" data-t="c5">Hogar y pequeños aparatos</option>
+            <option value="0" data-t="c6">Otro, indico el peso</option>
           </select></div>
-        <div class="f"><label for="lb">Peso aproximado (lb)</label><input id="lb" type="number" inputmode="decimal" min="0.1" step="0.1" value="1"></div>
+        <div class="f"><label for="lb"><span lang="fr">Poids approximatif (lb)</span><span lang="en">Approximate weight (lb)</span><span lang="es">Peso aproximado (lb)</span></label><input id="lb" type="number" inputmode="decimal" min="0.1" step="0.1" value="1"></div>
       </div>
-      <div class="f"><span class="lbl">Entrega</span>
-        <div class="opts"><label><input type="radio" name="del" value="250" checked> A domicilio, RD$250</label><label><input type="radio" name="del" value="0"> Retiro, sin costo</label></div>
+      <div class="f"><span class="lbl"><span lang="fr">Livraison</span><span lang="en">Delivery</span><span lang="es">Entrega</span></span>
+        <div class="opts"><label><input type="radio" name="del" value="250" checked> <span lang="fr">À domicile, RD$250</span><span lang="en">To your door, RD$250</span><span lang="es">A domicilio, RD$250</span></label><label><input type="radio" name="del" value="0"> <span lang="fr">Retrait, sans frais</span><span lang="en">Pickup, free</span><span lang="es">Retiro, sin costo</span></label></div>
       </div>
       <div aria-live="polite">
         <div class="lines" id="lines"></div>
         <div class="tot"><span class="caps">Total</span><strong id="total">RD$0</strong></div>
-        <p class="small">Precio estimado. Te confirmamos el total antes de cualquier pago.</p>
-        <p class="warn" id="warn">Tu compra supera US$200 por envío: Aduanas aplica impuestos a partir de ese monto. Te enviamos el total exacto antes de pagar.</p>
-        <a class="btn" id="order" href="#" target="_blank" rel="noopener noreferrer">Enviar por WhatsApp</a>
+        <p class="small"><span lang="fr">Prix estimé. Nous vous confirmons le total avant tout paiement.</span><span lang="en">Estimated price. We confirm the total before any payment.</span><span lang="es">Precio estimado. Te confirmamos el total antes de cualquier pago.</span></p>
+        <p class="warn" id="warn"><span lang="fr">Votre achat dépasse 200 US$ par envoi : la douane applique des taxes au-delà. Nous vous envoyons le total exact avant paiement.</span><span lang="en">Your purchase exceeds US$200 per shipment: customs charges duties above that amount. We send you the exact total before payment.</span><span lang="es">Tu compra supera US$200 por envío: Aduanas aplica impuestos a partir de ese monto. Te enviamos el total exacto antes de pagar.</span></p>
+        <a class="btn" id="order" href="#" target="_blank" rel="noopener noreferrer"><span lang="fr">Envoyer sur WhatsApp</span><span lang="en">Send on WhatsApp</span><span lang="es">Enviar por WhatsApp</span></a>
       </div>
     </form>
   </div>
@@ -187,29 +196,29 @@ footer{background:var(--ink);color:#fff;padding:96px 0 40px}
 
 <section class="edit" id="seleccion">
   <div class="w">
-    <div class="ehead"><div><p class="caps">Selección</p><h2 style="margin-top:18px">Lo más solicitado</h2></div><a class="link" href="#cotiza">Cotizar un artículo</a></div>
+    <div class="ehead"><div><p class="caps"><span lang="fr">Sélection</span><span lang="en">Selection</span><span lang="es">Selección</span></p><h2 style="margin-top:18px"><span lang="fr">Les plus demandés</span><span lang="en">Most requested</span><span lang="es">Lo más solicitado</span></h2></div><a class="link" href="#cotiza"><span lang="fr">Faire un devis</span><span lang="en">Get a quote</span><span lang="es">Cotizar un artículo</span></a></div>
     <div class="egrid" id="egrid"></div>
   </div>
 </section>
 
 <section class="serv" id="servicio">
   <div class="w sgrid">
-    <div><p class="caps">I</p><h3>Un solo precio</h3><p>Compra, envío, servicio y entrega, en pesos. Lo que confirmamos es lo que pagas.</p></div>
-    <div><p class="caps">II</p><h3>Sin tarjeta internacional</h3><p>Pagas en República Dominicana. Nosotros compramos en Estados Unidos.</p></div>
-    <div><p class="caps">III</p><h3>Seguimiento</h3><p>Factura de la tienda, número de rastreo y aviso a la llegada de tu pedido.</p></div>
+    <div><p class="caps">I</p><h3><span lang="fr">Un prix unique</span><span lang="en">One single price</span><span lang="es">Un solo precio</span></h3><p><span lang="fr">Achat, envoi, service et livraison, en pesos. Ce que nous confirmons est ce que vous payez.</span><span lang="en">Purchase, shipping, service and delivery, in pesos. What we confirm is what you pay.</span><span lang="es">Compra, envío, servicio y entrega, en pesos. Lo que confirmamos es lo que pagas.</span></p></div>
+    <div><p class="caps">II</p><h3><span lang="fr">Sans carte internationale</span><span lang="en">No international card</span><span lang="es">Sin tarjeta internacional</span></h3><p><span lang="fr">Vous payez en République dominicaine. Nous achetons aux États-Unis.</span><span lang="en">You pay in the Dominican Republic. We buy in the United States.</span><span lang="es">Pagas en República Dominicana. Nosotros compramos en Estados Unidos.</span></p></div>
+    <div><p class="caps">III</p><h3><span lang="fr">Suivi</span><span lang="en">Tracking</span><span lang="es">Seguimiento</span></h3><p><span lang="fr">Facture de la boutique, numéro de suivi et avis à l'arrivée de votre commande.</span><span lang="en">Store invoice, tracking number and a message when your order arrives.</span><span lang="es">Factura de la tienda, número de rastreo y aviso a la llegada de tu pedido.</span></p></div>
   </div>
 </section>
 
 <section class="info" id="info">
   <div class="w igrid">
-    <div><p class="caps">Información</p><h2>Preguntas frecuentes</h2></div>
+    <div><p class="caps"><span lang="fr">Informations</span><span lang="en">Information</span><span lang="es">Información</span></p><h2><span lang="fr">Questions fréquentes</span><span lang="en">Questions</span><span lang="es">Preguntas frecuentes</span></h2></div>
     <div>
-      <details><summary>¿Qué incluye el precio?</summary><p>El artículo, el impuesto de la tienda en Estados Unidos, el envío de Miami a Santo Domingo, nuestro servicio y la entrega si la eliges.</p></details>
-      <details><summary>¿Y si el paquete pesa más?</summary><p>El peso real se conoce en Miami. Si es mayor, te avisamos y pagas solo la diferencia de envío, sin cargo de servicio adicional.</p></details>
-      <details><summary>Impuestos de Aduanas</summary><p>Las compras personales de hasta US$200 por envío entran sin impuestos. Por encima, te indicamos los impuestos antes del pago.</p></details>
-      <details><summary>Cambios y reclamos</summary><p>Si el artículo llega dañado o no corresponde, gestionamos el reclamo con la tienda. Los cambios de talla dependen de cada tienda y te lo indicamos antes de comprar.</p></details>
-      <details><summary>Artículos no admitidos</summary><p>Armas y réplicas, medicamentos con receta, líquidos inflamables, aerosoles, baterías sueltas, alimentos frescos, plantas y falsificaciones.</p></details>
-      <details><summary>Pago</summary><p>Por transferencia a una cuenta en República Dominicana, cuyos datos te enviamos por WhatsApp con el precio final, o por PayPal desde el extranjero.</p></details>
+      <details><summary><span lang="fr">Que comprend le prix ?</span><span lang="en">What does the price include?</span><span lang="es">¿Qué incluye el precio?</span></summary><p><span lang="fr">L'article, la taxe de la boutique aux États-Unis, l'envoi de Miami à Saint-Domingue, notre service et la livraison si vous la choisissez.</span><span lang="en">The item, the store's US sales tax, shipping from Miami to Santo Domingo, our service and delivery if you choose it.</span><span lang="es">El artículo, el impuesto de la tienda en Estados Unidos, el envío de Miami a Santo Domingo, nuestro servicio y la entrega si la eliges.</span></p></details>
+      <details><summary><span lang="fr">Et si le colis pèse plus ?</span><span lang="en">What if the parcel weighs more?</span><span lang="es">¿Y si el paquete pesa más?</span></summary><p><span lang="fr">Le poids réel est connu à Miami. S'il est supérieur, nous vous prévenons et vous ne payez que la différence d'envoi, sans frais de service supplémentaires.</span><span lang="en">The real weight is known in Miami. If it is higher, we let you know and you only pay the shipping difference, with no extra service fee.</span><span lang="es">El peso real se conoce en Miami. Si es mayor, te avisamos y pagas solo la diferencia de envío, sin cargo de servicio adicional.</span></p></details>
+      <details><summary><span lang="fr">Taxes de douane</span><span lang="en">Customs duties</span><span lang="es">Impuestos de Aduanas</span></summary><p><span lang="fr">Les achats personnels jusqu'à 200 US$ par envoi entrent sans taxes. Au-delà, nous vous indiquons les taxes avant le paiement.</span><span lang="en">Personal purchases up to US$200 per shipment enter duty-free. Above that, we tell you the duties before payment.</span><span lang="es">Las compras personales de hasta US$200 por envío entran sin impuestos. Por encima, te indicamos los impuestos antes del pago.</span></p></details>
+      <details><summary><span lang="fr">Échanges et réclamations</span><span lang="en">Returns and claims</span><span lang="es">Cambios y reclamos</span></summary><p><span lang="fr">Si l'article arrive abîmé ou ne correspond pas, nous gérons la réclamation avec la boutique. Les échanges de taille dépendent de chaque boutique, nous vous le précisons avant l'achat.</span><span lang="en">If the item arrives damaged or is not what you ordered, we handle the claim with the store. Size exchanges depend on each store; we tell you before buying.</span><span lang="es">Si el artículo llega dañado o no corresponde, gestionamos el reclamo con la tienda. Los cambios de talla dependen de cada tienda y te lo indicamos antes de comprar.</span></p></details>
+      <details><summary><span lang="fr">Articles non acceptés</span><span lang="en">Items we cannot ship</span><span lang="es">Artículos no admitidos</span></summary><p><span lang="fr">Armes et répliques, médicaments sur ordonnance, liquides inflammables, aérosols, batteries seules, produits frais, plantes et contrefaçons.</span><span lang="en">Weapons and replicas, prescription drugs, flammable liquids, aerosols, loose batteries, fresh food, plants and counterfeits.</span><span lang="es">Armas y réplicas, medicamentos con receta, líquidos inflamables, aerosoles, baterías sueltas, alimentos frescos, plantas y falsificaciones.</span></p></details>
+      <details><summary><span lang="fr">Paiement</span><span lang="en">Payment</span><span lang="es">Pago</span></summary><p><span lang="fr">Par virement sur un compte en République dominicaine, dont nous vous envoyons les coordonnées par WhatsApp avec le prix final, ou par PayPal depuis l'étranger.</span><span lang="en">By bank transfer to an account in the Dominican Republic, whose details we send you on WhatsApp with the final price, or by PayPal from abroad.</span><span lang="es">Por transferencia a una cuenta en República Dominicana, cuyos datos te enviamos por WhatsApp con el precio final, o por PayPal desde el extranjero.</span></p></details>
     </div>
   </div>
 </section>
@@ -218,29 +227,45 @@ footer{background:var(--ink);color:#fff;padding:96px 0 40px}
 <footer>
   <div class="w">
     <div class="fgrid">
-      <div><p class="caps" style="color:#fff">Encárgalo</p><p>Compras por encargo desde Estados Unidos, entregadas en Santo Domingo.</p></div>
-      <div><p class="caps" style="color:#fff">Servicio</p><a href="#cotiza">Cotización</a><a href="#seleccion">Selección</a><a href="#servicio">El servicio</a></div>
-      <div><p class="caps" style="color:#fff">Información</p><a href="#info">Preguntas frecuentes</a><a href="#info">Pago</a><a href="#info">Aduanas</a></div>
-      <div><p class="caps" style="color:#fff">Contacto</p><a id="waFoot" href="#" target="_blank" rel="noopener noreferrer">WhatsApp</a><p id="fwa"></p></div>
+      <div><p class="caps" style="color:#fff">Encárgalo</p><p><span lang="fr">Achats sur commande aux États-Unis, livrés à Saint-Domingue.</span><span lang="en">Shopping on request in the United States, delivered in Santo Domingo.</span><span lang="es">Compras por encargo desde Estados Unidos, entregadas en Santo Domingo.</span></p></div>
+      <div><p class="caps" style="color:#fff"><span lang="fr">Service</span><span lang="en">Service</span><span lang="es">Servicio</span></p><a href="#cotiza"><span lang="fr">Devis</span><span lang="en">Quote</span><span lang="es">Cotización</span></a><a href="#seleccion"><span lang="fr">Sélection</span><span lang="en">Selection</span><span lang="es">Selección</span></a><a href="#servicio"><span lang="fr">Le service</span><span lang="en">The service</span><span lang="es">El servicio</span></a></div>
+      <div><p class="caps" style="color:#fff"><span lang="fr">Informations</span><span lang="en">Information</span><span lang="es">Información</span></p><a href="#info"><span lang="fr">Questions fréquentes</span><span lang="en">Questions</span><span lang="es">Preguntas frecuentes</span></a><a href="#info"><span lang="fr">Paiement</span><span lang="en">Payment</span><span lang="es">Pago</span></a><a href="#info"><span lang="fr">Douane</span><span lang="en">Customs</span><span lang="es">Aduanas</span></a></div>
+      <div><p class="caps" style="color:#fff">Contact</p><a class="wa" href="#" target="_blank" rel="noopener noreferrer">WhatsApp</a><p id="fwa"></p></div>
     </div>
     <div class="giant" aria-hidden="true">Encárgalo</div>
-    <div class="legal caps"><span>Santo Domingo</span><span>Sin cookies ni rastreadores</span><span>Fotografías: Unsplash</span></div>
+    <div class="legal caps"><span>Santo Domingo</span><span><span lang="fr">Sans cookies ni traceurs</span><span lang="en">No cookies or trackers</span><span lang="es">Sin cookies ni rastreadores</span></span><span><span lang="fr">Photographies : Unsplash</span><span lang="en">Photographs: Unsplash</span><span lang="es">Fotografías: Unsplash</span></span></div>
   </div>
 </footer>
 
-<div class="sticky" aria-hidden="true"><div><span class="caps" style="color:#8d8d8d">Total estimado</span><strong id="stTotal">RD$0</strong></div><a id="stOrder" href="#" target="_blank" rel="noopener noreferrer" tabindex="-1">Enviar</a></div>
+<div class="sticky" aria-hidden="true"><div><span class="caps" style="color:#8d8d8d"><span lang="fr">Total estimé</span><span lang="en">Estimated total</span><span lang="es">Total estimado</span></span><strong id="stTotal">RD$0</strong></div><a id="stOrder" href="#" target="_blank" rel="noopener noreferrer" tabindex="-1"><span lang="fr">Envoyer</span><span lang="en">Send</span><span lang="es">Enviar</span></a></div>
 
 <script>
 {
-  const CFG = { whatsapp: "18098778484", paypal: "", rate: 62, usTax: 0.07, courierPerLb: 4, feePct: 0.15, feeMin: 400, deMinimis: 200 };
+  const CFG = { whatsapp: "18098778484", rate: 62, usTax: 0.07, courierPerLb: 4, feePct: 0.15, feeMin: 400, deMinimis: 200 };
+  const T = {
+    es: { r1: "Artículo e impuesto de tienda", r2: "Envío Miami – Santo Domingo, {lb} lb", r3: "Servicio Encárgalo", r4: "Entrega", free: "Sin costo", from: "Desde", delivered: "entregado", err: "El enlace no parece válido. Cópialo completo desde la tienda.",
+      c1: "Accesorios y maquillaje", c2: "Moda y perfumería", c3: "Belleza y juguetes", c4: "Calzado", c5: "Hogar y pequeños aparatos", c6: "Otro, indico el peso",
+      i1: ["Calzado", "Tenis, en tienda US$55"], i2: ["Belleza", "Set de cuidado, en tienda US$32"], i3: ["Moda", "Conjunto, en tienda US$40"],
+      m: ["Hola Encárgalo, quisiera esta cotización:", "Enlace: ", "(lo envío aquí)", "Precio en tienda: US$", "Peso aprox.: ", "Entrega: ", "a domicilio", "retiro", "Total estimado: ", "Talla / color: "], hello: "Hola Encárgalo, quisiera una cotización." },
+    fr: { r1: "Article et taxe boutique", r2: "Envoi Miami – Saint-Domingue, {lb} lb", r3: "Service Encárgalo", r4: "Livraison", free: "Sans frais", from: "À partir de", delivered: "livré", err: "Ce lien ne semble pas valide. Copiez-le en entier depuis la boutique.",
+      c1: "Accessoires et maquillage", c2: "Mode et parfumerie", c3: "Beauté et jouets", c4: "Chaussures", c5: "Maison et petits appareils", c6: "Autre, j'indique le poids",
+      i1: ["Chaussures", "Baskets, 55 US$ en boutique"], i2: ["Beauté", "Coffret de soins, 32 US$ en boutique"], i3: ["Mode", "Ensemble, 40 US$ en boutique"],
+      m: ["Bonjour Encárgalo, je souhaite ce devis :", "Lien : ", "(je l'envoie ici)", "Prix en boutique : US$", "Poids approx. : ", "Livraison : ", "à domicile", "retrait", "Total estimé : ", "Taille / couleur : "], hello: "Bonjour Encárgalo, je souhaite un devis." },
+    en: { r1: "Item and store tax", r2: "Shipping Miami – Santo Domingo, {lb} lb", r3: "Encárgalo service", r4: "Delivery", free: "Free", from: "From", delivered: "delivered", err: "This link does not look valid. Copy it in full from the store.",
+      c1: "Accessories and makeup", c2: "Fashion and fragrance", c3: "Beauty and toys", c4: "Shoes", c5: "Home and small appliances", c6: "Other, I enter the weight",
+      i1: ["Shoes", "Sneakers, US$55 in store"], i2: ["Beauty", "Skincare set, US$32 in store"], i3: ["Fashion", "Outfit, US$40 in store"],
+      m: ["Hello Encárgalo, I would like this quote:", "Link: ", "(I'll send it here)", "Store price: US$", "Approx. weight: ", "Delivery: ", "to my door", "pickup", "Estimated total: ", "Size / colour: "], hello: "Hello Encárgalo, I would like a quote." }
+  };
   const U = id => "https://images.unsplash.com/photo-" + id + "?auto=format&fit=crop&w=900&h=1200&q=70";
   const items = [
-    { n: "Calzado", d: "Tenis, en tienda US$55", p: 55, lb: 3, c: "3", img: U("1596505376266-21f87d226d7a"), alt: "Persona con tenis blancos en un pasillo rosado" },
-    { n: "Belleza", d: "Set de cuidado, en tienda US$32", p: 32, lb: 1.5, c: "2", img: U("1567721913486-6585f069b332"), alt: "Frascos negros de cuidado de la piel sobre piedra" },
-    { n: "Moda", d: "Conjunto, en tienda US$40", p: 40, lb: 1, c: "1", img: U("1773859096601-7d9b0a92bc7f"), alt: "Mujer vestida de negro con una bolsa de compras" }
+    { k: "i1", p: 55, lb: 3, c: "3", img: U("1596505376266-21f87d226d7a") },
+    { k: "i2", p: 32, lb: 1.5, c: "2", img: U("1567721913486-6585f069b332") },
+    { k: "i3", p: 40, lb: 1, c: "1", img: U("1773859096601-7d9b0a92bc7f") }
   ];
+  const LANGS = ["es", "fr", "en"];
+  let L = "es";
   const $ = id => document.getElementById(id);
-  const fmt = v => "RD$" + Math.round(v).toLocaleString("es-DO");
+  const fmt = v => "RD$" + Math.round(v).toLocaleString("en-US");
   const num = (el, d) => { const v = parseFloat(el.value); return isFinite(v) && v >= 0 ? v : d; };
   const waNum = /^\d{8,15}$/.test(CFG.whatsapp) ? CFG.whatsapp : "590690391800";
   const wa = t => "https://wa.me/" + waNum + "?text=" + encodeURIComponent(t);
@@ -254,48 +279,59 @@ footer{background:var(--ink);color:#fff;padding:96px 0 40px}
     const v = $("link").value.trim();
     if (!v) { $("linkErr").textContent = ""; return ""; }
     try { const u = new URL(v); if (!/^https?:$/.test(u.protocol)) throw 0; $("linkErr").textContent = ""; return u.href; }
-    catch (e) { $("linkErr").textContent = "El enlace no parece válido. Cópialo completo desde la tienda."; return ""; }
+    catch (e) { $("linkErr").textContent = T[L].err; return ""; }
   }
   function render() {
+    const t = T[L];
     const price = num($("price"), 0), qty = Math.min(20, Math.max(1, Math.round(num($("qty"), 1)))), lb = num($("lb"), 1);
     const del = parseInt(document.querySelector("input[name=del]:checked").value, 10);
     const q = quote(price, qty, lb, del);
-    const rows = [["Artículo e impuesto de tienda", q.goodsRD], ["Envío Miami – Santo Domingo, " + q.lbs + " lb", q.courierRD], ["Servicio Encárgalo", q.fee], ["Entrega", q.del]];
+    const rows = [[t.r1, q.goodsRD], [t.r2.replace("{lb}", q.lbs), q.courierRD], [t.r3, q.fee], [t.r4, q.del]];
     const box = $("lines"); box.textContent = "";
-    rows.forEach(r => { const d = document.createElement("div"); const a = document.createElement("span"); a.textContent = r[0]; const b = document.createElement("span"); b.textContent = r[1] ? fmt(r[1]) : "Sin costo"; d.append(a, b); box.append(d); });
-    const t = price > 0 ? fmt(q.total) : "RD$0";
-    $("total").textContent = t; $("stTotal").textContent = t;
+    rows.forEach(r => { const d = document.createElement("div"); const a = document.createElement("span"); a.textContent = r[0]; const b = document.createElement("span"); b.textContent = r[1] ? fmt(r[1]) : t.free; d.append(a, b); box.append(d); });
+    const tot = price > 0 ? fmt(q.total) : "RD$0";
+    $("total").textContent = tot; $("stTotal").textContent = tot;
     $("warn").classList.toggle("on", q.over);
-    const link = cleanLink();
-    const m = ["Hola Encárgalo, quisiera esta cotización:", link ? "Enlace: " + link : "Enlace: (lo envío aquí)", "Precio en tienda: US$" + price.toFixed(2) + " x " + qty, "Peso aprox.: " + q.lbs + " lb", "Entrega: " + (del ? "a domicilio" : "retiro"), "Total estimado: " + t, "Talla / color: "].join("\n");
-    $("order").href = wa(m); $("stOrder").href = wa(m);
+    const link = cleanLink(), m = t.m;
+    const msg = [m[0], m[1] + (link || m[2]), m[3] + price.toFixed(2) + " x " + qty, m[4] + q.lbs + " lb", m[5] + (del ? m[6] : m[7]), m[8] + tot, m[9]].join("\n");
+    $("order").href = wa(msg); $("stOrder").href = wa(msg);
+  }
+  function renderItems() {
+    const t = T[L], g = $("egrid"); g.textContent = "";
+    items.forEach(it => {
+      const q = quote(it.p, 1, it.lb, 250);
+      const fig = document.createElement("figure"); fig.tabIndex = 0; fig.setAttribute("role", "button");
+      const ph = document.createElement("div"); ph.className = "ph";
+      const img = document.createElement("img"); img.src = it.img; img.alt = t[it.k][0]; img.loading = "lazy"; img.width = 900; img.height = 1200;
+      ph.append(img);
+      const cap = document.createElement("figcaption"); cap.className = "caps";
+      const a = document.createElement("span"); a.textContent = t[it.k][0]; const b = document.createElement("span"); b.textContent = t.from + " " + fmt(q.total);
+      cap.append(a, b);
+      const d = document.createElement("p"); d.className = "small"; d.style.marginTop = "6px"; d.textContent = t[it.k][1] + ", " + t.delivered;
+      fig.append(ph, cap, d);
+      const pick = () => { $("price").value = it.p; $("qty").value = 1; $("cat").value = it.c; $("lb").value = it.lb; render(); $("cotiza").scrollIntoView({ behavior: "smooth" }); };
+      fig.addEventListener("click", pick); fig.addEventListener("keydown", e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); pick(); } });
+      g.append(fig);
+    });
+  }
+  function setLang(l) {
+    L = LANGS.includes(l) ? l : "es";
+    document.documentElement.lang = L;
+    document.querySelectorAll(".langs button").forEach(b => b.setAttribute("aria-pressed", b.dataset.l === L));
+    document.querySelectorAll("#cat option").forEach(o => { o.textContent = T[L][o.dataset.t]; });
+    document.querySelectorAll(".wa").forEach(a => { a.href = wa(T[L].hello); });
+    renderItems(); render();
+    try { localStorage.setItem("enc-lang", L); } catch (e) {}
   }
   $("cat").addEventListener("change", () => { const v = parseFloat($("cat").value); if (v > 0) $("lb").value = v; else $("lb").focus(); render(); });
   ["link", "price", "qty", "lb"].forEach(id => $(id).addEventListener("input", render));
   document.querySelectorAll("input[name=del]").forEach(r => r.addEventListener("change", render));
   $("calc").addEventListener("submit", e => e.preventDefault());
-
-  const g = $("egrid");
-  items.forEach(it => {
-    const q = quote(it.p, 1, it.lb, 250);
-    const fig = document.createElement("figure"); fig.tabIndex = 0; fig.setAttribute("role", "button");
-    const ph = document.createElement("div"); ph.className = "ph";
-    const img = document.createElement("img"); img.src = it.img; img.alt = it.alt; img.loading = "lazy"; img.width = 900; img.height = 1200;
-    ph.append(img);
-    const cap = document.createElement("figcaption"); cap.className = "caps";
-    const a = document.createElement("span"); a.textContent = it.n; const b = document.createElement("span"); b.textContent = "Desde " + fmt(q.total);
-    cap.append(a, b);
-    const d = document.createElement("p"); d.className = "small"; d.style.marginTop = "6px"; d.textContent = it.d + ", entregado";
-    fig.append(ph, cap, d);
-    const pick = () => { $("price").value = it.p; $("qty").value = 1; $("cat").value = it.c; $("lb").value = it.lb; render(); $("cotiza").scrollIntoView({ behavior: "smooth" }); };
-    fig.addEventListener("click", pick); fig.addEventListener("keydown", e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); pick(); } });
-    g.append(fig);
-  });
-
-  const hello = wa("Hola Encárgalo, quisiera una cotización.");
-  $("waTop").href = hello; $("waFoot").href = hello;
+  document.querySelectorAll(".langs button").forEach(b => b.addEventListener("click", () => setLang(b.dataset.l)));
   $("fwa").textContent = "+" + waNum.replace(/^1(\d{3})(\d{3})(\d{4})$/, "1 $1 $2 $3");
-  render();
+  let start = "es";
+  try { const s = localStorage.getItem("enc-lang"); const n = (navigator.language || "es").slice(0, 2).toLowerCase(); start = s || (LANGS.includes(n) ? n : "es"); } catch (e) {}
+  setLang(start);
 }
 </script>
 </body>
