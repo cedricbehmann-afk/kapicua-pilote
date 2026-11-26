@@ -337,7 +337,7 @@ export async function onRequest(ctx) {
       if (method === "GET") {
         const ext = f.mime.split("/")[1].replace("jpeg", "jpg");
         const safe = (f.name || "fichier").replace(/\.[a-z0-9]+$/i, "").replace(/[^\w\- ]+/g, "").slice(0, 60) || "fichier";
-        return new Response(unhexB64(f.b64), { headers: { "content-type": f.mime, "cache-control": "private, max-age=3600", "x-content-type-options": "nosniff",
+        return new Response(unhexB64(f.b64), { headers: { "content-type": f.mime, "cache-control": "private, no-cache", "x-content-type-options": "nosniff",
           "content-security-policy": "default-src 'none'", "content-disposition": (url.searchParams.has("dl") ? "attachment" : "inline") + '; filename="' + safe + "." + ext + '"' } });
       }
       if (method === "DELETE" && owner) {
