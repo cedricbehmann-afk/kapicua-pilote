@@ -10,6 +10,8 @@
 <meta property="og:description" content="Compras en Estados Unidos, entregadas en Santo Domingo. Un solo precio, en pesos, todo incluido.">
 <meta property="og:image" content="https://images.unsplash.com/photo-1773859096265-b3f034c156f8?auto=format&fit=crop&w=1200&h=630&q=70">
 <link rel="preload" href="/fonts-lux/cormorant-garamond-latin-500-normal.woff2" as="font" type="font/woff2" crossorigin>
+<script>document.documentElement.classList.add("js")</script>
+<link rel="stylesheet" href="/lux/motion.css">
 <style>
 @font-face{font-family:Inter;font-style:normal;font-weight:300;font-display:swap;src:url(/fonts-lux/inter-latin-300-normal.woff2) format('woff2')}
 @font-face{font-family:Inter;font-style:normal;font-weight:400;font-display:swap;src:url(/fonts-lux/inter-latin-400-normal.woff2) format('woff2')}
@@ -35,7 +37,7 @@ h1,h2,h3{margin:0;font-family:"Cormorant Garamond",Georgia,serif;font-weight:500
 .langs button[aria-pressed=true]{color:#fff;border-bottom-color:#fff}
 header{position:sticky;top:0;z-index:30;background:#fff;border-bottom:1px solid var(--line)}
 .bar{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;height:78px}
-.nav{display:flex;gap:30px}
+.lft{display:flex;align-items:center}
 .nav a,.act a{padding:8px 0;border-bottom:1px solid transparent}
 .nav a:hover,.act a:hover{border-bottom-color:var(--ink)}
 .mark{font:500 30px/1 "Cormorant Garamond",serif;letter-spacing:.34em;text-transform:uppercase;padding-left:.34em}
@@ -112,22 +114,67 @@ footer{background:var(--ink);color:#fff;padding:96px 0 40px}
 .giant{font:500 clamp(56px,14vw,220px)/.8 "Cormorant Garamond",serif;letter-spacing:.08em;text-transform:uppercase;margin:110px 0 36px;white-space:nowrap;overflow:hidden;text-align:center}
 .legal{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;color:#8d8d8d;border-top:1px solid #333;padding-top:22px}
 .sticky{display:none}
-@media(max-width:1000px){.nav{display:none}.bar{grid-template-columns:auto 1fr auto}.mark{font-size:24px}.cgrid,.igrid{grid-template-columns:minmax(0,1fr);gap:64px}.sgrid{grid-template-columns:minmax(0,1fr)}.sgrid>div{padding:56px 0}.sgrid>div+div{border-left:0;border-top:1px solid var(--line)}.fgrid{grid-template-columns:repeat(2,minmax(0,1fr))}}
-@media(max-width:700px){.w{padding:0 22px}.strip .w{grid-template-columns:minmax(0,1fr) auto}.strip .msg{grid-column:1;text-align:left;font-size:10px;letter-spacing:.14em}.langs{grid-column:2;gap:12px}.bar{height:64px}.act .hide{display:none}.mark{font-size:21px;letter-spacing:.26em}.hero{height:86svh;min-height:520px}.hcopy{bottom:40px}.intro{padding:96px 0 84px}.cotiza,.edit,.info{padding:88px 0}.egrid{grid-template-columns:minmax(0,1fr);gap:48px}.ehead{display:block}.ehead .link{margin-top:18px}.row{gap:18px}.fgrid{grid-template-columns:minmax(0,1fr)}footer{padding-bottom:110px}.side .meta div{grid-template-columns:96px minmax(0,1fr)}
+@media(max-width:1000px){.mark{font-size:24px}.cgrid,.igrid{grid-template-columns:minmax(0,1fr);gap:64px}.sgrid{grid-template-columns:minmax(0,1fr)}.sgrid>div{padding:56px 0}.sgrid>div+div{border-left:0;border-top:1px solid var(--line)}.fgrid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:700px){.w{padding:0 22px}.strip .w{grid-template-columns:minmax(0,1fr) auto}.strip .msg{grid-column:1;text-align:left;font-size:10px;letter-spacing:.14em}.langs{grid-column:2;gap:12px}.bar{height:64px}.act .hide{display:none}.mark{font-size:19px;letter-spacing:.22em;padding-left:.22em}.menu-btn .mt{display:none}.hero{height:86svh;min-height:520px}.hcopy{bottom:40px}.intro{padding:96px 0 84px}.cotiza,.edit,.info{padding:88px 0}.egrid{grid-template-columns:minmax(0,1fr);gap:48px}.ehead{display:block}.ehead .link{margin-top:18px}.row{gap:18px}.fgrid{grid-template-columns:minmax(0,1fr)}footer{padding-bottom:110px}.side .meta div{grid-template-columns:96px minmax(0,1fr)}
 .sticky{display:flex;position:fixed;left:0;right:0;bottom:0;z-index:40;align-items:center;justify-content:space-between;gap:16px;background:#fff;border-top:1px solid var(--line);padding:12px 22px calc(12px + env(safe-area-inset-bottom))}
 .sticky strong{display:block;font:500 28px/1.05 "Cormorant Garamond",serif;white-space:nowrap}
 .sticky a{background:var(--ink);color:#fff;padding:15px 22px;font:400 11px Inter,sans-serif;letter-spacing:.2em;text-transform:uppercase}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.egrid img{transition:none}}
+.how{padding:40px 0 60px}
+.how .big-wrap{position:relative;height:100%}
+.how .story-media{display:flex;flex-direction:column;justify-content:center}
+.how .story-media figure{place-items:start}
+.how .st h3{font-size:clamp(34px,4vw,54px);line-height:1.06;margin:16px 0 18px}
+.how .st p.d{color:var(--soft);max-width:26em}
+.mq-label{text-align:center;margin:0 0 22px;color:var(--mute)}
+.qv-body .meta2{display:grid;gap:0;margin:26px 0 8px}
+.qv-body .meta2 div{display:flex;justify-content:space-between;gap:16px;padding:14px 0;border-top:1px solid var(--line)}
+.qv-body .meta2 div:last-child{border-bottom:1px solid var(--line)}
+.qv-body .meta2 strong{font:500 30px/1 "Cormorant Garamond",serif}
+.egrid figcaption .q{border-bottom:1px solid currentColor}
+@media(max-width:900px){.how .st .st-img{justify-content:flex-start}.how .st .st-img .big-num{font-size:110px}}
 </style>
 </head>
 <body>
+<div class="loader" aria-hidden="true"><span>Encárgalo</span><i></i></div>
+<div class="overlay" role="dialog" aria-modal="true" aria-label="Menu">
+  <div class="ov-l">
+    <div class="ov-top"><span class="mark" style="font-size:22px">Encárgalo</span><button class="ov-close" type="button" data-menu-close><b></b><span lang="fr">Fermer</span><span lang="en">Close</span><span lang="es">Cerrar</span></button></div>
+    <nav class="ov-nav" aria-label="Menu">
+      <a href="#top" style="--i:0"><span lang="fr">Accueil</span><span lang="en">Home</span><span lang="es">Inicio</span></a>
+      <a href="#cotiza" style="--i:1"><span lang="fr">Devis</span><span lang="en">Quote</span><span lang="es">Cotizar</span></a>
+      <a href="#seleccion" style="--i:2"><span lang="fr">Sélection</span><span lang="en">Selection</span><span lang="es">Selección</span></a>
+      <a href="#como" style="--i:3"><span lang="fr">Comment ça marche</span><span lang="en">How it works</span><span lang="es">Cómo funciona</span></a>
+      <a href="#info" style="--i:4"><span lang="fr">Questions</span><span lang="en">Questions</span><span lang="es">Preguntas</span></a>
+    </nav>
+    <div class="ov-foot caps"><a class="wa" href="#" target="_blank" rel="noopener noreferrer">WhatsApp</a><span>Santo Domingo</span></div>
+  </div>
+  <div class="ov-r"><img src="https://images.unsplash.com/photo-1567721913486-6585f069b332?auto=format&fit=crop&w=1100&h=1400&q=70" alt="" loading="lazy"></div>
+</div>
+<div class="qv" id="qv" role="dialog" aria-modal="true" aria-labelledby="qvName">
+  <div class="qv-panel">
+    <button class="ov-close" type="button" id="qvClose"><b></b><span lang="fr">Fermer</span><span lang="en">Close</span><span lang="es">Cerrar</span></button>
+    <div class="qv-img"><img id="qvImg" src="data:image/gif;base64,R0lGODlhAQABAAAAACw=" alt=""></div>
+    <div class="qv-body">
+      <p class="caps" id="qvCat"></p>
+      <h3 id="qvName"></h3>
+      <p id="qvDesc" style="color:var(--soft)"></p>
+      <div class="meta2">
+        <div><span class="caps"><span lang="fr">Prix en boutique</span><span lang="en">Store price</span><span lang="es">Precio en tienda</span></span><span id="qvStore"></span></div>
+        <div><span class="caps"><span lang="fr">Livré chez vous</span><span lang="en">Delivered to you</span><span lang="es">Entregado en tu casa</span></span><strong id="qvPrice"></strong></div>
+        <div><span class="caps"><span lang="fr">Délai</span><span lang="en">Timing</span><span lang="es">Plazo</span></span><span><span lang="fr">7 à 12 jours</span><span lang="en">7 to 12 days</span><span lang="es">7 a 12 días</span></span></div>
+      </div>
+      <a class="btn" id="qvGo" href="#cotiza"><span lang="fr">Faire le devis de cet article</span><span lang="en">Quote this item</span><span lang="es">Cotizar este artículo</span></a>
+    </div>
+  </div>
+</div>
 <div class="strip"><div class="w">
   <p class="msg caps"><span lang="fr">Commandes de Noël jusqu'au 12 décembre</span><span lang="en">Christmas orders until December 12</span><span lang="es">Pedidos de Navidad hasta el 12 de diciembre</span></p>
   <div class="langs" role="group" aria-label="Idioma"><button type="button" data-l="es">ES</button><button type="button" data-l="fr">FR</button><button type="button" data-l="en">EN</button></div>
 </div></div>
 <header>
   <div class="w bar">
-    <nav class="nav caps" aria-label="Menu"><a href="#cotiza"><span lang="fr">Devis</span><span lang="en">Quote</span><span lang="es">Cotizar</span></a><a href="#seleccion"><span lang="fr">Sélection</span><span lang="en">Selection</span><span lang="es">Selección</span></a><a href="#servicio"><span lang="fr">Le service</span><span lang="en">The service</span><span lang="es">El servicio</span></a></nav>
+    <div class="lft"><button class="menu-btn" type="button" data-menu-open aria-expanded="false"><b></b><span class="mt">Menu</span></button></div>
     <a class="mark" href="#top" aria-label="Encárgalo">Encárgalo</a>
     <div class="act caps"><a class="hide" href="#info"><span lang="fr">Informations</span><span lang="en">Information</span><span lang="es">Información</span></a><a class="wa" href="#" target="_blank" rel="noopener noreferrer">WhatsApp</a></div>
   </div>
@@ -135,24 +182,27 @@ footer{background:var(--ink);color:#fff;padding:96px 0 40px}
 
 <main id="top">
 <section class="hero" aria-label="Encárgalo">
-  <img src="https://images.unsplash.com/photo-1773859096265-b3f034c156f8?auto=format&fit=crop&w=1800&q=72" srcset="https://images.unsplash.com/photo-1773859096265-b3f034c156f8?auto=format&fit=crop&w=800&q=70 800w, https://images.unsplash.com/photo-1773859096265-b3f034c156f8?auto=format&fit=crop&w=1300&q=70 1300w, https://images.unsplash.com/photo-1773859096265-b3f034c156f8?auto=format&fit=crop&w=1800&q=72 1800w" sizes="100vw" alt="" fetchpriority="high">
+  <img src="https://images.unsplash.com/photo-1773859096265-b3f034c156f8?auto=format&fit=crop&w=1800&q=72" srcset="https://images.unsplash.com/photo-1773859096265-b3f034c156f8?auto=format&fit=crop&w=800&q=70 800w, https://images.unsplash.com/photo-1773859096265-b3f034c156f8?auto=format&fit=crop&w=1300&q=70 1300w, https://images.unsplash.com/photo-1773859096265-b3f034c156f8?auto=format&fit=crop&w=1800&q=72 1800w" sizes="100vw" alt="" fetchpriority="high" class="kb">
   <div class="hcopy"><div class="w">
-    <p class="caps"><span lang="fr">États-Unis · Saint-Domingue</span><span lang="en">United States · Santo Domingo</span><span lang="es">Estados Unidos · Santo Domingo</span></p>
-    <h1><span lang="fr">Ce que vous désirez, <i>à votre porte.</i></span><span lang="en">What you desire, <i>at your door.</i></span><span lang="es">Lo que deseas, <i>a tu puerta.</i></span></h1>
-    <a class="link" href="#cotiza"><span lang="fr">Demander un devis</span><span lang="en">Request a quote</span><span lang="es">Solicitar una cotización</span></a>
+    <p class="caps" data-rv style="--d:.9s"><span lang="fr">États-Unis · Saint-Domingue</span><span lang="en">United States · Santo Domingo</span><span lang="es">Estados Unidos · Santo Domingo</span></p>
+    <h1 data-mask style="--d:1s"><span lang="fr">Ce que vous désirez, <i>à votre porte.</i></span><span lang="en">What you desire, <i>at your door.</i></span><span lang="es">Lo que deseas, <i>a tu puerta.</i></span></h1>
+    <a class="link" data-rv style="--d:1.3s" href="#cotiza"><span lang="fr">Demander un devis</span><span lang="en">Request a quote</span><span lang="es">Solicitar una cotización</span></a>
   </div></div>
 </section>
 
 <section class="intro">
   <div class="w">
-    <p class="caps">Encárgalo</p>
-    <h2><span lang="fr">Nous achetons pour vous dans les boutiques des États-Unis et vous livrons à Saint-Domingue, à un prix unique en pesos.</span><span lang="en">We shop for you in United States stores and deliver to you in Santo Domingo, at one single price in pesos.</span><span lang="es">Compramos por ti en las tiendas de Estados Unidos y te lo entregamos en Santo Domingo, a un solo precio en pesos.</span></h2>
+    <p class="caps" data-rv>Encárgalo</p>
+    <h2 data-mask style="--d:.15s"><span lang="fr">Nous achetons pour vous dans les boutiques des États-Unis et vous livrons à Saint-Domingue, à un prix unique en pesos.</span><span lang="en">We shop for you in United States stores and deliver to you in Santo Domingo, at one single price in pesos.</span><span lang="es">Compramos por ti en las tiendas de Estados Unidos y te lo entregamos en Santo Domingo, a un solo precio en pesos.</span></h2>
   </div>
 </section>
 
+
+<section aria-label="Tiendas"><p class="caps mq-label" data-rv><span lang="fr">Nous achetons dans vos boutiques préférées</span><span lang="en">We shop at your favourite stores</span><span lang="es">Compramos en tus tiendas favoritas</span></p><div class="marquee"><div class="track"><span>Amazon</span><span>SHEIN</span><span>Temu</span><span>Walmart</span><span>Nike</span><span>Sephora</span><span>Zara</span><span>eBay</span><span>Macy's</span><span>Target</span><span>Amazon</span><span>SHEIN</span><span>Temu</span><span>Walmart</span><span>Nike</span><span>Sephora</span><span>Zara</span><span>eBay</span><span>Macy's</span><span>Target</span></div></div></section>
+
 <section class="cotiza" id="cotiza">
   <div class="w cgrid">
-    <div class="side">
+    <div class="side" data-rv>
       <p class="caps"><span lang="fr">Devis</span><span lang="en">Quote</span><span lang="es">Cotización</span></p>
       <h2><span lang="fr">Votre prix, avant de décider.</span><span lang="en">Your price, before you decide.</span><span lang="es">Tu precio, antes de decidir.</span></h2>
       <p><span lang="fr">Indiquez l'article. Le total comprend l'achat, l'envoi depuis Miami, notre service et la livraison.</span><span lang="en">Tell us the item. The total includes the purchase, shipping from Miami, our service and delivery.</span><span lang="es">Indica el artículo. El total incluye la compra, el envío desde Miami, nuestro servicio y la entrega.</span></p>
@@ -162,7 +212,7 @@ footer{background:var(--ink);color:#fff;padding:96px 0 40px}
         <div><span class="caps"><span lang="fr">Garantie</span><span lang="en">Guarantee</span><span lang="es">Garantía</span></span><span><span lang="fr">Remboursement total si l'article ne peut pas être acheté</span><span lang="en">Full refund if the item cannot be purchased</span><span lang="es">Reembolso total si el artículo no puede comprarse</span></span></div>
       </div>
     </div>
-    <form id="calc" novalidate>
+    <form id="calc" novalidate data-rv style="--d:.15s">
       <div class="f"><label for="link"><span lang="fr">Lien de l'article</span><span lang="en">Item link</span><span lang="es">Enlace del artículo</span></label><input id="link" type="url" inputmode="url" placeholder="https://" autocomplete="off" maxlength="600"><div class="err" id="linkErr" aria-live="polite"></div></div>
       <div class="row">
         <div class="f"><label for="price"><span lang="fr">Prix en boutique (US$)</span><span lang="en">Store price (US$)</span><span lang="es">Precio en tienda (US$)</span></label><input id="price" type="number" inputmode="decimal" min="0" step="0.01" value="25"></div>
@@ -196,29 +246,31 @@ footer{background:var(--ink);color:#fff;padding:96px 0 40px}
 
 <section class="edit" id="seleccion">
   <div class="w">
-    <div class="ehead"><div><p class="caps"><span lang="fr">Sélection</span><span lang="en">Selection</span><span lang="es">Selección</span></p><h2 style="margin-top:18px"><span lang="fr">Les plus demandés</span><span lang="en">Most requested</span><span lang="es">Lo más solicitado</span></h2></div><a class="link" href="#cotiza"><span lang="fr">Faire un devis</span><span lang="en">Get a quote</span><span lang="es">Cotizar un artículo</span></a></div>
+    <div class="ehead" data-rv><div><p class="caps"><span lang="fr">Sélection</span><span lang="en">Selection</span><span lang="es">Selección</span></p><h2 style="margin-top:18px" data-mask><span lang="fr">Les plus demandés</span><span lang="en">Most requested</span><span lang="es">Lo más solicitado</span></h2></div><a class="link" href="#cotiza"><span lang="fr">Faire un devis</span><span lang="en">Get a quote</span><span lang="es">Cotizar un artículo</span></a></div>
     <div class="egrid" id="egrid"></div>
   </div>
 </section>
 
+<section class="how story" id="como"><div class="w"><p class="caps" data-rv><span lang="fr">Comment ça marche</span><span lang="en">How it works</span><span lang="es">Cómo funciona</span></p><h2 data-mask style="font-size:clamp(34px,4vw,54px);line-height:1.05;margin-top:18px"><span lang="fr">Quatre étapes, <i>rien de plus.</i></span><span lang="en">Four steps, <i>nothing more.</i></span><span lang="es">Cuatro pasos, <i>nada más.</i></span></h2></div><div class="w story-grid"><div class="story-media"><figure><span class="big-num">01</span></figure><figure><span class="big-num">02</span></figure><figure><span class="big-num">03</span></figure><figure><span class="big-num">04</span></figure><div class="prog" aria-hidden="true"><i></i><i></i><i></i><i></i></div></div><div class="story-steps"><div class="st"><p class="caps"><span lang="fr">Étape</span><span lang="en">Step</span><span lang="es">Paso</span> 01</p><h3><span lang="fr">Vous envoyez le lien</span><span lang="en">You send the link</span><span lang="es">Envías el enlace</span></h3><p class="d"><span lang="fr">Depuis cette page ou sur WhatsApp, avec la taille et la couleur.</span><span lang="en">From this page or on WhatsApp, with size and colour.</span><span lang="es">Desde esta página o por WhatsApp, con talla y color.</span></p><div class="st-img"><span class="big-num">01</span></div></div><div class="st"><p class="caps"><span lang="fr">Étape</span><span lang="en">Step</span><span lang="es">Paso</span> 02</p><h3><span lang="fr">Nous confirmons votre prix</span><span lang="en">We confirm your price</span><span lang="es">Confirmamos tu precio</span></h3><p class="d"><span lang="fr">Un total en pesos, tout compris. S’il ne vous convient pas, rien n’est dû.</span><span lang="en">One total in pesos, all included. If it does not suit you, nothing is owed.</span><span lang="es">Un total en pesos, todo incluido. Si no te conviene, no pasa nada.</span></p><div class="st-img"><span class="big-num">02</span></div></div><div class="st"><p class="caps"><span lang="fr">Étape</span><span lang="en">Step</span><span lang="es">Paso</span> 03</p><h3><span lang="fr">Vous payez, nous achetons</span><span lang="en">You pay, we buy</span><span lang="es">Pagas y compramos</span></h3><p class="d"><span lang="fr">Nous vous envoyons la facture de la boutique et le numéro de suivi.</span><span lang="en">We send you the store invoice and the tracking number.</span><span lang="es">Te enviamos la factura de la tienda y el número de rastreo.</span></p><div class="st-img"><span class="big-num">03</span></div></div><div class="st"><p class="caps"><span lang="fr">Étape</span><span lang="en">Step</span><span lang="es">Paso</span> 04</p><h3><span lang="fr">Vous recevez</span><span lang="en">You receive</span><span lang="es">Lo recibes</span></h3><p class="d"><span lang="fr">À domicile à Saint-Domingue, ou en retrait, en 7 à 12 jours.</span><span lang="en">At your door in Santo Domingo, or by pickup, in 7 to 12 days.</span><span lang="es">En tu casa en Santo Domingo, o lo retiras, en 7 a 12 días.</span></p><div class="st-img"><span class="big-num">04</span></div></div></div></div></section>
+
 <section class="serv" id="servicio">
   <div class="w sgrid">
-    <div><p class="caps">I</p><h3><span lang="fr">Un prix unique</span><span lang="en">One single price</span><span lang="es">Un solo precio</span></h3><p><span lang="fr">Achat, envoi, service et livraison, en pesos. Ce que nous confirmons est ce que vous payez.</span><span lang="en">Purchase, shipping, service and delivery, in pesos. What we confirm is what you pay.</span><span lang="es">Compra, envío, servicio y entrega, en pesos. Lo que confirmamos es lo que pagas.</span></p></div>
-    <div><p class="caps">II</p><h3><span lang="fr">Sans carte internationale</span><span lang="en">No international card</span><span lang="es">Sin tarjeta internacional</span></h3><p><span lang="fr">Vous payez en République dominicaine. Nous achetons aux États-Unis.</span><span lang="en">You pay in the Dominican Republic. We buy in the United States.</span><span lang="es">Pagas en República Dominicana. Nosotros compramos en Estados Unidos.</span></p></div>
-    <div><p class="caps">III</p><h3><span lang="fr">Suivi</span><span lang="en">Tracking</span><span lang="es">Seguimiento</span></h3><p><span lang="fr">Facture de la boutique, numéro de suivi et avis à l'arrivée de votre commande.</span><span lang="en">Store invoice, tracking number and a message when your order arrives.</span><span lang="es">Factura de la tienda, número de rastreo y aviso a la llegada de tu pedido.</span></p></div>
+    <div data-rv data-line><p class="caps">I</p><h3><span lang="fr">Un prix unique</span><span lang="en">One single price</span><span lang="es">Un solo precio</span></h3><p><span lang="fr">Achat, envoi, service et livraison, en pesos. Ce que nous confirmons est ce que vous payez.</span><span lang="en">Purchase, shipping, service and delivery, in pesos. What we confirm is what you pay.</span><span lang="es">Compra, envío, servicio y entrega, en pesos. Lo que confirmamos es lo que pagas.</span></p></div>
+    <div data-rv data-line style="--d:.15s"><p class="caps">II</p><h3><span lang="fr">Sans carte internationale</span><span lang="en">No international card</span><span lang="es">Sin tarjeta internacional</span></h3><p><span lang="fr">Vous payez en République dominicaine. Nous achetons aux États-Unis.</span><span lang="en">You pay in the Dominican Republic. We buy in the United States.</span><span lang="es">Pagas en República Dominicana. Nosotros compramos en Estados Unidos.</span></p></div>
+    <div data-rv data-line style="--d:.3s"><p class="caps">III</p><h3><span lang="fr">Suivi</span><span lang="en">Tracking</span><span lang="es">Seguimiento</span></h3><p><span lang="fr">Facture de la boutique, numéro de suivi et avis à l'arrivée de votre commande.</span><span lang="en">Store invoice, tracking number and a message when your order arrives.</span><span lang="es">Factura de la tienda, número de rastreo y aviso a la llegada de tu pedido.</span></p></div>
   </div>
 </section>
 
 <section class="info" id="info">
   <div class="w igrid">
-    <div><p class="caps"><span lang="fr">Informations</span><span lang="en">Information</span><span lang="es">Información</span></p><h2><span lang="fr">Questions fréquentes</span><span lang="en">Questions</span><span lang="es">Preguntas frecuentes</span></h2></div>
+    <div><p class="caps" data-rv><span lang="fr">Informations</span><span lang="en">Information</span><span lang="es">Información</span></p><h2 data-mask><span lang="fr">Questions fréquentes</span><span lang="en">Questions</span><span lang="es">Preguntas frecuentes</span></h2></div>
     <div>
-      <details><summary><span lang="fr">Que comprend le prix ?</span><span lang="en">What does the price include?</span><span lang="es">¿Qué incluye el precio?</span></summary><p><span lang="fr">L'article, la taxe de la boutique aux États-Unis, l'envoi de Miami à Saint-Domingue, notre service et la livraison si vous la choisissez.</span><span lang="en">The item, the store's US sales tax, shipping from Miami to Santo Domingo, our service and delivery if you choose it.</span><span lang="es">El artículo, el impuesto de la tienda en Estados Unidos, el envío de Miami a Santo Domingo, nuestro servicio y la entrega si la eliges.</span></p></details>
-      <details><summary><span lang="fr">Et si le colis pèse plus ?</span><span lang="en">What if the parcel weighs more?</span><span lang="es">¿Y si el paquete pesa más?</span></summary><p><span lang="fr">Le poids réel est connu à Miami. S'il est supérieur, nous vous prévenons et vous ne payez que la différence d'envoi, sans frais de service supplémentaires.</span><span lang="en">The real weight is known in Miami. If it is higher, we let you know and you only pay the shipping difference, with no extra service fee.</span><span lang="es">El peso real se conoce en Miami. Si es mayor, te avisamos y pagas solo la diferencia de envío, sin cargo de servicio adicional.</span></p></details>
-      <details><summary><span lang="fr">Taxes de douane</span><span lang="en">Customs duties</span><span lang="es">Impuestos de Aduanas</span></summary><p><span lang="fr">Les achats personnels jusqu'à 200 US$ par envoi entrent sans taxes. Au-delà, nous vous indiquons les taxes avant le paiement.</span><span lang="en">Personal purchases up to US$200 per shipment enter duty-free. Above that, we tell you the duties before payment.</span><span lang="es">Las compras personales de hasta US$200 por envío entran sin impuestos. Por encima, te indicamos los impuestos antes del pago.</span></p></details>
-      <details><summary><span lang="fr">Échanges et réclamations</span><span lang="en">Returns and claims</span><span lang="es">Cambios y reclamos</span></summary><p><span lang="fr">Si l'article arrive abîmé ou ne correspond pas, nous gérons la réclamation avec la boutique. Les échanges de taille dépendent de chaque boutique, nous vous le précisons avant l'achat.</span><span lang="en">If the item arrives damaged or is not what you ordered, we handle the claim with the store. Size exchanges depend on each store; we tell you before buying.</span><span lang="es">Si el artículo llega dañado o no corresponde, gestionamos el reclamo con la tienda. Los cambios de talla dependen de cada tienda y te lo indicamos antes de comprar.</span></p></details>
-      <details><summary><span lang="fr">Articles non acceptés</span><span lang="en">Items we cannot ship</span><span lang="es">Artículos no admitidos</span></summary><p><span lang="fr">Armes et répliques, médicaments sur ordonnance, liquides inflammables, aérosols, batteries seules, produits frais, plantes et contrefaçons.</span><span lang="en">Weapons and replicas, prescription drugs, flammable liquids, aerosols, loose batteries, fresh food, plants and counterfeits.</span><span lang="es">Armas y réplicas, medicamentos con receta, líquidos inflamables, aerosoles, baterías sueltas, alimentos frescos, plantas y falsificaciones.</span></p></details>
-      <details><summary><span lang="fr">Paiement</span><span lang="en">Payment</span><span lang="es">Pago</span></summary><p><span lang="fr">Par virement sur un compte en République dominicaine, dont nous vous envoyons les coordonnées par WhatsApp avec le prix final, ou par PayPal depuis l'étranger.</span><span lang="en">By bank transfer to an account in the Dominican Republic, whose details we send you on WhatsApp with the final price, or by PayPal from abroad.</span><span lang="es">Por transferencia a una cuenta en República Dominicana, cuyos datos te enviamos por WhatsApp con el precio final, o por PayPal desde el extranjero.</span></p></details>
+      <details data-rv><summary><span lang="fr">Que comprend le prix ?</span><span lang="en">What does the price include?</span><span lang="es">¿Qué incluye el precio?</span></summary><div class="ans"><p><span lang="fr">L'article, la taxe de la boutique aux États-Unis, l'envoi de Miami à Saint-Domingue, notre service et la livraison si vous la choisissez.</span><span lang="en">The item, the store's US sales tax, shipping from Miami to Santo Domingo, our service and delivery if you choose it.</span><span lang="es">El artículo, el impuesto de la tienda en Estados Unidos, el envío de Miami a Santo Domingo, nuestro servicio y la entrega si la eliges.</span></p></div></details>
+      <details data-rv><summary><span lang="fr">Et si le colis pèse plus ?</span><span lang="en">What if the parcel weighs more?</span><span lang="es">¿Y si el paquete pesa más?</span></summary><div class="ans"><p><span lang="fr">Le poids réel est connu à Miami. S'il est supérieur, nous vous prévenons et vous ne payez que la différence d'envoi, sans frais de service supplémentaires.</span><span lang="en">The real weight is known in Miami. If it is higher, we let you know and you only pay the shipping difference, with no extra service fee.</span><span lang="es">El peso real se conoce en Miami. Si es mayor, te avisamos y pagas solo la diferencia de envío, sin cargo de servicio adicional.</span></p></div></details>
+      <details data-rv><summary><span lang="fr">Taxes de douane</span><span lang="en">Customs duties</span><span lang="es">Impuestos de Aduanas</span></summary><div class="ans"><p><span lang="fr">Les achats personnels jusqu'à 200 US$ par envoi entrent sans taxes. Au-delà, nous vous indiquons les taxes avant le paiement.</span><span lang="en">Personal purchases up to US$200 per shipment enter duty-free. Above that, we tell you the duties before payment.</span><span lang="es">Las compras personales de hasta US$200 por envío entran sin impuestos. Por encima, te indicamos los impuestos antes del pago.</span></p></div></details>
+      <details data-rv><summary><span lang="fr">Échanges et réclamations</span><span lang="en">Returns and claims</span><span lang="es">Cambios y reclamos</span></summary><div class="ans"><p><span lang="fr">Si l'article arrive abîmé ou ne correspond pas, nous gérons la réclamation avec la boutique. Les échanges de taille dépendent de chaque boutique, nous vous le précisons avant l'achat.</span><span lang="en">If the item arrives damaged or is not what you ordered, we handle the claim with the store. Size exchanges depend on each store; we tell you before buying.</span><span lang="es">Si el artículo llega dañado o no corresponde, gestionamos el reclamo con la tienda. Los cambios de talla dependen de cada tienda y te lo indicamos antes de comprar.</span></p></div></details>
+      <details data-rv><summary><span lang="fr">Articles non acceptés</span><span lang="en">Items we cannot ship</span><span lang="es">Artículos no admitidos</span></summary><div class="ans"><p><span lang="fr">Armes et répliques, médicaments sur ordonnance, liquides inflammables, aérosols, batteries seules, produits frais, plantes et contrefaçons.</span><span lang="en">Weapons and replicas, prescription drugs, flammable liquids, aerosols, loose batteries, fresh food, plants and counterfeits.</span><span lang="es">Armas y réplicas, medicamentos con receta, líquidos inflamables, aerosoles, baterías sueltas, alimentos frescos, plantas y falsificaciones.</span></p></div></details>
+      <details data-rv><summary><span lang="fr">Paiement</span><span lang="en">Payment</span><span lang="es">Pago</span></summary><div class="ans"><p><span lang="fr">Par virement sur un compte en République dominicaine, dont nous vous envoyons les coordonnées par WhatsApp avec le prix final, ou par PayPal depuis l'étranger.</span><span lang="en">By bank transfer to an account in the Dominican Republic, whose details we send you on WhatsApp with the final price, or by PayPal from abroad.</span><span lang="es">Por transferencia a una cuenta en República Dominicana, cuyos datos te enviamos por WhatsApp con el precio final, o por PayPal desde el extranjero.</span></p></div></details>
     </div>
   </div>
 </section>
@@ -232,7 +284,7 @@ footer{background:var(--ink);color:#fff;padding:96px 0 40px}
       <div><p class="caps" style="color:#fff"><span lang="fr">Informations</span><span lang="en">Information</span><span lang="es">Información</span></p><a href="#info"><span lang="fr">Questions fréquentes</span><span lang="en">Questions</span><span lang="es">Preguntas frecuentes</span></a><a href="#info"><span lang="fr">Paiement</span><span lang="en">Payment</span><span lang="es">Pago</span></a><a href="#info"><span lang="fr">Douane</span><span lang="en">Customs</span><span lang="es">Aduanas</span></a></div>
       <div><p class="caps" style="color:#fff"><span lang="fr">Contact</span><span lang="en">Contact</span><span lang="es">Contacto</span></p><a class="wa" href="#" target="_blank" rel="noopener noreferrer">WhatsApp</a><p id="fwa"></p></div>
     </div>
-    <div class="giant" aria-hidden="true">Encárgalo</div>
+    <div class="giant" aria-hidden="true" data-rv>Encárgalo</div>
     <div class="legal caps"><span>Santo Domingo</span><span><span lang="fr">Sans cookies ni traceurs</span><span lang="en">No cookies or trackers</span><span lang="es">Sin cookies ni rastreadores</span></span><span><span lang="fr">Photographies : Unsplash</span><span lang="en">Photographs: Unsplash</span><span lang="es">Fotografías: Unsplash</span></span></div>
   </div>
 </footer>
@@ -243,18 +295,18 @@ footer{background:var(--ink);color:#fff;padding:96px 0 40px}
 {
   const CFG = { whatsapp: "18098778484", rate: 62, usTax: 0.07, courierPerLb: 4, feePct: 0.15, feeMin: 400, deMinimis: 200 };
   const T = {
-    es: { r1: "Artículo e impuesto de tienda", r2: "Envío Miami – Santo Domingo, {lb} lb", r3: "Servicio Encárgalo", r4: "Entrega", free: "Sin costo", from: "Desde", delivered: "entregado", err: "El enlace no parece válido. Cópialo completo desde la tienda.",
+    es: { r1: "Artículo e impuesto de tienda", r2: "Envío Miami – Santo Domingo, {lb} lb", r3: "Servicio Encárgalo", r4: "Entrega", free: "Sin costo", from: "Desde", delivered: "entregado", view: "Ver", err: "El enlace no parece válido. Cópialo completo desde la tienda.",
       c1: "Accesorios y maquillaje", c2: "Moda y perfumería", c3: "Belleza y juguetes", c4: "Calzado", c5: "Hogar y pequeños aparatos", c6: "Otro, indico el peso",
       i1: ["Calzado", "Tenis, en tienda US$55"], i2: ["Belleza", "Set de cuidado, en tienda US$32"], i3: ["Moda", "Conjunto, en tienda US$40"],
-      m: ["Hola Encárgalo, quisiera esta cotización:", "Enlace: ", "(lo envío aquí)", "Precio en tienda: US$", "Peso aprox.: ", "Entrega: ", "a domicilio", "retiro", "Total estimado: ", "Talla / color: "], hello: "Hola Encárgalo, quisiera una cotización." },
-    fr: { r1: "Article et taxe boutique", r2: "Envoi Miami – Saint-Domingue, {lb} lb", r3: "Service Encárgalo", r4: "Livraison", free: "Sans frais", from: "À partir de", delivered: "livré", err: "Ce lien ne semble pas valide. Copiez-le en entier depuis la boutique.",
+      m: ["Hola Encárgalo, quisiera esta cotización:", "Enlace: ", "(lo envío aquí)", "Precio en tienda: US$", "Peso aprox.: ", "Entrega: ", "a domicilio", "retiro", "Total estimado: ", "Talla / color: "], hello: "Hola Encárgalo, quisiera una cotización.", qd: "Precio de ejemplo para un artículo típico. Pega tu propio enlace para obtener tu precio exacto." },
+    fr: { r1: "Article et taxe boutique", r2: "Envoi Miami – Saint-Domingue, {lb} lb", r3: "Service Encárgalo", r4: "Livraison", free: "Sans frais", from: "À partir de", delivered: "livré", view: "Voir", err: "Ce lien ne semble pas valide. Copiez-le en entier depuis la boutique.",
       c1: "Accessoires et maquillage", c2: "Mode et parfumerie", c3: "Beauté et jouets", c4: "Chaussures", c5: "Maison et petits appareils", c6: "Autre, j'indique le poids",
       i1: ["Chaussures", "Baskets, 55 US$ en boutique"], i2: ["Beauté", "Coffret de soins, 32 US$ en boutique"], i3: ["Mode", "Ensemble, 40 US$ en boutique"],
-      m: ["Bonjour Encárgalo, je souhaite ce devis :", "Lien : ", "(je l'envoie ici)", "Prix en boutique : US$", "Poids approx. : ", "Livraison : ", "à domicile", "retrait", "Total estimé : ", "Taille / couleur : "], hello: "Bonjour Encárgalo, je souhaite un devis." },
-    en: { r1: "Item and store tax", r2: "Shipping Miami – Santo Domingo, {lb} lb", r3: "Encárgalo service", r4: "Delivery", free: "Free", from: "From", delivered: "delivered", err: "This link does not look valid. Copy it in full from the store.",
+      m: ["Bonjour Encárgalo, je souhaite ce devis :", "Lien : ", "(je l'envoie ici)", "Prix en boutique : US$", "Poids approx. : ", "Livraison : ", "à domicile", "retrait", "Total estimé : ", "Taille / couleur : "], hello: "Bonjour Encárgalo, je souhaite un devis.", qd: "Prix indicatif pour un article courant. Collez votre propre lien pour obtenir votre prix exact." },
+    en: { r1: "Item and store tax", r2: "Shipping Miami – Santo Domingo, {lb} lb", r3: "Encárgalo service", r4: "Delivery", free: "Free", from: "From", delivered: "delivered", view: "View", err: "This link does not look valid. Copy it in full from the store.",
       c1: "Accessories and makeup", c2: "Fashion and fragrance", c3: "Beauty and toys", c4: "Shoes", c5: "Home and small appliances", c6: "Other, I enter the weight",
       i1: ["Shoes", "Sneakers, US$55 in store"], i2: ["Beauty", "Skincare set, US$32 in store"], i3: ["Fashion", "Outfit, US$40 in store"],
-      m: ["Hello Encárgalo, I would like this quote:", "Link: ", "(I'll send it here)", "Store price: US$", "Approx. weight: ", "Delivery: ", "to my door", "pickup", "Estimated total: ", "Size / colour: "], hello: "Hello Encárgalo, I would like a quote." }
+      m: ["Hello Encárgalo, I would like this quote:", "Link: ", "(I'll send it here)", "Store price: US$", "Approx. weight: ", "Delivery: ", "to my door", "pickup", "Estimated total: ", "Size / colour: "], hello: "Hello Encárgalo, I would like a quote.", qd: "Indicative price for a typical item. Paste your own link to get your exact price." }
   };
   const U = id => "https://images.unsplash.com/photo-" + id + "?auto=format&fit=crop&w=900&h=1200&q=70";
   const items = [
@@ -290,7 +342,7 @@ footer{background:var(--ink);color:#fff;padding:96px 0 40px}
     const box = $("lines"); box.textContent = "";
     rows.forEach(r => { const d = document.createElement("div"); const a = document.createElement("span"); a.textContent = r[0]; const b = document.createElement("span"); b.textContent = r[1] ? fmt(r[1]) : t.free; d.append(a, b); box.append(d); });
     const tot = price > 0 ? fmt(q.total) : "RD$0";
-    $("total").textContent = tot; $("stTotal").textContent = tot;
+    countTo($("total"), $("stTotal"), price > 0 ? q.total : 0);
     $("warn").classList.toggle("on", q.over);
     const link = cleanLink(), m = t.m;
     const msg = [m[0], m[1] + (link || m[2]), m[3] + price.toFixed(2) + " x " + qty, m[4] + q.lbs + " lb", m[5] + (del ? m[6] : m[7]), m[8] + tot, m[9]].join("\n");
@@ -305,14 +357,35 @@ footer{background:var(--ink);color:#fff;padding:96px 0 40px}
       const img = document.createElement("img"); img.src = it.img; img.alt = t[it.k][0]; img.loading = "lazy"; img.width = 900; img.height = 1200;
       ph.append(img);
       const cap = document.createElement("figcaption"); cap.className = "caps";
-      const a = document.createElement("span"); a.textContent = t[it.k][0]; const b = document.createElement("span"); b.textContent = t.from + " " + fmt(q.total);
+      const a = document.createElement("span"); a.textContent = t[it.k][0]; const b = document.createElement("span"); b.className = "q"; b.textContent = t.view;
       cap.append(a, b);
-      const d = document.createElement("p"); d.className = "small"; d.style.marginTop = "6px"; d.textContent = t[it.k][1] + ", " + t.delivered;
+      const d = document.createElement("p"); d.className = "small"; d.style.marginTop = "6px"; d.textContent = t.from + " " + fmt(q.total) + ", " + t.delivered;
       fig.append(ph, cap, d);
-      const pick = () => { $("price").value = it.p; $("qty").value = 1; $("cat").value = it.c; $("lb").value = it.lb; render(); $("cotiza").scrollIntoView({ behavior: "smooth" }); };
-      fig.addEventListener("click", pick); fig.addEventListener("keydown", e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); pick(); } });
+      const open = () => openQV(it);
+      fig.addEventListener("click", open); fig.addEventListener("keydown", e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); open(); } });
+      fig.setAttribute("data-rv", ""); fig.style.setProperty("--d", (items.indexOf(it) * 0.12) + "s"); fig.classList.add("in");
       g.append(fig);
     });
+  }
+  let cur = null;
+  function openQV(it) {
+    cur = it; const t = T[L], q = quote(it.p, 1, it.lb, 250);
+    $("qvImg").src = it.img.replace("w=900&h=1200", "w=1100&h=1375"); $("qvImg").alt = t[it.k][0];
+    $("qvCat").textContent = t[it.k][0]; $("qvName").textContent = t[it.k][1].split(",")[0];
+    $("qvDesc").textContent = t.qd; $("qvStore").textContent = "US$" + it.p; $("qvPrice").textContent = fmt(q.total);
+    $("qv").classList.add("on"); document.documentElement.style.overflow = "hidden"; setTimeout(() => $("qvClose").focus(), 300);
+  }
+  function closeQV() { $("qv").classList.remove("on"); document.documentElement.style.overflow = ""; }
+  $("qvClose").addEventListener("click", closeQV);
+  $("qv").addEventListener("click", e => { if (e.target === $("qv")) closeQV(); });
+  $("qvGo").addEventListener("click", e => { e.preventDefault(); if (!cur) return; $("price").value = cur.p; $("qty").value = 1; $("cat").value = cur.c; $("lb").value = cur.lb; render(); closeQV(); setTimeout(() => $("cotiza").scrollIntoView({ behavior: "smooth" }), 350); });
+  let shown = 0;
+  function countTo(el, el2, target) {
+    const from = shown; shown = target;
+    if (!window.requestAnimationFrame || Math.abs(target - from) < 1 || matchMedia("(prefers-reduced-motion: reduce)").matches) { el.textContent = el2.textContent = fmt(target); return; }
+    const t0 = performance.now(), dur = 650;
+    const step = now => { const k = Math.min(1, (now - t0) / dur), e = 1 - Math.pow(1 - k, 3), v = from + (target - from) * e; el.textContent = el2.textContent = fmt(v); if (k < 1) requestAnimationFrame(step); };
+    requestAnimationFrame(step);
   }
   function setLang(l) {
     L = LANGS.includes(l) ? l : "es";
@@ -334,5 +407,6 @@ footer{background:var(--ink);color:#fff;padding:96px 0 40px}
   setLang(start);
 }
 </script>
+<script src="/lux/motion.js"></script>
 </body>
 </html>

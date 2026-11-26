@@ -10,6 +10,8 @@
 <meta property="og:description" content="Le site internet et l'espace de gestion de votre entreprise. Site pilote offert, sans engagement.">
 <meta property="og:image" content="https://images.unsplash.com/photo-1556742393-d75f468bfcb0?auto=format&fit=crop&w=1200&h=630&q=70">
 <link rel="preload" href="/fonts-lux/cormorant-garamond-latin-500-normal.woff2" as="font" type="font/woff2" crossorigin>
+<script>document.documentElement.classList.add("js")</script>
+<link rel="stylesheet" href="/lux/motion.css">
 <style>
 @font-face{font-family:Inter;font-style:normal;font-weight:300;font-display:swap;src:url(/fonts-lux/inter-latin-300-normal.woff2) format('woff2')}
 @font-face{font-family:Inter;font-style:normal;font-weight:400;font-display:swap;src:url(/fonts-lux/inter-latin-400-normal.woff2) format('woff2')}
@@ -29,7 +31,7 @@ html[lang=fr] body [lang]:not([lang=fr]),html[lang=en] body [lang]:not([lang=en]
 .strip{background:var(--ink);color:#fff;text-align:center;padding:10px 16px}
 header{position:sticky;top:0;z-index:30;background:#fff;border-bottom:1px solid var(--line)}
 .bar{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;height:78px}
-.nav{display:flex;gap:30px}
+.lft{display:flex;align-items:center}
 .nav a,.act a{padding:8px 0;border-bottom:1px solid transparent}
 .nav a:hover,.act a:hover{border-bottom-color:var(--ink)}
 .mark{font:500 30px/1 "Cormorant Garamond",serif;letter-spacing:.38em;text-transform:uppercase;padding-left:.38em}
@@ -110,16 +112,37 @@ footer{background:var(--ink);color:#fff;padding:96px 0 40px}
 .fgrid a:hover{color:#fff}
 .giant{font:500 clamp(64px,16vw,250px)/.8 "Cormorant Garamond",serif;letter-spacing:.1em;text-transform:uppercase;margin:110px 0 36px;white-space:nowrap;overflow:hidden;text-align:center}
 .legal{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;color:#8d8d8d;border-top:1px solid #333;padding-top:22px}
-@media(max-width:1000px){.nav{display:none}.bar{grid-template-columns:auto 1fr auto}.mark{font-size:24px}.igrid{grid-template-columns:minmax(0,1fr);gap:64px}.sgrid{grid-template-columns:minmax(0,1fr)}.sgrid div{padding:56px 0}.sgrid div+div{border-left:0;border-top:1px solid var(--line)}.fgrid{grid-template-columns:repeat(2,minmax(0,1fr))}.tgrid{grid-template-columns:minmax(0,1fr)}.tgrid>div{padding:40px 0}.tgrid>div+div{border-left:0;border-top:1px solid var(--line);padding-left:0}}
-@media(max-width:700px){.hero img{object-position:80% 40%}.w{padding:0 22px}.bar{height:64px}.act .hide{display:none}.mark{font-size:21px;letter-spacing:.3em}.hero{height:86svh;min-height:520px}.hcopy{bottom:40px}.intro{padding:96px 0 84px}.plate,.info,.rdv,#tarifs{padding:88px 0}.duo{grid-template-columns:minmax(0,1fr);gap:48px;padding:88px 0}.method{padding:100px 0}.capline{display:block}.capline span{display:block}.fgrid{grid-template-columns:minmax(0,1fr)}.btns .btn{flex:1 1 100%}}
+@media(max-width:1000px){.mark{font-size:24px}.igrid{grid-template-columns:minmax(0,1fr);gap:64px}.sgrid{grid-template-columns:minmax(0,1fr)}.sgrid div{padding:56px 0}.sgrid div+div{border-left:0;border-top:1px solid var(--line)}.fgrid{grid-template-columns:repeat(2,minmax(0,1fr))}.tgrid{grid-template-columns:minmax(0,1fr)}.tgrid>div{padding:40px 0}.tgrid>div+div{border-left:0;border-top:1px solid var(--line);padding-left:0}}
+@media(max-width:700px){.hero img{object-position:80% 40%}.w{padding:0 22px}.bar{height:64px}.act .hide{display:none}.mark{font-size:19px;letter-spacing:.24em;padding-left:.24em}.menu-btn .mt{display:none}.lang{gap:8px}.hero{height:86svh;min-height:520px}.hcopy{bottom:40px}.intro{padding:96px 0 84px}.plate,.info,.rdv,#tarifs{padding:88px 0}.duo{grid-template-columns:minmax(0,1fr);gap:48px;padding:88px 0}.method{padding:100px 0}.capline{display:block}.capline span{display:block}.fgrid{grid-template-columns:minmax(0,1fr)}.btns .btn{flex:1 1 100%}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+.story{padding:110px 0 40px}
+.st h2{font-size:clamp(36px,4vw,58px);line-height:1.06;margin:18px 0 20px}
+.st p.d{color:var(--soft);max-width:28em}
+.mq-label{text-align:center;margin:0 0 22px;color:var(--mute)}
+@media(max-width:700px){.story{padding:40px 0 20px}}
 </style>
 </head>
 <body>
+<div class="loader" aria-hidden="true"><span>Kapicua</span><i></i></div>
+<div class="overlay" role="dialog" aria-modal="true" aria-label="Menu">
+  <div class="ov-l">
+    <div class="ov-top"><span class="mark" style="font-size:24px">Kapicua</span><button class="ov-close" type="button" data-menu-close><b></b><span lang="fr">Fermer</span><span lang="en">Close</span><span lang="es">Cerrar</span></button></div>
+    <nav class="ov-nav" aria-label="Menu">
+      <a href="#top" style="--i:0"><span lang="fr">Accueil</span><span lang="en">Home</span><span lang="es">Inicio</span></a>
+      <a href="#histoire" style="--i:1"><span lang="fr">L'expérience</span><span lang="en">The experience</span><span lang="es">La experiencia</span></a>
+      <a href="#savoir-faire" style="--i:2"><span lang="fr">Savoir-faire</span><span lang="en">Expertise</span><span lang="es">Saber hacer</span></a>
+      <a href="#methode" style="--i:3"><span lang="fr">La méthode</span><span lang="en">The method</span><span lang="es">El método</span></a>
+      <a href="#info" style="--i:4"><span lang="fr">Questions</span><span lang="en">Questions</span><span lang="es">Preguntas</span></a>
+      <a href="#contact" style="--i:5"><span lang="fr">Rendez-vous</span><span lang="en">Appointment</span><span lang="es">Cita</span></a>
+    </nav>
+    <div class="ov-foot caps"><span>+590 690 39 18 00</span><span>cedric.behmann@assistant-rabe.com</span></div>
+  </div>
+  <div class="ov-r"><img src="https://images.unsplash.com/photo-1753351052363-53ce102830eb?auto=format&fit=crop&w=1100&h=1400&q=70" alt="" loading="lazy"></div>
+</div>
 <div class="strip caps"><span lang="fr">Site pilote offert, sans engagement</span><span lang="en">Complimentary pilot site, no commitment</span><span lang="es">Sitio piloto de cortesía, sin compromiso</span></div>
 <header>
   <div class="w bar">
-    <nav class="nav caps" aria-label="Menu"><a href="#savoir-faire"><span lang="fr">Savoir-faire</span><span lang="en">Expertise</span><span lang="es">Saber hacer</span></a><a href="#methode"><span lang="fr">La méthode</span><span lang="en">Method</span><span lang="es">El método</span></a><a href="#info"><span lang="fr">Informations</span><span lang="en">Information</span><span lang="es">Información</span></a></nav>
+    <div class="lft"><button class="menu-btn" type="button" data-menu-open aria-expanded="false"><b></b><span class="mt">Menu</span></button></div>
     <a class="mark" href="#top" aria-label="Kapicua">Kapicua</a>
     <div class="act caps">
       <div class="lang" role="group" aria-label="Langue / Language / Idioma"><button type="button" data-l="fr">FR</button><button type="button" data-l="en">EN</button><button type="button" data-l="es">ES</button></div>
@@ -130,60 +153,46 @@ footer{background:var(--ink);color:#fff;padding:96px 0 40px}
 
 <main id="top">
 <section class="hero" aria-label="Kapicua">
-  <img src="https://images.unsplash.com/photo-1556742393-d75f468bfcb0?auto=format&fit=crop&w=1900&q=72" srcset="https://images.unsplash.com/photo-1556742393-d75f468bfcb0?auto=format&fit=crop&w=900&q=70 900w, https://images.unsplash.com/photo-1556742393-d75f468bfcb0?auto=format&fit=crop&w=1400&q=70 1400w, https://images.unsplash.com/photo-1556742393-d75f468bfcb0?auto=format&fit=crop&w=1900&q=72 1900w" sizes="100vw" alt="Un commerçant consulte sa tablette derrière son comptoir" fetchpriority="high">
+  <img src="https://images.unsplash.com/photo-1556742393-d75f468bfcb0?auto=format&fit=crop&w=1900&q=72" srcset="https://images.unsplash.com/photo-1556742393-d75f468bfcb0?auto=format&fit=crop&w=900&q=70 900w, https://images.unsplash.com/photo-1556742393-d75f468bfcb0?auto=format&fit=crop&w=1400&q=70 1400w, https://images.unsplash.com/photo-1556742393-d75f468bfcb0?auto=format&fit=crop&w=1900&q=72 1900w" sizes="100vw" alt="Un commerçant consulte sa tablette derrière son comptoir" fetchpriority="high" class="kb">
   <div class="hcopy"><div class="w">
-    <p class="caps">Saint-Barthélemy · Saint-Martin · Bordeaux</p>
-    <h1><span lang="fr">Votre entreprise, <i>désormais en ligne.</i></span><span lang="en">Your business, <i>now online.</i></span><span lang="es">Su empresa, <i>ahora en línea.</i></span></h1>
-    <a class="link wa" href="#" target="_blank" rel="noopener noreferrer"><span lang="fr">Recevoir votre site pilote</span><span lang="en">Receive your pilot site</span><span lang="es">Recibir su sitio piloto</span></a>
+    <p class="caps" data-rv style="--d:.9s">Saint-Barthélemy · Saint-Martin · Bordeaux</p>
+    <h1 data-mask style="--d:1s"><span lang="fr">Votre entreprise, <i>désormais en ligne.</i></span><span lang="en">Your business, <i>now online.</i></span><span lang="es">Su empresa, <i>ahora en línea.</i></span></h1>
+    <a class="link wa" data-rv style="--d:1.3s" href="#" target="_blank" rel="noopener noreferrer"><span lang="fr">Recevoir votre site pilote</span><span lang="en">Receive your pilot site</span><span lang="es">Recibir su sitio piloto</span></a>
   </div></div>
 </section>
 
 <section class="intro">
   <div class="w">
-    <p class="caps"><span lang="fr">Notre métier</span><span lang="en">What we do</span><span lang="es">Lo que hacemos</span></p>
-    <h2><span lang="fr">Nous concevons le site internet et l'espace de gestion des entreprises : commerces, restaurants, artisans, services, locations et professions libérales.</span><span lang="en">We design the website and back office of businesses: shops, restaurants, trades, services, rentals and independent professionals.</span><span lang="es">Diseñamos el sitio web y el espacio de gestión de las empresas: comercios, restaurantes, oficios, servicios, alquileres y profesionales independientes.</span></h2>
+    <p class="caps" data-rv><span lang="fr">Notre métier</span><span lang="en">What we do</span><span lang="es">Lo que hacemos</span></p>
+    <h2 data-mask style="--d:.15s"><span lang="fr">Nous concevons le site internet et l'espace de gestion des entreprises : commerces, restaurants, artisans, services, locations et professions libérales.</span><span lang="en">We design the website and back office of businesses: shops, restaurants, trades, services, rentals and independent professionals.</span><span lang="es">Diseñamos el sitio web y el espacio de gestión de las empresas: comercios, restaurantes, oficios, servicios, alquileres y profesionales independientes.</span></h2>
   </div>
 </section>
 
-<section class="plate">
-  <div class="w">
-    <div class="screen"><img src="img/gestion.webp" width="1440" height="900" alt="L'espace de gestion : ventes, réservations, click and collect, stock"></div>
-    <div class="capline caps"><span><span lang="fr">L'espace de gestion</span><span lang="en">The back office</span><span lang="es">El espacio de gestión</span></span><span><span lang="fr">Ventes, réservations, stock et clients, depuis votre téléphone</span><span lang="en">Sales, bookings, stock and customers, from your phone</span><span lang="es">Ventas, reservas, inventario y clientes, desde su teléfono</span></span></div>
-  </div>
-</section>
+<section class="mq-wrap" aria-label="Secteurs"><p class="caps mq-label" data-rv><span lang="fr">Pour toutes les entreprises</span><span lang="en">For every kind of business</span><span lang="es">Para todo tipo de empresa</span></p><div class="marquee"><div class="track"><span><span lang="fr">Commerces</span><span lang="en">Shops</span><span lang="es">Comercios</span></span><span><span lang="fr">Restaurants</span><span lang="en">Restaurants</span><span lang="es">Restaurantes</span></span><span><span lang="fr">Artisans</span><span lang="en">Trades</span><span lang="es">Oficios</span></span><span><span lang="fr">Salons de beauté</span><span lang="en">Beauty salons</span><span lang="es">Salones de belleza</span></span><span><span lang="fr">Locations</span><span lang="en">Rentals</span><span lang="es">Alquileres</span></span><span><span lang="fr">Services</span><span lang="en">Services</span><span lang="es">Servicios</span></span><span><span lang="fr">Professions libérales</span><span lang="en">Independent professionals</span><span lang="es">Profesionales independientes</span></span><span><span lang="fr">Boutiques de mode</span><span lang="en">Fashion boutiques</span><span lang="es">Boutiques de moda</span></span><span><span lang="fr">Commerces</span><span lang="en">Shops</span><span lang="es">Comercios</span></span><span><span lang="fr">Restaurants</span><span lang="en">Restaurants</span><span lang="es">Restaurantes</span></span><span><span lang="fr">Artisans</span><span lang="en">Trades</span><span lang="es">Oficios</span></span><span><span lang="fr">Salons de beauté</span><span lang="en">Beauty salons</span><span lang="es">Salones de belleza</span></span><span><span lang="fr">Locations</span><span lang="en">Rentals</span><span lang="es">Alquileres</span></span><span><span lang="fr">Services</span><span lang="en">Services</span><span lang="es">Servicios</span></span><span><span lang="fr">Professions libérales</span><span lang="en">Independent professionals</span><span lang="es">Profesionales independientes</span></span><span><span lang="fr">Boutiques de mode</span><span lang="en">Fashion boutiques</span><span lang="es">Boutiques de moda</span></span></div></div></section>
 
-<section class="w duo">
-  <figure>
-    <div class="ph a"><img src="https://images.unsplash.com/photo-1753351052363-53ce102830eb?auto=format&fit=crop&w=1100&h=1375&q=70" width="1100" height="1375" loading="lazy" alt="Une commerçante dans son café"></div>
-    <figcaption class="caps"><span><span lang="fr">Pour les entrepreneurs</span><span lang="en">For business owners</span><span lang="es">Para los emprendedores</span></span></figcaption>
-  </figure>
-  <figure>
-    <div class="ph b"><img src="img/site-salon.webp" width="520" height="1040" loading="lazy" alt="Site d'un salon de coiffure sur téléphone"></div>
-    <figcaption class="caps"><span><span lang="fr">Le site, pensé pour le téléphone</span><span lang="en">The site, designed for mobile</span><span lang="es">El sitio, pensado para el teléfono</span></span></figcaption>
-  </figure>
-</section>
+<section class="story" id="histoire"><div class="w story-grid"><div class="story-steps"><div class="st"><p class="caps">I — <span lang="fr">Le site</span><span lang="en">The website</span><span lang="es">El sitio</span></p><h2><span lang="fr">Votre vitrine, <i>ouverte jour et nuit.</i></span><span lang="en">Your storefront, <i>open day and night.</i></span><span lang="es">Su vitrina, <i>abierta día y noche.</i></span></h2><p class="d"><span lang="fr">Un site soigné, rapide sur téléphone, qui présente votre entreprise en plusieurs langues.</span><span lang="en">A polished site, fast on mobile, presenting your business in several languages.</span><span lang="es">Un sitio cuidado, rápido en el teléfono, que presenta su empresa en varios idiomas.</span></p><div class="st-img"><div class="dev-l"><img src="img/site-restaurant.webp" width="1440" height="900" alt="Site d’un restaurant" loading="lazy" data-zoom></div></div></div><div class="st"><p class="caps">II — <span lang="fr">Réservations</span><span lang="en">Bookings</span><span lang="es">Reservas</span></p><h2><span lang="fr">Vos clients réservent <i>en un geste.</i></span><span lang="en">Customers book <i>in one tap.</i></span><span lang="es">Sus clientes reservan <i>en un gesto.</i></span></h2><p class="d"><span lang="fr">Réservations, rendez-vous et click &amp; collect arrivent directement chez vous, prêts à confirmer.</span><span lang="en">Bookings, appointments and click &amp; collect come straight to you, ready to confirm.</span><span lang="es">Reservas, citas y click &amp; collect le llegan directamente, listas para confirmar.</span></p><div class="st-img"><div class="dev-p"><img src="img/site-salon.webp" width="520" height="1040" alt="Site d’un salon sur téléphone" loading="lazy" data-zoom></div></div></div><div class="st"><p class="caps">III — <span lang="fr">La gestion</span><span lang="en">Management</span><span lang="es">La gestión</span></p><h2><span lang="fr">Toute votre activité, <i>d’un coup d’œil.</i></span><span lang="en">Your whole business, <i>at a glance.</i></span><span lang="es">Toda su actividad, <i>de un vistazo.</i></span></h2><p class="d"><span lang="fr">Ventes, dépenses, résultat, stock et clients réunis dans un seul espace, avec un export pour votre comptable.</span><span lang="en">Sales, expenses, profit, stock and customers in one place, with an export for your accountant.</span><span lang="es">Ventas, gastos, resultado, inventario y clientes en un solo espacio, con exportación para su contador.</span></p><div class="st-img"><div class="dev-l"><img src="img/gestion.webp" width="1440" height="900" alt="Espace de gestion" loading="lazy" data-zoom></div></div></div><div class="st"><p class="caps">IV — <span lang="fr">Mobile</span><span lang="en">Mobile</span><span lang="es">Móvil</span></p><h2><span lang="fr">Votre entreprise, <i>dans la poche.</i></span><span lang="en">Your business, <i>in your pocket.</i></span><span lang="es">Su empresa, <i>en el bolsillo.</i></span></h2><p class="d"><span lang="fr">L’espace de gestion s’installe comme une application. Vous gérez tout depuis votre téléphone.</span><span lang="en">The back office installs like an app. You run everything from your phone.</span><span lang="es">El espacio de gestión se instala como una aplicación. Todo se maneja desde su teléfono.</span></p><div class="st-img"><div class="dev-p"><img src="img/gestion-mobile.webp" width="520" height="1040" alt="Espace de gestion sur téléphone" loading="lazy" data-zoom></div></div></div></div><div class="story-media"><figure><div class="dev-l"><img src="img/site-restaurant.webp" width="1440" height="900" alt="Site d’un restaurant" loading="lazy" data-zoom></div></figure><figure><div class="dev-p"><img src="img/site-salon.webp" width="520" height="1040" alt="Site d’un salon sur téléphone" loading="lazy" data-zoom></div></figure><figure><div class="dev-l"><img src="img/gestion.webp" width="1440" height="900" alt="Espace de gestion" loading="lazy" data-zoom></div></figure><figure><div class="dev-p"><img src="img/gestion-mobile.webp" width="520" height="1040" alt="Espace de gestion sur téléphone" loading="lazy" data-zoom></div></figure><div class="prog" aria-hidden="true"><i></i><i></i><i></i><i></i></div></div></div></section>
 
 <section class="serv" id="savoir-faire">
   <div class="w sgrid">
-    <div><p class="caps">I</p><h3><span lang="fr">Un site à votre image</span><span lang="en">A site that reflects you</span><span lang="es">Un sitio a su imagen</span></h3><p><span lang="fr">Dessiné pour votre entreprise, en plusieurs langues, avec réservations, rendez-vous et click &amp; collect.</span><span lang="en">Designed for your business, in several languages, with bookings, appointments and click &amp; collect.</span><span lang="es">Diseñado para su empresa, en varios idiomas, con reservas, citas y click &amp; collect.</span></p></div>
-    <div><p class="caps">II</p><h3><span lang="fr">Un espace de gestion</span><span lang="en">A back office</span><span lang="es">Un espacio de gestión</span></h3><p><span lang="fr">Caisse, dépenses, stock et clients réunis, avec un export pour votre comptable.</span><span lang="en">Sales, expenses, stock and customers in one place, with an export for your accountant.</span><span lang="es">Caja, gastos, inventario y clientes en un solo lugar, con una exportación para su contador.</span></p></div>
-    <div><p class="caps">III</p><h3><span lang="fr">Votre liberté</span><span lang="en">Your freedom</span><span lang="es">Su libertad</span></h3><p><span lang="fr">Vous modifiez horaires, carte et annonces vous-même. Le site est publié à votre nom.</span><span lang="en">You update hours, menu and notices yourself. The site is published in your name.</span><span lang="es">Usted modifica horarios, carta y avisos. El sitio se publica a su nombre.</span></p></div>
+    <div data-rv data-line><p class="caps">I</p><h3><span lang="fr">Un site à votre image</span><span lang="en">A site that reflects you</span><span lang="es">Un sitio a su imagen</span></h3><p><span lang="fr">Dessiné pour votre entreprise, en plusieurs langues, avec réservations, rendez-vous et click &amp; collect.</span><span lang="en">Designed for your business, in several languages, with bookings, appointments and click &amp; collect.</span><span lang="es">Diseñado para su empresa, en varios idiomas, con reservas, citas y click &amp; collect.</span></p></div>
+    <div data-rv data-line style="--d:.15s"><p class="caps">II</p><h3><span lang="fr">Un espace de gestion</span><span lang="en">A back office</span><span lang="es">Un espacio de gestión</span></h3><p><span lang="fr">Caisse, dépenses, stock et clients réunis, avec un export pour votre comptable.</span><span lang="en">Sales, expenses, stock and customers in one place, with an export for your accountant.</span><span lang="es">Caja, gastos, inventario y clientes en un solo lugar, con una exportación para su contador.</span></p></div>
+    <div data-rv data-line style="--d:.3s"><p class="caps">III</p><h3><span lang="fr">Votre liberté</span><span lang="en">Your freedom</span><span lang="es">Su libertad</span></h3><p><span lang="fr">Vous modifiez horaires, carte et annonces vous-même. Le site est publié à votre nom.</span><span lang="en">You update hours, menu and notices yourself. The site is published in your name.</span><span lang="es">Usted modifica horarios, carta y avisos. El sitio se publica a su nombre.</span></p></div>
   </div>
 </section>
 
 <section class="method" id="methode">
   <div class="w">
-    <p class="caps"><span lang="fr">La méthode</span><span lang="en">The method</span><span lang="es">El método</span></p>
-    <h2><span lang="fr">Nous préparons votre site pilote. <i>Vous le découvrez.</i> Vous décidez.</span><span lang="en">We prepare your pilot site. <i>You discover it.</i> You decide.</span><span lang="es">Preparamos su sitio piloto. <i>Usted lo descubre.</i> Usted decide.</span></h2>
+    <p class="caps" data-rv><span lang="fr">La méthode</span><span lang="en">The method</span><span lang="es">El método</span></p>
+    <h2 data-mask><span lang="fr">Nous préparons votre site pilote. <i>Vous le découvrez.</i> Vous décidez.</span><span lang="en">We prepare your pilot site. <i>You discover it.</i> You decide.</span><span lang="es">Preparamos su sitio piloto. <i>Usted lo descubre.</i> Usted decide.</span></h2>
     <a class="link wa" href="#" target="_blank" rel="noopener noreferrer"><span lang="fr">Demander le vôtre</span><span lang="en">Request yours</span><span lang="es">Solicitar el suyo</span></a>
   </div>
 </section>
 
 <section class="wide" aria-label="Boutique">
-  <img src="https://images.unsplash.com/photo-1767167752097-fb36347efde1?auto=format&fit=crop&w=1900&q=70" srcset="https://images.unsplash.com/photo-1767167752097-fb36347efde1?auto=format&fit=crop&w=900&q=70 900w, https://images.unsplash.com/photo-1767167752097-fb36347efde1?auto=format&fit=crop&w=1900&q=70 1900w" sizes="100vw" loading="lazy" alt="Planches de surf décorées dans une boutique">
+  <img src="https://images.unsplash.com/photo-1767167752097-fb36347efde1?auto=format&fit=crop&w=1900&q=70" srcset="https://images.unsplash.com/photo-1767167752097-fb36347efde1?auto=format&fit=crop&w=900&q=70 900w, https://images.unsplash.com/photo-1767167752097-fb36347efde1?auto=format&fit=crop&w=1900&q=70 1900w" sizes="100vw" loading="lazy" alt="Planches de surf décorées dans une boutique" data-par="0.12">
   <div class="hcopy"><div class="w">
     <p class="caps"><span lang="fr">Les entreprises d'ici</span><span lang="en">Local businesses</span><span lang="es">Las empresas de aquí</span></p>
-    <h2><span lang="fr">D'ici, <i>pour ici.</i></span><span lang="en">From here, <i>for here.</i></span><span lang="es">De aquí, <i>para aquí.</i></span></h2>
+    <h2 data-mask><span lang="fr">D'ici, <i>pour ici.</i></span><span lang="en">From here, <i>for here.</i></span><span lang="es">De aquí, <i>para aquí.</i></span></h2>
   </div></div>
 </section>
 
@@ -191,7 +200,7 @@ footer{background:var(--ink);color:#fff;padding:96px 0 40px}
   <div class="w">
     <p class="caps"><span lang="fr">Conditions</span><span lang="en">Terms</span><span lang="es">Condiciones</span></p>
     <h2 style="font-size:clamp(40px,5vw,64px);margin-top:18px"><span lang="fr">Tarifs</span><span lang="en">Pricing</span><span lang="es">Tarifas</span></h2>
-    <div class="tgrid">
+    <div class="tgrid" data-rv>
       <div>
         <h3><span lang="fr">Site et espace de gestion</span><span lang="en">Website and back office</span><span lang="es">Sitio y espacio de gestión</span></h3>
         <div class="price">290 €</div>
@@ -221,12 +230,12 @@ footer{background:var(--ink);color:#fff;padding:96px 0 40px}
 
 <section class="info" id="info">
   <div class="w igrid">
-    <div><p class="caps"><span lang="fr">Informations</span><span lang="en">Information</span><span lang="es">Información</span></p><h2><span lang="fr">Questions fréquentes</span><span lang="en">Questions</span><span lang="es">Preguntas frecuentes</span></h2></div>
+    <div><p class="caps" data-rv><span lang="fr">Informations</span><span lang="en">Information</span><span lang="es">Información</span></p><h2 data-mask><span lang="fr">Questions fréquentes</span><span lang="en">Questions</span><span lang="es">Preguntas frecuentes</span></h2></div>
     <div>
-      <details><summary><span lang="fr">Le site pilote est-il vraiment offert ?</span><span lang="en">Is the pilot site really free?</span><span lang="es">¿El sitio piloto es realmente gratuito?</span></summary><p><span lang="fr">Oui. Nous le préparons, vous le découvrez, sans rien payer ni signer. Vous décidez ensuite.</span><span lang="en">Yes. We prepare it and you discover it without paying or signing anything. Then you decide.</span><span lang="es">Sí. Lo preparamos y usted lo descubre sin pagar ni firmar nada. Después decide.</span></p></details>
-      <details><summary><span lang="fr">Délai de mise en ligne</span><span lang="en">Time to go live</span><span lang="es">Plazo de publicación</span></summary><p><span lang="fr">Quelques jours après votre accord, selon les photographies et textes à ajouter.</span><span lang="en">A few days after your approval, depending on the photographs and texts to add.</span><span lang="es">Unos días después de su aprobación, según las fotografías y textos por añadir.</span></p></details>
-      <details><summary><span lang="fr">Sans connaissances techniques</span><span lang="en">No technical skills needed</span><span lang="es">Sin conocimientos técnicos</span></summary><p><span lang="fr">Tout se fait depuis votre téléphone, y compris en dictant au micro. Nous vous accompagnons une première fois.</span><span lang="en">Everything works from your phone, even by voice. We guide you the first time.</span><span lang="es">Todo se hace desde su teléfono, incluso dictando por voz. Le acompañamos la primera vez.</span></p></details>
-      <details><summary><span lang="fr">Propriété du site</span><span lang="en">Site ownership</span><span lang="es">Propiedad del sitio</span></summary><p><span lang="fr">Le site est publié à votre nom. L'entretien est optionnel et sans durée d'engagement.</span><span lang="en">The site is published in your name. Maintenance is optional with no minimum term.</span><span lang="es">El sitio se publica a su nombre. El mantenimiento es opcional y sin permanencia.</span></p></details>
+      <details data-rv><summary><span lang="fr">Le site pilote est-il vraiment offert ?</span><span lang="en">Is the pilot site really free?</span><span lang="es">¿El sitio piloto es realmente gratuito?</span></summary><div class="ans"><p><span lang="fr">Oui. Nous le préparons, vous le découvrez, sans rien payer ni signer. Vous décidez ensuite.</span><span lang="en">Yes. We prepare it and you discover it without paying or signing anything. Then you decide.</span><span lang="es">Sí. Lo preparamos y usted lo descubre sin pagar ni firmar nada. Después decide.</span></p></div></details>
+      <details data-rv><summary><span lang="fr">Délai de mise en ligne</span><span lang="en">Time to go live</span><span lang="es">Plazo de publicación</span></summary><div class="ans"><p><span lang="fr">Quelques jours après votre accord, selon les photographies et textes à ajouter.</span><span lang="en">A few days after your approval, depending on the photographs and texts to add.</span><span lang="es">Unos días después de su aprobación, según las fotografías y textos por añadir.</span></p></div></details>
+      <details data-rv><summary><span lang="fr">Sans connaissances techniques</span><span lang="en">No technical skills needed</span><span lang="es">Sin conocimientos técnicos</span></summary><div class="ans"><p><span lang="fr">Tout se fait depuis votre téléphone, y compris en dictant au micro. Nous vous accompagnons une première fois.</span><span lang="en">Everything works from your phone, even by voice. We guide you the first time.</span><span lang="es">Todo se hace desde su teléfono, incluso dictando por voz. Le acompañamos la primera vez.</span></p></div></details>
+      <details data-rv><summary><span lang="fr">Propriété du site</span><span lang="en">Site ownership</span><span lang="es">Propiedad del sitio</span></summary><div class="ans"><p><span lang="fr">Le site est publié à votre nom. L'entretien est optionnel et sans durée d'engagement.</span><span lang="en">The site is published in your name. Maintenance is optional with no minimum term.</span><span lang="es">El sitio se publica a su nombre. El mantenimiento es opcional y sin permanencia.</span></p></div></details>
     </div>
   </div>
 </section>
@@ -234,7 +243,7 @@ footer{background:var(--ink);color:#fff;padding:96px 0 40px}
 <section class="rdv" id="contact">
   <div class="w">
     <p class="caps"><span lang="fr">Rendez-vous</span><span lang="en">Appointment</span><span lang="es">Cita</span></p>
-    <h2><span lang="fr">Découvrez <i>votre</i> site.</span><span lang="en">Discover <i>your</i> site.</span><span lang="es">Descubra <i>su</i> sitio.</span></h2>
+    <h2 data-mask><span lang="fr">Découvrez <i>votre</i> site.</span><span lang="en">Discover <i>your</i> site.</span><span lang="es">Descubra <i>su</i> sitio.</span></h2>
     <p><span lang="fr">Envoyez-nous le nom de votre entreprise. Nous préparons votre site pilote.</span><span lang="en">Send us the name of your business. We prepare your pilot site.</span><span lang="es">Envíenos el nombre de su empresa. Preparamos su sitio piloto.</span></p>
     <div class="btns"><a class="btn wa" href="#" target="_blank" rel="noopener noreferrer">WhatsApp</a><a class="btn o" href="mailto:cedric.behmann@assistant-rabe.com?subject=Site%20pilote">E-mail</a></div>
     <p class="caps" style="margin-top:30px;color:var(--mute)">+590 690 39 18 00 · cedric.behmann@assistant-rabe.com</p>
@@ -250,7 +259,7 @@ footer{background:var(--ink);color:#fff;padding:96px 0 40px}
       <div><p class="caps" style="color:#fff"><span lang="fr">Contact</span><span lang="en">Contact</span><span lang="es">Contacto</span></p><a class="wa" href="#" target="_blank" rel="noopener noreferrer">WhatsApp</a><a href="mailto:cedric.behmann@assistant-rabe.com">E-mail</a></div>
       <div><p class="caps" style="color:#fff"><span lang="fr">Mentions</span><span lang="en">Legal</span><span lang="es">Aviso legal</span></p><p>Kapicua, EURL <span lang="fr">au capital de</span><span lang="en">with share capital of</span><span lang="es">con capital de</span> 1 000 €, Saint-Barthélemy. <span lang="fr">Responsable de la publication : Cédric Behmann.</span><span lang="en">Publisher: Cédric Behmann.</span><span lang="es">Responsable de la publicación: Cédric Behmann.</span></p></div>
     </div>
-    <div class="giant" aria-hidden="true">Kapicua</div>
+    <div class="giant" aria-hidden="true" data-rv>Kapicua</div>
     <div class="legal caps"><span>Saint-Barthélemy</span><span><span lang="fr">Sans cookies ni traceurs</span><span lang="en">No cookies or trackers</span><span lang="es">Sin cookies ni rastreadores</span></span><span><span lang="fr">Photographies : Unsplash</span><span lang="en">Photographs: Unsplash</span><span lang="es">Fotografías: Unsplash</span></span></div>
   </div>
 </footer>
@@ -285,5 +294,6 @@ footer{background:var(--ink);color:#fff;padding:96px 0 40px}
   setLang(start);
 }
 </script>
+<script src="/lux/motion.js"></script>
 </body>
 </html>
