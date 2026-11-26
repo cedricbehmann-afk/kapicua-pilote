@@ -4,269 +4,283 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="referrer" content="strict-origin-when-cross-origin">
-<title>Kapicua sites commerces</title>
-<meta name="description" content="Kapicua crée le site et l'espace de gestion de votre commerce à Saint-Barthélemy. Site pilote offert avant tout engagement.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;800&display=swap" rel="stylesheet">
+<title>Kapicua · Maison numérique</title>
+<meta name="description" content="Kapicua conçoit le site et l'espace de gestion des commerces de Saint-Barthélemy, Saint-Martin et Bordeaux. Site pilote offert, sans engagement.">
+<meta property="og:title" content="Kapicua · Maison numérique">
+<meta property="og:description" content="Le site et l'espace de gestion de votre commerce. Site pilote offert, sans engagement.">
+<meta property="og:image" content="https://images.unsplash.com/photo-1556742393-d75f468bfcb0?auto=format&fit=crop&w=1200&h=630&q=70">
+<link rel="preload" href="/fonts-lux/cormorant-garamond-latin-500-normal.woff2" as="font" type="font/woff2" crossorigin>
 <style>
-/* VOICE everyday business, warm island, confident
-   IDEA a shop's hand-painted enseigne + the phone where the client finds it
-   PICTURE phone showing a pilot site, tablet behind with the gestion panel
-   COLOUR lagoon #0b7a8a field, white, sand #f4e3c3, hibiscus #ff4d6d accent
-   TYPE Outfit 800 titles + Outfit text
-   LAYOUT laptop: title band over a lagoon field holding the devices; phone: title, devices, buttons */
-:root{color-scheme:light dark;--bg:light-dark(#ffffff,#071a1e);--ink:light-dark(#0c1f24,#eef7f8);--soft:light-dark(#4a5e63,#a9c3c7);--lag:#0b7a8a;--lag2:light-dark(#0b7a8a,#0d5d69);--sand:light-dark(#f4e3c3,#2a2418);--hib:#ff4d6d;--card:light-dark(#ffffff,#0c262b);--line:light-dark(#d9e6e8,#1d3c42)}
-:root[data-theme=light]{color-scheme:light}
-:root[data-theme=dark]{color-scheme:dark}
+@font-face{font-family:Inter;font-style:normal;font-weight:300;font-display:swap;src:url(/fonts-lux/inter-latin-300-normal.woff2) format('woff2')}
+@font-face{font-family:Inter;font-style:normal;font-weight:400;font-display:swap;src:url(/fonts-lux/inter-latin-400-normal.woff2) format('woff2')}
+@font-face{font-family:"Cormorant Garamond";font-style:normal;font-weight:500;font-display:swap;src:url(/fonts-lux/cormorant-garamond-latin-500-normal.woff2) format('woff2')}
+@font-face{font-family:"Cormorant Garamond";font-style:italic;font-weight:500;font-display:swap;src:url(/fonts-lux/cormorant-garamond-latin-500-italic.woff2) format('woff2')}
+:root{--ink:#111;--soft:#5b5b5b;--mute:#8d8d8d;--line:#dcdcdc;--bg:#fff;--ivory:#f6f4f0}
 *{box-sizing:border-box;min-width:0}
-html{scroll-padding-top:72px}
-body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 Outfit,system-ui,sans-serif;overflow-x:clip}
-a{color:inherit}
-img,svg{max-width:100%}
-.band{padding-block:clamp(28px,4vw,64px);padding-left:max(5vw,16px);padding-right:max(5vw,16px)}
-.wrap{max-width:1240px;margin:0 auto}
-nav{display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between;padding:14px max(5vw,16px);border-bottom:1px solid var(--line)}
-.logo{display:flex;align-items:center;gap:10px;font-weight:800;font-size:20px;text-decoration:none}
-.navr{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
-.btn{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:10px 18px;border-radius:999px;border:2px solid transparent;font:600 16px Outfit,sans-serif;text-decoration:none;cursor:pointer}
-.btn:focus-visible,.lang button:focus-visible{outline:3px solid var(--hib);outline-offset:2px}
-.b1{background:var(--hib);color:#fff}
-.b1:hover{background:#e63a5a}
-.b2{border-color:currentColor;background:transparent;color:inherit}
-.lang{display:flex;border:1px solid var(--line);border-radius:999px;overflow:hidden}
-.lang button{min-height:40px;min-width:44px;border:0;background:transparent;color:var(--ink);font:600 14px Outfit,sans-serif;cursor:pointer}
-.lang button[aria-pressed=true]{background:var(--ink);color:var(--bg)}
-html[lang=fr] [lang=en]{display:none}
-html[lang=en] [lang=fr]{display:none}
-h1{font-size:clamp(34px,5.2vw,52px);line-height:1.05;letter-spacing:-.02em;margin:0 0 14px;text-wrap:balance;font-weight:800}
-h2{font-size:clamp(26px,3.4vw,36px);line-height:1.1;letter-spacing:-.02em;margin:0 0 18px;text-wrap:balance}
-h3{font-size:19px;margin:0 0 6px}
-.lead{font-size:18px;color:var(--soft);max-width:34em;margin:0 0 22px}
-.hero{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:clamp(20px,4vw,56px);align-items:center}
-.field{background:var(--lag2);border-radius:28px;position:relative;min-height:420px;overflow:hidden}
-.field svg{position:absolute;inset:0;width:100%;height:100%}
-.cta{display:flex;flex-wrap:wrap;gap:10px}
-.note{font-size:14px;color:var(--soft);margin-top:14px}
-.grid4{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));gap:16px}
-.card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:20px}
-.card p{margin:0;color:var(--soft)}
-.ico{width:44px;height:44px;border-radius:12px;background:var(--sand);display:grid;place-items:center;margin-bottom:12px}
-.sandband{background:var(--sand)}
-.steps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;counter-reset:s}
-.step{border-top:4px solid var(--lag);padding-top:14px}
-.step b{display:block;font-size:44px;line-height:1;color:var(--lag);margin-bottom:8px}
-.tags{display:flex;flex-wrap:wrap;gap:8px;margin:0;padding:0;list-style:none}
-.tags li{border:1px solid var(--line);border-radius:999px;padding:8px 14px;background:var(--card)}
-#tarifs{display:none}
+html{scroll-behavior:smooth;scroll-padding-top:90px}
+body{margin:0;background:var(--bg);color:var(--ink);font:300 15px/1.8 Inter,"Helvetica Neue",Arial,sans-serif;-webkit-font-smoothing:antialiased;overflow-x:clip}
+img{display:block;max-width:100%;height:auto}
+a{color:inherit;text-decoration:none}
+p{margin:0}
+h1,h2,h3{margin:0;font-family:"Cormorant Garamond",Georgia,serif;font-weight:500;letter-spacing:0}
+html[lang=fr] [lang=en],html[lang=en] [lang=fr]{display:none}
+.caps{font:400 11px/1.5 Inter,sans-serif;letter-spacing:.2em;text-transform:uppercase}
+.w{max-width:1320px;margin:0 auto;padding:0 40px}
+.strip{background:var(--ink);color:#fff;text-align:center;padding:10px 16px}
+header{position:sticky;top:0;z-index:30;background:#fff;border-bottom:1px solid var(--line)}
+.bar{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;height:78px}
+.nav{display:flex;gap:30px}
+.nav a,.act a{padding:8px 0;border-bottom:1px solid transparent}
+.nav a:hover,.act a:hover{border-bottom-color:var(--ink)}
+.mark{font:500 30px/1 "Cormorant Garamond",serif;letter-spacing:.38em;text-transform:uppercase;padding-left:.38em}
+.act{display:flex;justify-content:flex-end;align-items:center;gap:24px}
+.lang{display:flex;gap:10px}
+.lang button{border:0;background:none;padding:8px 0;font:400 11px Inter,sans-serif;letter-spacing:.2em;color:var(--mute);cursor:pointer;border-bottom:1px solid transparent}
+.lang button[aria-pressed=true]{color:var(--ink);border-bottom-color:var(--ink)}
+:focus-visible{outline:1px solid var(--ink);outline-offset:4px}
+.hero{position:relative;height:min(92svh,980px);min-height:560px;overflow:hidden;background:#2a2826}
+.hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:60% 40%}
+.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.05) 35%,rgba(0,0,0,.55) 100%)}
+.hcopy{position:absolute;left:0;right:0;bottom:64px;z-index:2;color:#fff}
+.hcopy h1{font-size:clamp(44px,6.4vw,92px);line-height:1;margin:16px 0 26px;max-width:11em}
+h1 i,h2 i{font-style:italic}
+.link{display:inline-block;font:400 11px Inter,sans-serif;letter-spacing:.2em;text-transform:uppercase;padding-bottom:6px;border-bottom:1px solid currentColor}
+.link:hover{opacity:.7}
+.intro{padding:140px 0 120px;text-align:center}
+.intro h2{font-size:clamp(30px,3.6vw,48px);line-height:1.22;max-width:21em;margin:22px auto 0}
+.plate{background:var(--ivory);padding:110px 0}
+.screen{max-width:1080px;margin:0 auto;background:#fff;box-shadow:0 60px 100px -60px rgba(0,0,0,.35)}
+.screen img{width:100%;aspect-ratio:16/10;object-fit:cover;object-position:top}
+.capline{display:flex;justify-content:space-between;gap:24px;max-width:1080px;margin:22px auto 0;color:var(--soft)}
+.capline span:first-child{color:var(--ink)}
+.duo{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:24px;padding:120px 0}
+.duo figure{margin:0}
+.duo .ph{overflow:hidden;background:#eee}
+.duo .ph.a{aspect-ratio:4/5}
+.duo .ph.a img{width:100%;height:100%;object-fit:cover}
+.duo .ph.b{aspect-ratio:4/5;background:var(--ivory);display:grid;place-items:center}
+.duo .ph.b img{width:46%;border-radius:26px;box-shadow:0 40px 70px -40px rgba(0,0,0,.45);border:6px solid #111}
+.duo figcaption{display:flex;justify-content:space-between;gap:12px;padding-top:16px}
+.duo figcaption span:last-child{color:var(--soft)}
+.serv{border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.sgrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr))}
+.sgrid div{padding:72px 48px 76px}
+.sgrid div+div{border-left:1px solid var(--line)}
+.sgrid h3{font-size:30px;margin:18px 0 14px}
+.sgrid p{color:var(--soft);max-width:22em}
+.method{padding:150px 0;text-align:center}
+.method h2{font-size:clamp(36px,4.6vw,66px);line-height:1.1;max-width:15em;margin:22px auto 34px}
+.wide{position:relative;height:min(80svh,820px);min-height:440px;overflow:hidden;background:#3a2f27}
+.wide img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.wide::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,0) 55%,rgba(0,0,0,.45) 100%)}
+.wide .hcopy h2{font-size:clamp(36px,4.6vw,64px);line-height:1.05;margin-top:14px}
+#tarifs{display:none;padding:130px 0;background:var(--ivory)}
 #tarifs:target{display:block}
-.price{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:18px}
-.amt{font-size:clamp(36px,5vw,48px);font-weight:800;line-height:1;white-space:nowrap}
-.amt small{font-size:16px;font-weight:600;color:var(--soft)}
-.card ul{padding-left:1.1em;margin:12px 0 18px;color:var(--soft)}
-.contact{background:var(--lag);color:#fff}
-.contact .lead{color:#dff3f5}
-.contact .b2{color:#fff}
-.cline{display:flex;flex-wrap:wrap;gap:8px 22px;margin-top:18px;font-size:15px}
-footer{font-size:14px;color:var(--soft)}
-footer p{margin:4px 0}
-@media(max-width:820px){.hero{grid-template-columns:minmax(0,1fr)}.field{min-height:360px}.steps{grid-template-columns:minmax(0,1fr)}}
-@media(prefers-reduced-motion:no-preference){.float{animation:fl 6s ease-in-out infinite}@keyframes fl{50%{transform:translateY(-8px)}}}
+.tgrid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);border-top:1px solid var(--ink);margin-top:56px}
+.tgrid>div{padding:48px 48px 56px 0}
+.tgrid>div+div{border-left:1px solid var(--line);padding-left:48px}
+.tgrid h3{font-size:30px}
+.price{font:500 clamp(54px,6vw,80px)/1 "Cormorant Garamond",serif;margin:26px 0 8px;white-space:nowrap}
+.tgrid ul{list-style:none;padding:0;margin:28px 0 36px;color:var(--soft)}
+.tgrid li{padding:12px 0;border-bottom:1px solid var(--line)}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:54px;padding:0 34px;background:var(--ink);color:#fff;font:400 11px Inter,sans-serif;letter-spacing:.22em;text-transform:uppercase;border:1px solid var(--ink);transition:background .3s,color .3s}
+.btn:hover{background:transparent;color:var(--ink)}
+.btn.o{background:transparent;color:var(--ink)}
+.btn.o:hover{background:var(--ink);color:#fff}
+.btns{display:flex;flex-wrap:wrap;gap:12px}
+.small{font-size:12.5px;color:var(--mute);margin-top:22px}
+.info{padding:130px 0}
+.igrid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.5fr);gap:120px}
+.igrid h2{font-size:clamp(34px,4vw,54px);line-height:1.05;margin-top:20px}
+details{border-top:1px solid var(--line);padding:22px 0}
+details:last-child{border-bottom:1px solid var(--line)}
+summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;gap:20px;font:400 11px Inter,sans-serif;letter-spacing:.2em;text-transform:uppercase}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";font:300 16px Inter,sans-serif;letter-spacing:0}
+details[open] summary::after{content:"−"}
+details p{color:var(--soft);margin-top:14px;max-width:40em}
+.rdv{background:var(--ivory);padding:130px 0;text-align:center}
+.rdv h2{font-size:clamp(36px,4.6vw,64px);line-height:1.08;margin:20px auto 18px}
+.rdv p{color:var(--soft)}
+.rdv .btns{justify-content:center;margin-top:38px}
+footer{background:var(--ink);color:#fff;padding:96px 0 40px}
+.fgrid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:40px}
+.fgrid p{color:#b5b5b5;margin-top:14px;font-size:14px}
+.fgrid a{display:block;color:#b5b5b5;margin-top:10px;font-size:14px}
+.fgrid a:hover{color:#fff}
+.giant{font:500 clamp(64px,16vw,250px)/.8 "Cormorant Garamond",serif;letter-spacing:.1em;text-transform:uppercase;margin:110px 0 36px;white-space:nowrap;overflow:hidden;text-align:center}
+.legal{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;color:#8d8d8d;border-top:1px solid #333;padding-top:22px}
+@media(max-width:1000px){.nav{display:none}.bar{grid-template-columns:auto 1fr auto}.mark{font-size:24px}.igrid{grid-template-columns:minmax(0,1fr);gap:64px}.sgrid{grid-template-columns:minmax(0,1fr)}.sgrid div{padding:56px 0}.sgrid div+div{border-left:0;border-top:1px solid var(--line)}.fgrid{grid-template-columns:repeat(2,minmax(0,1fr))}.tgrid{grid-template-columns:minmax(0,1fr)}.tgrid>div{padding:40px 0}.tgrid>div+div{border-left:0;border-top:1px solid var(--line);padding-left:0}}
+@media(max-width:700px){.w{padding:0 22px}.bar{height:64px}.act .hide{display:none}.mark{font-size:21px;letter-spacing:.3em}.hero{height:86svh;min-height:520px}.hcopy{bottom:40px}.intro{padding:96px 0 84px}.plate,.info,.rdv,#tarifs{padding:88px 0}.duo{grid-template-columns:minmax(0,1fr);gap:48px;padding:88px 0}.method{padding:100px 0}.capline{display:block}.capline span{display:block}.fgrid{grid-template-columns:minmax(0,1fr)}.btns .btn{flex:1 1 100%}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
 </style>
 </head>
 <body>
-<nav aria-label="Navigation">
-  <a class="logo" href="#top">
-    <svg width="34" height="34" viewBox="0 0 34 34" aria-hidden="true"><rect x="1" y="1" width="32" height="32" rx="7" fill="var(--ink)"/><line x1="17" y1="5" x2="17" y2="29" stroke="var(--bg)" stroke-width="1.5"/><g fill="var(--bg)"><circle cx="9" cy="9" r="2"/><circle cx="9" cy="17" r="2"/><circle cx="9" cy="25" r="2"/><circle cx="25" cy="9" r="2"/><circle cx="25" cy="17" r="2"/><circle cx="25" cy="25" r="2"/></g></svg>
-    Kapicua
-  </a>
-  <div class="navr">
-    <a class="btn b2" href="#offre"><span lang="fr">L'offre</span><span lang="en">What you get</span></a>
-    <div class="lang" role="group" aria-label="Langue / Language">
-      <button id="lfr" type="button" aria-pressed="true">FR</button>
-      <button id="len" type="button" aria-pressed="false">EN</button>
-    </div>
-  </div>
-</nav>
-
-<header class="band" id="top">
-  <div class="wrap hero">
-    <div>
-      <h1><span lang="fr">Votre commerce en ligne, prêt en quelques jours.</span><span lang="en">Your business online, ready in a few days.</span></h1>
-      <p class="lead"><span lang="fr">Un site à votre image et un espace pour gérer réservations, ventes, stock et clients depuis votre téléphone. On vous montre d'abord votre site pilote, sans engagement.</span><span lang="en">A website that looks like you, plus one place to manage bookings, sales, stock and customers from your phone. We show you your pilot site first, no commitment.</span></p>
-      <div class="cta">
-        <a class="btn b1" id="waTop" href="https://wa.me/590690391800" rel="noopener noreferrer" target="_blank"><span lang="fr">Recevoir mon site pilote</span><span lang="en">Get my pilot site</span></a>
-        <a class="btn b2" href="#comment"><span lang="fr">Comment ça marche</span><span lang="en">How it works</span></a>
-      </div>
-      <p class="note"><span lang="fr">Basé à Saint-Barthélemy · Saint-Martin · Bordeaux</span><span lang="en">Based in Saint-Barthélemy · Saint-Martin · Bordeaux</span></p>
-    </div>
-    <div class="field" aria-hidden="true">
-      <svg viewBox="0 0 560 420" preserveAspectRatio="xMidYMid slice">
-        <defs>
-          <linearGradient id="sea" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#18a3b3"/><stop offset="1" stop-color="#0b6f7e"/></linearGradient>
-          <linearGradient id="sun" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffd27a"/><stop offset="1" stop-color="#ff9a5a"/></linearGradient>
-        </defs>
-        <rect width="560" height="420" fill="url(#sea)"/>
-        <circle cx="470" cy="70" r="44" fill="url(#sun)" opacity=".9"/>
-        <path d="M0 330 C120 300 220 345 330 318 S500 300 560 312 V420 H0Z" fill="#f4e3c3"/>
-        <path d="M0 352 C140 330 260 372 380 346 S520 336 560 342 V420 H0Z" fill="#ead2a6"/>
-        <g opacity=".25" stroke="#fff" stroke-width="2" fill="none"><path d="M30 250 q20 -8 40 0 t40 0"/><path d="M380 210 q20 -8 40 0 t40 0"/><path d="M220 275 q20 -8 40 0 t40 0"/></g>
-        <!-- tablet: gestion -->
-        <g transform="translate(60 92) rotate(-4)">
-          <rect x="6" y="10" width="300" height="210" rx="18" fill="#000" opacity=".18"/>
-          <rect width="300" height="210" rx="18" fill="#10262a"/>
-          <rect x="12" y="12" width="276" height="186" rx="10" fill="#fff"/>
-          <rect x="12" y="12" width="70" height="186" rx="10" fill="#eef6f7"/>
-          <g fill="#0b7a8a"><rect x="24" y="30" width="46" height="8" rx="4"/><rect x="24" y="52" width="38" height="6" rx="3" opacity=".5"/><rect x="24" y="68" width="42" height="6" rx="3" opacity=".5"/><rect x="24" y="84" width="34" height="6" rx="3" opacity=".5"/><rect x="24" y="100" width="40" height="6" rx="3" opacity=".5"/></g>
-          <text x="96" y="40" font-family="Outfit,sans-serif" font-size="13" font-weight="800" fill="#0c1f24">Aujourd'hui</text>
-          <g font-family="Outfit,sans-serif" font-size="11" fill="#4a5e63">
-            <rect x="96" y="52" width="86" height="50" rx="8" fill="#fff0f3"/><text x="104" y="70">Réservations</text><text x="104" y="92" font-size="18" font-weight="800" fill="#ff4d6d">12</text>
-            <rect x="190" y="52" width="86" height="50" rx="8" fill="#e8f6f7"/><text x="198" y="70">Ventes</text><text x="198" y="92" font-size="18" font-weight="800" fill="#0b7a8a">1 840 €</text>
-          </g>
-          <g>
-            <rect x="96" y="114" width="180" height="70" rx="8" fill="#f7fafa"/>
-            <g fill="#0b7a8a"><rect x="108" y="160" width="14" height="16" rx="2"/><rect x="128" y="148" width="14" height="28" rx="2"/><rect x="148" y="154" width="14" height="22" rx="2"/><rect x="168" y="138" width="14" height="38" rx="2"/><rect x="188" y="144" width="14" height="32" rx="2"/><rect x="208" y="130" width="14" height="46" rx="2" fill="#ff4d6d"/><rect x="228" y="140" width="14" height="36" rx="2"/></g>
-          </g>
-        </g>
-        <!-- phone: site -->
-        <g class="float" transform="translate(338 46)">
-          <rect x="8" y="12" width="160" height="320" rx="26" fill="#000" opacity=".2"/>
-          <rect width="160" height="320" rx="26" fill="#0c1f24"/>
-          <rect x="9" y="9" width="142" height="302" rx="19" fill="#fff"/>
-          <rect x="58" y="14" width="44" height="8" rx="4" fill="#0c1f24"/>
-          <rect x="9" y="30" width="142" height="110" fill="#ffd6a8"/>
-          <circle cx="118" cy="62" r="16" fill="#ff9a5a"/>
-          <path d="M9 120 C50 104 90 128 151 110 V140 H9Z" fill="#18a3b3"/>
-          <text x="20" y="160" font-family="Outfit,sans-serif" font-size="14" font-weight="800" fill="#0c1f24">Ti Café</text>
-          <text x="20" y="176" font-family="Outfit,sans-serif" font-size="10" fill="#4a5e63">Gustavia · ouvert 7h–15h</text>
-          <rect x="20" y="188" width="120" height="30" rx="15" fill="#ff4d6d"/>
-          <text x="80" y="207" text-anchor="middle" font-family="Outfit,sans-serif" font-size="11" font-weight="600" fill="#fff">Réserver une table</text>
-          <rect x="20" y="226" width="120" height="30" rx="15" fill="none" stroke="#0b7a8a" stroke-width="1.5"/>
-          <text x="80" y="245" text-anchor="middle" font-family="Outfit,sans-serif" font-size="11" font-weight="600" fill="#0b7a8a">À emporter</text>
-          <g fill="#eef6f7"><rect x="20" y="266" width="56" height="34" rx="6"/><rect x="84" y="266" width="56" height="34" rx="6"/></g>
-        </g>
-      </svg>
+<div class="strip caps"><span lang="fr">Site pilote offert, sans engagement</span><span lang="en">Complimentary pilot site, no commitment</span></div>
+<header>
+  <div class="w bar">
+    <nav class="nav caps" aria-label="Menu"><a href="#savoir-faire"><span lang="fr">Savoir-faire</span><span lang="en">Craft</span></a><a href="#methode"><span lang="fr">La méthode</span><span lang="en">Method</span></a><a href="#info">Information</a></nav>
+    <a class="mark" href="#top" aria-label="Kapicua">Kapicua</a>
+    <div class="act caps">
+      <div class="lang" role="group" aria-label="Langue / Language"><button id="lfr" type="button" aria-pressed="true">FR</button><button id="len" type="button" aria-pressed="false">EN</button></div>
+      <a class="hide wa" href="#" target="_blank" rel="noopener noreferrer"><span lang="fr">Rendez-vous</span><span lang="en">Appointment</span></a>
     </div>
   </div>
 </header>
 
-<section class="band" id="offre">
-  <div class="wrap">
-    <h2><span lang="fr">Tout ce qu'il faut à un commerce, au même endroit</span><span lang="en">Everything a business needs, in one place</span></h2>
-    <div class="grid4">
-      <div class="card"><div class="ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0b7a8a" stroke-width="2"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M3 8h18"/></svg></div><h3><span lang="fr">Votre site</span><span lang="en">Your website</span></h3><p><span lang="fr">À vos couleurs, rapide sur téléphone, en français et en anglais pour les visiteurs.</span><span lang="en">In your colours, fast on phones, in French and English for visitors.</span></p></div>
-      <div class="card"><div class="ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0b7a8a" stroke-width="2"><rect x="4" y="5" width="16" height="15" rx="2"/><path d="M8 3v4M16 3v4M4 10h16"/></svg></div><h3><span lang="fr">Réservations et rendez-vous</span><span lang="en">Bookings and appointments</span></h3><p><span lang="fr">Vos clients réservent en ligne, vous recevez tout dans votre espace.</span><span lang="en">Customers book online, everything lands in your space.</span></p></div>
-      <div class="card"><div class="ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0b7a8a" stroke-width="2"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg></div><h3><span lang="fr">Ventes, dépenses, stock</span><span lang="en">Sales, expenses, stock</span></h3><p><span lang="fr">Un espace de gestion simple sur ordinateur, téléphone et tablette, avec click &amp; collect et fichier clients.</span><span lang="en">A simple back office on computer, phone and tablet, with click &amp; collect and a customer list.</span></p></div>
-      <div class="card"><div class="ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0b7a8a" stroke-width="2"><path d="M4 20l4-1 11-11-3-3L5 16z"/></svg></div><h3><span lang="fr">Vous modifiez vous-même</span><span lang="en">You edit it yourself</span></h3><p><span lang="fr">Horaires, menu, photos, prix : vous changez votre site sans appeler personne.</span><span lang="en">Hours, menu, photos, prices: change your site without calling anyone.</span></p></div>
-    </div>
+<main id="top">
+<section class="hero" aria-label="Kapicua">
+  <img src="https://images.unsplash.com/photo-1556742393-d75f468bfcb0?auto=format&fit=crop&w=1900&q=72" srcset="https://images.unsplash.com/photo-1556742393-d75f468bfcb0?auto=format&fit=crop&w=900&q=70 900w, https://images.unsplash.com/photo-1556742393-d75f468bfcb0?auto=format&fit=crop&w=1400&q=70 1400w, https://images.unsplash.com/photo-1556742393-d75f468bfcb0?auto=format&fit=crop&w=1900&q=72 1900w" sizes="100vw" alt="Un commerçant consulte sa tablette derrière son comptoir" fetchpriority="high">
+  <div class="hcopy"><div class="w">
+    <p class="caps">Saint-Barthélemy · Saint-Martin · Bordeaux</p>
+    <h1><span lang="fr">Votre maison, <i>désormais en ligne.</i></span><span lang="en">Your house, <i>now online.</i></span></h1>
+    <a class="link wa" href="#" target="_blank" rel="noopener noreferrer"><span lang="fr">Recevoir votre site pilote</span><span lang="en">Receive your pilot site</span></a>
+  </div></div>
+</section>
+
+<section class="intro">
+  <div class="w">
+    <p class="caps">Kapicua</p>
+    <h2><span lang="fr">Nous concevons le site et l'espace de gestion des commerces de l'île : restaurants, boutiques, salons et maisons de location.</span><span lang="en">We design the website and back office of island businesses: restaurants, boutiques, salons and rental houses.</span></h2>
   </div>
 </section>
 
-<section class="band sandband" id="comment">
-  <div class="wrap">
-    <h2><span lang="fr">Vous voyez votre site avant de payer</span><span lang="en">You see your site before you pay</span></h2>
-    <div class="steps">
-      <div class="step"><b>1</b><h3><span lang="fr">On crée votre site pilote</span><span lang="en">We build your pilot site</span></h3><p><span lang="fr">À partir de ce qui existe déjà sur votre commerce. C'est offert.</span><span lang="en">From what already exists about your business. Free of charge.</span></p></div>
-      <div class="step"><b>2</b><h3><span lang="fr">Vous le testez</span><span lang="en">You try it</span></h3><p><span lang="fr">Sur votre téléphone. On ajuste textes, photos et fonctions avec vous.</span><span lang="en">On your phone. We adjust texts, photos and features with you.</span></p></div>
-      <div class="step"><b>3</b><h3><span lang="fr">Il passe à votre nom</span><span lang="en">It goes live in your name</span></h3><p><span lang="fr">Mise en ligne, votre espace de gestion activé, et on reste joignables.</span><span lang="en">Go live, your back office switched on, and we stay reachable.</span></p></div>
-    </div>
+<section class="plate">
+  <div class="w">
+    <div class="screen"><img src="img/gestion.webp" width="1440" height="900" alt="L'espace de gestion : ventes, réservations, click and collect, stock"></div>
+    <div class="capline caps"><span><span lang="fr">L'espace de gestion</span><span lang="en">The back office</span></span><span><span lang="fr">Ventes, réservations, stock et clients, depuis votre téléphone</span><span lang="en">Sales, bookings, stock and customers, from your phone</span></span></div>
   </div>
 </section>
 
-<section class="band">
-  <div class="wrap">
-    <h2><span lang="fr">Pour les commerces de l'île et d'ailleurs</span><span lang="en">For island businesses and beyond</span></h2>
-    <ul class="tags">
-      <li><span lang="fr">Restaurants et snacks</span><span lang="en">Restaurants and snack bars</span></li>
-      <li><span lang="fr">Boutiques</span><span lang="en">Shops</span></li>
-      <li><span lang="fr">Salons de beauté et coiffure</span><span lang="en">Beauty and hair salons</span></li>
-      <li><span lang="fr">Location de voitures et de bateaux</span><span lang="en">Car and boat rentals</span></li>
-      <li><span lang="fr">Artisans et dépannage</span><span lang="en">Trades and repairs</span></li>
-      <li><span lang="fr">Sport, bien-être, cours</span><span lang="en">Sport, wellness, classes</span></li>
-    </ul>
+<section class="w duo">
+  <figure>
+    <div class="ph a"><img src="https://images.unsplash.com/photo-1753351052363-53ce102830eb?auto=format&fit=crop&w=1100&h=1375&q=70" width="1100" height="1375" loading="lazy" alt="Une commerçante dans son café"></div>
+    <figcaption class="caps"><span><span lang="fr">Pour celles et ceux qui reçoivent</span><span lang="en">For those who welcome guests</span></span><span>I</span></figcaption>
+  </figure>
+  <figure>
+    <div class="ph b"><img src="img/site-salon.webp" width="520" height="1040" loading="lazy" alt="Site d'un salon de coiffure sur téléphone"></div>
+    <figcaption class="caps"><span><span lang="fr">Le site, pensé pour le téléphone</span><span lang="en">The site, designed for mobile</span></span><span>II</span></figcaption>
+  </figure>
+</section>
+
+<section class="serv" id="savoir-faire">
+  <div class="w sgrid">
+    <div><p class="caps">I</p><h3><span lang="fr">Un site à votre image</span><span lang="en">A site in your image</span></h3><p><span lang="fr">Dessiné pour votre maison, en français et en anglais, avec réservations et click &amp; collect.</span><span lang="en">Designed for your house, in French and English, with bookings and click &amp; collect.</span></p></div>
+    <div><p class="caps">II</p><h3><span lang="fr">Un espace de gestion</span><span lang="en">A back office</span></h3><p><span lang="fr">Caisse, dépenses, stock et clients réunis, avec un export pour votre comptable.</span><span lang="en">Sales, expenses, stock and customers in one place, with an export for your accountant.</span></p></div>
+    <div><p class="caps">III</p><h3><span lang="fr">Votre liberté</span><span lang="en">Your freedom</span></h3><p><span lang="fr">Vous modifiez horaires, carte et annonces vous-même. Le site est publié à votre nom.</span><span lang="en">You update hours, menu and notices yourself. The site is published in your name.</span></p></div>
   </div>
 </section>
 
-<section class="band sandband" id="tarifs">
-  <div class="wrap">
-    <h2><span lang="fr">Tarifs et paiement</span><span lang="en">Pricing and payment</span></h2>
-    <div class="price">
-      <div class="card">
-        <h3><span lang="fr">Site + espace de gestion</span><span lang="en">Website + back office</span></h3>
-        <div class="amt">290 € <small><span lang="fr">une fois</span><span lang="en">one-off</span></small></div>
+<section class="method" id="methode">
+  <div class="w">
+    <p class="caps"><span lang="fr">La méthode</span><span lang="en">The method</span></p>
+    <h2><span lang="fr">Nous préparons votre site pilote. <i>Vous le découvrez.</i> Vous décidez.</span><span lang="en">We prepare your pilot site. <i>You discover it.</i> You decide.</span></h2>
+    <a class="link wa" href="#" target="_blank" rel="noopener noreferrer"><span lang="fr">Demander le vôtre</span><span lang="en">Request yours</span></a>
+  </div>
+</section>
+
+<section class="wide" aria-label="Boutique">
+  <img src="https://images.unsplash.com/photo-1767167752097-fb36347efde1?auto=format&fit=crop&w=1900&q=70" srcset="https://images.unsplash.com/photo-1767167752097-fb36347efde1?auto=format&fit=crop&w=900&q=70 900w, https://images.unsplash.com/photo-1767167752097-fb36347efde1?auto=format&fit=crop&w=1900&q=70 1900w" sizes="100vw" loading="lazy" alt="Planches de surf décorées dans une boutique">
+  <div class="hcopy"><div class="w">
+    <p class="caps"><span lang="fr">Les maisons de l'île</span><span lang="en">Island houses</span></p>
+    <h2><span lang="fr">D'ici, <i>pour ici.</i></span><span lang="en">From here, <i>for here.</i></span></h2>
+  </div></div>
+</section>
+
+<section id="tarifs">
+  <div class="w">
+    <p class="caps"><span lang="fr">Conditions</span><span lang="en">Terms</span></p>
+    <h2 style="font-size:clamp(40px,5vw,64px);margin-top:18px"><span lang="fr">Tarifs</span><span lang="en">Pricing</span></h2>
+    <div class="tgrid">
+      <div>
+        <h3><span lang="fr">Site et espace de gestion</span><span lang="en">Website and back office</span></h3>
+        <div class="price">290 €</div>
+        <p class="caps" style="color:var(--mute)"><span lang="fr">Une fois</span><span lang="en">One-off</span></p>
         <ul>
-          <li><span lang="fr">Acompte de 145 € pour lancer la mise en ligne</span><span lang="en">145 € deposit to start going live</span></li>
-          <li><span lang="fr">Solde de 145 € le jour où le site est en ligne</span><span lang="en">145 € balance on the day the site goes live</span></li>
-          <li><span lang="fr">Paiement par PayPal (carte acceptée) ou virement</span><span lang="en">Pay with PayPal (cards accepted) or bank transfer</span></li>
+          <li><span lang="fr">145 € à la commande</span><span lang="en">145 € on order</span></li>
+          <li><span lang="fr">145 € à la mise en ligne</span><span lang="en">145 € when the site goes live</span></li>
+          <li><span lang="fr">PayPal, carte ou virement</span><span lang="en">PayPal, card or bank transfer</span></li>
         </ul>
-        <div class="cta">
-          <a class="btn b1" id="payDeposit" href="https://wa.me/590690391800" rel="noopener noreferrer" target="_blank"><span lang="fr">Payer l'acompte · 145 €</span><span lang="en">Pay deposit · 145 €</span></a>
-          <a class="btn b2" id="payBalance" href="https://wa.me/590690391800" rel="noopener noreferrer" target="_blank"><span lang="fr">Payer le solde · 145 €</span><span lang="en">Pay balance · 145 €</span></a>
-        </div>
+        <div class="btns"><a class="btn" id="payDeposit" href="#" target="_blank" rel="noopener noreferrer"><span lang="fr">Régler l'acompte</span><span lang="en">Pay the deposit</span></a><a class="btn o" id="payBalance" href="#" target="_blank" rel="noopener noreferrer"><span lang="fr">Régler le solde</span><span lang="en">Pay the balance</span></a></div>
       </div>
-      <div class="card">
-        <h3><span lang="fr">Entretien (optionnel)</span><span lang="en">Care plan (optional)</span></h3>
-        <div class="amt">25 € <small><span lang="fr">par mois</span><span lang="en">per month</span></small></div>
+      <div>
+        <h3><span lang="fr">Entretien</span><span lang="en">Care</span></h3>
+        <div class="price">25 €</div>
+        <p class="caps" style="color:var(--mute)"><span lang="fr">Par mois, optionnel</span><span lang="en">Per month, optional</span></p>
         <ul>
           <li><span lang="fr">Hébergement, sécurité et sauvegardes</span><span lang="en">Hosting, security and backups</span></li>
-          <li><span lang="fr">Vos modifications faites pour vous</span><span lang="en">Your changes done for you</span></li>
-          <li><span lang="fr">Assistance par WhatsApp</span><span lang="en">Support on WhatsApp</span></li>
+          <li><span lang="fr">Vos modifications réalisées pour vous</span><span lang="en">Your changes made for you</span></li>
+          <li><span lang="fr">Assistance par WhatsApp</span><span lang="en">Support via WhatsApp</span></li>
         </ul>
-        <div class="cta"><a class="btn b2" id="payCare" href="https://wa.me/590690391800" rel="noopener noreferrer" target="_blank"><span lang="fr">Activer l'entretien</span><span lang="en">Start the care plan</span></a></div>
+        <div class="btns"><a class="btn o" id="payCare" href="#" target="_blank" rel="noopener noreferrer"><span lang="fr">Activer l'entretien</span><span lang="en">Start care</span></a></div>
       </div>
     </div>
-    <p class="note"><span lang="fr">Les paiements passent par la page sécurisée de PayPal : Kapicua ne voit ni ne stocke jamais vos numéros de carte.</span><span lang="en">Payments go through PayPal's secure page: Kapicua never sees or stores your card details.</span></p>
+    <p class="small"><span lang="fr">Les paiements par carte passent par la page sécurisée de PayPal. Nous ne voyons ni ne conservons vos numéros de carte.</span><span lang="en">Card payments go through PayPal's secure page. We never see or keep your card details.</span></p>
   </div>
 </section>
 
-<section class="band contact" id="contact">
-  <div class="wrap">
-    <h2><span lang="fr">Envie de voir le vôtre ?</span><span lang="en">Want to see yours?</span></h2>
-    <p class="lead"><span lang="fr">Envoyez le nom de votre commerce, on vous prépare votre site pilote.</span><span lang="en">Send us your business name and we'll prepare your pilot site.</span></p>
-    <div class="cta">
-      <a class="btn b1" id="waBottom" href="https://wa.me/590690391800" rel="noopener noreferrer" target="_blank">WhatsApp</a>
-      <a class="btn b2" href="mailto:cedric.behmann@assistant-rabe.com?subject=Site%20pilote">E-mail</a>
+<section class="info" id="info">
+  <div class="w igrid">
+    <div><p class="caps">Information</p><h2><span lang="fr">Questions fréquentes</span><span lang="en">Questions</span></h2></div>
+    <div>
+      <details><summary><span lang="fr">Le site pilote est-il vraiment offert ?</span><span lang="en">Is the pilot site really free?</span></summary><p><span lang="fr">Oui. Nous le préparons, vous le découvrez, sans rien payer ni signer. Vous décidez ensuite.</span><span lang="en">Yes. We prepare it and you discover it without paying or signing anything. Then you decide.</span></p></details>
+      <details><summary><span lang="fr">Délai de mise en ligne</span><span lang="en">Time to go live</span></summary><p><span lang="fr">Quelques jours après votre accord, selon les photographies et textes à ajouter.</span><span lang="en">A few days after your approval, depending on the photographs and texts to add.</span></p></details>
+      <details><summary><span lang="fr">Sans connaissances techniques</span><span lang="en">No technical skills needed</span></summary><p><span lang="fr">Tout se fait depuis votre téléphone, y compris en dictant au micro. Nous vous accompagnons une première fois.</span><span lang="en">Everything works from your phone, even by voice. We guide you the first time.</span></p></details>
+      <details><summary><span lang="fr">Propriété du site</span><span lang="en">Site ownership</span></summary><p><span lang="fr">Le site est publié à votre nom. L'entretien est optionnel et sans durée d'engagement.</span><span lang="en">The site is published in your name. Care is optional with no minimum term.</span></p></details>
     </div>
-    <div class="cline"><span>+590 690 39 18 00</span><span>cedric.behmann@assistant-rabe.com</span></div>
   </div>
 </section>
 
-<footer class="band">
-  <div class="wrap">
-    <p><strong>Kapicua</strong> · EURL au capital de 1 000 € · Saint-Barthélemy (97133)</p>
-    <p><span lang="fr">Responsable de publication : Cédric Behmann · Aussi éditeur d'Assistant Rabe, l'IA de Saint-Barth</span><span lang="en">Publisher: Cédric Behmann · Also the maker of Assistant Rabe, the AI of Saint-Barth</span></p>
-    <p><span lang="fr">Ce site n'utilise ni cookies ni traceurs et ne collecte aucune donnée.</span><span lang="en">This site uses no cookies or trackers and collects no data.</span></p>
+<section class="rdv" id="contact">
+  <div class="w">
+    <p class="caps"><span lang="fr">Rendez-vous</span><span lang="en">Appointment</span></p>
+    <h2><span lang="fr">Découvrez <i>votre</i> site.</span><span lang="en">Discover <i>your</i> site.</span></h2>
+    <p><span lang="fr">Envoyez-nous le nom de votre commerce. Nous préparons votre site pilote.</span><span lang="en">Send us the name of your business. We prepare your pilot site.</span></p>
+    <div class="btns"><a class="btn wa" href="#" target="_blank" rel="noopener noreferrer">WhatsApp</a><a class="btn o" href="mailto:cedric.behmann@assistant-rabe.com?subject=Site%20pilote">E-mail</a></div>
+    <p class="caps" style="margin-top:30px;color:var(--mute)">+590 690 39 18 00 · cedric.behmann@assistant-rabe.com</p>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="w">
+    <div class="fgrid">
+      <div><p class="caps" style="color:#fff">Kapicua</p><p><span lang="fr">Maison numérique pour les commerces de l'île.</span><span lang="en">A digital house for island businesses.</span></p></div>
+      <div><p class="caps" style="color:#fff"><span lang="fr">La maison</span><span lang="en">The house</span></p><a href="#savoir-faire"><span lang="fr">Savoir-faire</span><span lang="en">Craft</span></a><a href="#methode"><span lang="fr">La méthode</span><span lang="en">Method</span></a><a href="#info">Information</a></div>
+      <div><p class="caps" style="color:#fff">Contact</p><a class="wa" href="#" target="_blank" rel="noopener noreferrer">WhatsApp</a><a href="mailto:cedric.behmann@assistant-rabe.com">E-mail</a></div>
+      <div><p class="caps" style="color:#fff"><span lang="fr">Mentions</span><span lang="en">Legal</span></p><p>Kapicua, EURL au capital de 1 000 €, Saint-Barthélemy. <span lang="fr">Responsable de la publication</span><span lang="en">Publisher</span> : Cédric Behmann.</p></div>
+    </div>
+    <div class="giant" aria-hidden="true">Kapicua</div>
+    <div class="legal caps"><span>Saint-Barthélemy</span><span><span lang="fr">Sans cookies ni traceurs</span><span lang="en">No cookies or trackers</span></span><span><span lang="fr">Photographies : Unsplash</span><span lang="en">Photographs: Unsplash</span></span></div>
   </div>
 </footer>
 
 <script>
 {
-  /* PayPal.me : mettre ici le nom de ton lien paypal.me (ex. "kapicua") */
-  const PAYPAL = "";
-  const PAY = PAYPAL ? { deposit: "https://www.paypal.me/" + PAYPAL + "/145EUR", balance: "https://www.paypal.me/" + PAYPAL + "/145EUR", care: "https://www.paypal.me/" + PAYPAL + "/25EUR" } : { deposit: "", balance: "", care: "" };
+  const PAYPAL = ""; /* nom du lien paypal.me */
   const WA = "590690391800";
   const msg = {
-    fr: { top: "Bonjour, je souhaite voir le site pilote de mon commerce : ", deposit: "Bonjour, je souhaite régler l'acompte de 145 € pour mon site.", balance: "Bonjour, je souhaite régler le solde de 145 € pour mon site.", care: "Bonjour, je souhaite activer l'entretien à 25 €/mois." },
-    en: { top: "Hello, I'd like to see the pilot site for my business: ", deposit: "Hello, I'd like to pay the 145 € deposit for my website.", balance: "Hello, I'd like to pay the 145 € balance for my website.", care: "Hello, I'd like to start the 25 €/month care plan." }
+    fr: { wa: "Bonjour, je souhaite découvrir le site pilote de mon commerce : ", deposit: "Bonjour, je souhaite régler l'acompte de 145 € pour mon site.", balance: "Bonjour, je souhaite régler le solde de 145 € pour mon site.", care: "Bonjour, je souhaite activer l'entretien à 25 € par mois." },
+    en: { wa: "Hello, I would like to discover the pilot site for my business: ", deposit: "Hello, I would like to pay the 145 € deposit for my website.", balance: "Hello, I would like to pay the 145 € balance for my website.", care: "Hello, I would like to start the 25 € monthly care plan." }
   };
-  const safe = u => /^https:\/\/www\.paypal\.me\/[A-Za-z0-9]+\/[0-9.]+(EUR|USD)$/.test(u);
+  const okPP = /^[A-Za-z0-9]{3,40}$/.test(PAYPAL);
+  const pp = amt => "https://www.paypal.me/" + PAYPAL + "/" + amt;
   const wa = t => "https://wa.me/" + WA + "?text=" + encodeURIComponent(t);
   function setLang(l) {
     document.documentElement.lang = l;
     document.getElementById("lfr").setAttribute("aria-pressed", l === "fr");
     document.getElementById("len").setAttribute("aria-pressed", l === "en");
     const m = msg[l];
-    document.getElementById("waTop").href = wa(m.top);
-    document.getElementById("waBottom").href = wa(m.top);
-    document.getElementById("payDeposit").href = safe(PAY.deposit) ? PAY.deposit : wa(m.deposit);
-    document.getElementById("payBalance").href = safe(PAY.balance) ? PAY.balance : wa(m.balance);
-    document.getElementById("payCare").href = safe(PAY.care) ? PAY.care : wa(m.care);
+    document.querySelectorAll(".wa").forEach(a => { a.href = wa(m.wa); });
+    document.getElementById("payDeposit").href = okPP ? pp("145EUR") : wa(m.deposit);
+    document.getElementById("payBalance").href = okPP ? pp("145EUR") : wa(m.balance);
+    document.getElementById("payCare").href = okPP ? pp("25EUR") : wa(m.care);
     try { localStorage.setItem("kap-lang", l); } catch (e) {}
   }
   document.getElementById("lfr").addEventListener("click", () => setLang("fr"));
   document.getElementById("len").addEventListener("click", () => setLang("en"));
   let start = "fr";
-  try { start = localStorage.getItem("kap-lang") || ((navigator.language || "fr").startsWith("fr") ? "fr" : "en"); } catch (e) {}
+  try { start = localStorage.getItem("kap-lang") || ((navigator.language || "fr").toLowerCase().startsWith("fr") ? "fr" : "en"); } catch (e) {}
   setLang(start === "en" ? "en" : "fr");
 }
 </script>

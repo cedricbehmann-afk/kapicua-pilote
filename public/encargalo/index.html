@@ -4,319 +4,297 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="referrer" content="strict-origin-when-cross-origin">
-<title>Encárgalo RD</title>
-<meta name="description" content="Compra en Amazon, Shein, Temu y cualquier tienda de EE.UU. con precio todo incluido en pesos, puesto en Santo Domingo.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;600;800;900&display=swap" rel="stylesheet">
+<title>Encárgalo · Santo Domingo</title>
+<meta name="description" content="Compras en Estados Unidos, entregadas en Santo Domingo. Un solo precio, en pesos, todo incluido.">
+<meta property="og:title" content="Encárgalo · Santo Domingo">
+<meta property="og:description" content="Compras en Estados Unidos, entregadas en Santo Domingo. Un solo precio, en pesos, todo incluido.">
+<meta property="og:image" content="https://images.unsplash.com/photo-1773859096265-b3f034c156f8?auto=format&fit=crop&w=1200&h=630&q=70">
+<link rel="preload" href="/fonts-lux/cormorant-garamond-latin-500-normal.woff2" as="font" type="font/woff2" crossorigin>
 <style>
-/* VOICE everyday, Dominican, direct and trustworthy
-   IDEA a courier box with its shipping label: the label is the quote
-   PICTURE the live calculator drawn as a white label on kraft cardboard, total huge
-   COLOUR kraft #d9a86c field, label white, ink black, blue #0038a8, stamp red #e4002b
-   TYPE Archivo 900 display + Archivo text
-   LAYOUT laptop: title strip, then label (inputs left, total right) on kraft; phone: title, label stacked, sticky total */
-:root{color-scheme:light dark;--bg:light-dark(#fffaf2,#15110c);--ink:light-dark(#141414,#f5efe6);--soft:light-dark(#5c5246,#bfb2a1);--kraft:light-dark(#d9a86c,#5a4126);--kraft2:light-dark(#c8925a,#4a3520);--label:light-dark(#ffffff,#221b13);--line:light-dark(#e6dccd,#3a2f22);--blue:light-dark(#0038a8,#7aa2ff);--red:#e4002b}
-:root[data-theme=light]{color-scheme:light}
-:root[data-theme=dark]{color-scheme:dark}
+@font-face{font-family:Inter;font-style:normal;font-weight:300;font-display:swap;src:url(/fonts-lux/inter-latin-300-normal.woff2) format('woff2')}
+@font-face{font-family:Inter;font-style:normal;font-weight:400;font-display:swap;src:url(/fonts-lux/inter-latin-400-normal.woff2) format('woff2')}
+@font-face{font-family:Inter;font-style:normal;font-weight:500;font-display:swap;src:url(/fonts-lux/inter-latin-500-normal.woff2) format('woff2')}
+@font-face{font-family:"Cormorant Garamond";font-style:normal;font-weight:500;font-display:swap;src:url(/fonts-lux/cormorant-garamond-latin-500-normal.woff2) format('woff2')}
+@font-face{font-family:"Cormorant Garamond";font-style:italic;font-weight:500;font-display:swap;src:url(/fonts-lux/cormorant-garamond-latin-500-italic.woff2) format('woff2')}
+:root{--ink:#111;--soft:#5b5b5b;--mute:#8d8d8d;--line:#dcdcdc;--bg:#fff;--ivory:#f6f4f0}
 *{box-sizing:border-box;min-width:0}
-html{scroll-padding-top:72px}
-body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 Archivo,system-ui,sans-serif;overflow-x:clip}
-a{color:inherit}
-.band{padding-block:clamp(28px,4vw,60px);padding-left:max(5vw,16px);padding-right:max(5vw,16px)}
-.wrap{max-width:1240px;margin:0 auto}
-nav{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between;padding:12px max(5vw,16px);background:var(--ink);color:var(--bg)}
-.logo{display:flex;gap:10px;align-items:center;font-weight:900;font-size:21px;text-decoration:none}
-.navl{display:flex;gap:16px;flex-wrap:wrap;font-weight:600}
-.navl a{text-decoration:none;min-height:44px;display:inline-flex;align-items:center}
-h1{font-size:clamp(32px,5vw,52px);line-height:1.05;letter-spacing:-.02em;margin:0 0 10px;font-weight:900;text-wrap:balance}
-h2{font-size:clamp(26px,3.4vw,36px);line-height:1.1;letter-spacing:-.02em;margin:0 0 18px;font-weight:900;text-wrap:balance}
-h3{font-size:18px;margin:0 0 6px}
-.lead{font-size:18px;color:var(--soft);max-width:38em;margin:0}
-.kraft{background:repeating-linear-gradient(90deg,var(--kraft) 0 3px,var(--kraft2) 3px 4px)}
-.tape{height:26px;background:color-mix(in srgb,#fff 55%,var(--kraft));opacity:.8;max-width:240px;margin:-38px auto 12px;transform:rotate(-1.5deg)}
-.lbl{background:var(--label);border:2px solid var(--ink);border-radius:6px;display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);box-shadow:8px 8px 0 rgba(0,0,0,.18)}
-.lbl>div{padding:clamp(16px,2.4vw,28px)}
-.lhead{grid-column:1/-1;display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px;border-bottom:2px dashed var(--ink);padding:12px clamp(16px,2.4vw,28px)!important;font-weight:800}
-.stamp{color:var(--red);border:2px solid var(--red);border-radius:4px;padding:0 8px;transform:rotate(-3deg);white-space:nowrap}
-.out{border-left:2px dashed var(--ink);display:flex;flex-direction:column;gap:12px}
-label{display:block;font-weight:600;font-size:15px;margin:0 0 6px}
-.f{margin-bottom:16px}
-input,select{width:100%;min-height:48px;font:16px Archivo,sans-serif;padding:10px 12px;border:2px solid var(--ink);border-radius:6px;background:var(--bg);color:var(--ink)}
-input:focus-visible,select:focus-visible,.btn:focus-visible,.chip:focus-visible{outline:3px solid var(--blue);outline-offset:2px}
-.row2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
-@media(max-width:480px){.row2.r2b{grid-template-columns:minmax(0,1fr)}}
-.seg{display:flex;gap:8px;flex-wrap:wrap}
-.seg label{display:flex;gap:8px;align-items:center;border:2px solid var(--ink);border-radius:6px;padding:10px 12px;min-height:48px;cursor:pointer;margin:0;font-weight:600}
-.seg input{width:auto;min-height:0;accent-color:var(--blue)}
-.total{font-size:clamp(40px,6vw,64px);font-weight:900;line-height:1;white-space:nowrap;letter-spacing:-.02em}
-.tsub{color:var(--soft);font-size:14px}
-table{width:100%;border-collapse:collapse;font-size:15px}
-td{padding:6px 0;border-bottom:1px solid var(--line)}
-td.n{text-align:right;white-space:nowrap;font-variant-numeric:tabular-nums}
-.warn{display:none;background:color-mix(in srgb,var(--red) 12%,var(--label));border:2px solid var(--red);border-radius:6px;padding:10px 12px;font-size:15px}
+html{scroll-behavior:smooth;scroll-padding-top:90px}
+body{margin:0;background:var(--bg);color:var(--ink);font:300 15px/1.8 Inter,"Helvetica Neue",Arial,sans-serif;-webkit-font-smoothing:antialiased;overflow-x:clip}
+img{display:block;max-width:100%;height:auto}
+a{color:inherit;text-decoration:none}
+p{margin:0}
+h1,h2,h3{margin:0;font-family:"Cormorant Garamond",Georgia,serif;font-weight:500;letter-spacing:0}
+.caps{font:400 11px/1.4 Inter,sans-serif;letter-spacing:.2em;text-transform:uppercase}
+.w{max-width:1320px;margin:0 auto;padding:0 40px}
+.strip{background:var(--ink);color:#fff;text-align:center;padding:10px 16px}
+header{position:sticky;top:0;z-index:30;background:#fff;border-bottom:1px solid var(--line)}
+.bar{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;height:78px}
+.nav{display:flex;gap:30px}
+.nav a,.act a{padding:8px 0;border-bottom:1px solid transparent}
+.nav a:hover,.act a:hover{border-bottom-color:var(--ink)}
+.mark{font:500 30px/1 "Cormorant Garamond",serif;letter-spacing:.34em;text-transform:uppercase;padding-left:.34em}
+.act{display:flex;justify-content:flex-end;gap:26px}
+.hero{position:relative;height:min(92svh,980px);min-height:560px;overflow:hidden;background:#2b2622}
+.hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 30%}
+.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,0) 45%,rgba(0,0,0,.5) 100%)}
+.hcopy{position:absolute;left:0;right:0;bottom:64px;z-index:2;color:#fff}
+.hcopy h1{font-size:clamp(44px,6.4vw,92px);line-height:1;margin:16px 0 26px;max-width:12em}
+.hcopy h1 i{font-style:italic}
+.link{display:inline-block;font:400 11px Inter,sans-serif;letter-spacing:.2em;text-transform:uppercase;padding-bottom:6px;border-bottom:1px solid currentColor}
+.link:hover{opacity:.7}
+.intro{padding:140px 0 120px;text-align:center}
+.intro h2{font-size:clamp(30px,3.6vw,48px);line-height:1.2;max-width:22em;margin:22px auto 0}
+.cotiza{background:var(--ivory);padding:120px 0}
+.cgrid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:120px;align-items:start}
+.cgrid h2{font-size:clamp(40px,4.6vw,64px);line-height:1.04;margin:20px 0 26px}
+.cgrid .side p{color:var(--soft);max-width:26em}
+.side .meta{margin-top:56px;display:grid;gap:18px;color:var(--soft)}
+.side .meta div{display:grid;grid-template-columns:130px minmax(0,1fr);gap:16px;padding-top:18px;border-top:1px solid var(--line)}
+label,.lbl{display:block;font:400 10.5px Inter,sans-serif;letter-spacing:.2em;text-transform:uppercase;color:var(--soft);margin-bottom:6px}
+.f{margin-bottom:26px}
+input,select{width:100%;min-height:46px;padding:8px 0;border:0;border-bottom:1px solid #bdbdbd;border-radius:0;background:transparent;font:300 17px Inter,sans-serif;color:var(--ink);-webkit-appearance:none;appearance:none}
+select{background:linear-gradient(45deg,transparent 50%,#111 50%) right 6px center/5px 5px no-repeat,linear-gradient(-45deg,transparent 50%,#111 50%) right 1px center/5px 5px no-repeat;padding-right:24px}
+input:focus,select:focus{outline:none;border-bottom-color:var(--ink)}
+.row{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:28px}
+.opts{display:flex;gap:28px;flex-wrap:wrap;padding-top:6px}
+.opts label{display:flex;align-items:center;gap:10px;font:300 15px Inter,sans-serif;letter-spacing:0;text-transform:none;color:var(--ink);margin:0;cursor:pointer;min-height:40px}
+.opts input{width:16px;height:16px;min-height:0;border:1px solid var(--ink);border-radius:50%;padding:0;flex:none}
+.opts input:checked{background:radial-gradient(circle,#111 0 4px,transparent 5px)}
+.err{color:#9b1c1c;font-size:12.5px;min-height:1em;margin-top:6px}
+.lines{margin-top:10px;border-top:1px solid var(--ink)}
+.lines div{display:flex;justify-content:space-between;gap:16px;padding:13px 0;border-bottom:1px solid var(--line);color:var(--soft)}
+.lines span:last-child{color:var(--ink);white-space:nowrap;font-variant-numeric:tabular-nums}
+.tot{display:flex;justify-content:space-between;align-items:baseline;gap:16px;padding:26px 0 8px}
+.tot strong{font:500 clamp(42px,4.6vw,56px)/1 "Cormorant Garamond",serif;white-space:nowrap}
+.small{font-size:12.5px;color:var(--mute)}
+.warn{display:none;margin:16px 0 0;padding:14px 0;border-top:1px solid var(--line);font-size:13.5px;color:var(--soft)}
 .warn.on{display:block}
-.err{color:var(--red);font-size:14px;min-height:1.2em;margin-top:4px}
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:50px;padding:12px 18px;border-radius:6px;border:2px solid var(--ink);font:800 16px Archivo,sans-serif;text-decoration:none;cursor:pointer;background:var(--label);color:var(--ink)}
-.bw{background:#1f9d55;border-color:#1f9d55;color:#fff}
-.bw:hover{background:#178246}
-.chips{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
-@media(max-width:760px){.chips{grid-template-columns:repeat(2,minmax(0,1fr))}}
-.chip{text-align:left;background:var(--label);border:2px solid var(--ink);border-radius:6px;padding:16px;cursor:pointer;color:var(--ink);font:inherit;display:flex;flex-direction:column;gap:6px}
-.chip:hover{transform:translate(-2px,-2px);box-shadow:4px 4px 0 var(--ink)}
-.chip .p{font-size:26px;font-weight:900;white-space:nowrap}
-.chip .s{color:var(--soft);font-size:14px}
-.small{font-size:14px;color:var(--soft)}
-.steps{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px}
-.step{border-top:4px solid var(--blue);padding-top:12px}
-.step b{display:block;font-size:40px;line-height:1;color:var(--blue);font-weight:900}
-.step p{margin:0;color:var(--soft)}
-.two{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px}
-.box{border:2px solid var(--ink);border-radius:6px;padding:20px;background:var(--label)}
-.box ul{margin:8px 0 0;padding-left:1.1em}
-.box li{margin:4px 0}
-details{border-bottom:1px solid var(--line);padding:14px 0}
-summary{font-weight:800;cursor:pointer;min-height:28px}
-details p{margin:8px 0 0;color:var(--soft)}
-.xmas{background:var(--blue);color:#fff}
-.xmas .wrap{display:flex;flex-wrap:wrap;gap:12px;justify-content:space-between;align-items:center;font-weight:800;font-size:18px}
-footer{background:var(--ink);color:var(--bg);font-size:14px}
-footer p{margin:4px 0}
-.bar{display:none}
-@media(max-width:860px){.lbl{grid-template-columns:minmax(0,1fr)}.out{border-left:0;border-top:2px dashed var(--ink)}.steps{grid-template-columns:repeat(2,minmax(0,1fr))}.two{grid-template-columns:minmax(0,1fr)}}
-@media(max-width:600px){.bar{display:flex;position:sticky;bottom:0;z-index:5;justify-content:space-between;align-items:center;gap:10px;background:var(--ink);color:var(--bg);padding:10px 16px;font-weight:900}.bar a{min-height:44px;display:inline-flex;align-items:center;padding:0 14px;border-radius:6px;background:#1f9d55;color:#fff;text-decoration:none}.navl{display:none}}
-@media(prefers-reduced-motion:no-preference){.total{transition:color .3s}.pulse{color:var(--blue)}}
+.btn{display:flex;width:100%;align-items:center;justify-content:center;min-height:56px;margin-top:28px;background:var(--ink);color:#fff;font:400 11px Inter,sans-serif;letter-spacing:.22em;text-transform:uppercase;border:1px solid var(--ink);transition:background .3s,color .3s}
+.btn:hover{background:#fff;color:var(--ink)}
+:focus-visible{outline:1px solid var(--ink);outline-offset:4px}
+.edit{padding:140px 0 120px}
+.egrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px}
+.egrid figure{margin:0;cursor:pointer}
+.egrid .ph{overflow:hidden;background:#eee;aspect-ratio:3/4}
+.egrid img{width:100%;height:100%;object-fit:cover;transition:transform 1.2s cubic-bezier(.2,.6,.2,1)}
+.egrid figure:hover img{transform:scale(1.04)}
+.egrid figcaption{display:flex;justify-content:space-between;gap:12px;padding-top:16px}
+.egrid figcaption span:last-child{color:var(--soft)}
+.ehead{display:flex;justify-content:space-between;align-items:end;gap:24px;margin-bottom:44px}
+.ehead h2{font-size:clamp(34px,4vw,54px);line-height:1.05}
+.serv{border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.sgrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr))}
+.sgrid div{padding:72px 48px 76px}
+.sgrid div+div{border-left:1px solid var(--line)}
+.sgrid h3{font-size:30px;margin:18px 0 14px}
+.sgrid p{color:var(--soft);max-width:22em}
+.info{padding:130px 0}
+.igrid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.5fr);gap:120px}
+.igrid h2{font-size:clamp(34px,4vw,54px);line-height:1.05;margin-top:20px}
+details{border-top:1px solid var(--line);padding:22px 0}
+details:last-child{border-bottom:1px solid var(--line)}
+summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;gap:20px;font:400 11px Inter,sans-serif;letter-spacing:.2em;text-transform:uppercase}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";font:300 16px Inter,sans-serif;letter-spacing:0}
+details[open] summary::after{content:"−"}
+details p{color:var(--soft);margin-top:14px;max-width:40em}
+footer{background:var(--ink);color:#fff;padding:96px 0 40px}
+.fgrid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:40px}
+.fgrid p{color:#b5b5b5;margin-top:14px;font-size:14px}
+.fgrid a{display:block;color:#b5b5b5;margin-top:10px;font-size:14px}
+.fgrid a:hover{color:#fff}
+.giant{font:500 clamp(56px,14vw,220px)/.8 "Cormorant Garamond",serif;letter-spacing:.08em;text-transform:uppercase;margin:110px 0 36px;white-space:nowrap;overflow:hidden;text-align:center}
+.legal{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;color:#8d8d8d;border-top:1px solid #333;padding-top:22px}
+.sticky{display:none}
+@media(max-width:1000px){.nav{display:none}.bar{grid-template-columns:auto 1fr auto}.mark{font-size:24px}.cgrid,.igrid{grid-template-columns:minmax(0,1fr);gap:64px}.sgrid{grid-template-columns:minmax(0,1fr)}.sgrid div{padding:56px 0}.sgrid div+div{border-left:0;border-top:1px solid var(--line)}.fgrid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:700px){.w{padding:0 22px}.bar{height:64px}.act .hide{display:none}.mark{font-size:21px;letter-spacing:.26em}.hero{height:86svh;min-height:520px}.hcopy{bottom:40px}.intro{padding:96px 0 84px}.cotiza,.edit,.info{padding:88px 0}.egrid{grid-template-columns:minmax(0,1fr);gap:48px}.ehead{display:block}.ehead .link{margin-top:18px}.row{gap:18px}.fgrid{grid-template-columns:minmax(0,1fr)}footer{padding-bottom:110px}.side .meta div{grid-template-columns:96px minmax(0,1fr)}
+.sticky{display:flex;position:fixed;left:0;right:0;bottom:0;z-index:40;align-items:center;justify-content:space-between;gap:16px;background:#fff;border-top:1px solid var(--line);padding:12px 22px calc(12px + env(safe-area-inset-bottom))}
+.sticky strong{display:block;font:500 28px/1.05 "Cormorant Garamond",serif;white-space:nowrap}
+.sticky a{background:var(--ink);color:#fff;padding:15px 22px;font:400 11px Inter,sans-serif;letter-spacing:.2em;text-transform:uppercase}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.egrid img{transition:none}}
 </style>
 </head>
 <body>
-<nav aria-label="Menú">
-  <a class="logo" href="#top"><svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><path d="M3 9l12-6 12 6v13l-12 6-12-6z" fill="#d9a86c" stroke="currentColor" stroke-width="2"/><path d="M3 9l12 6 12-6M15 15v13" fill="none" stroke="currentColor" stroke-width="2"/></svg>Encárgalo</a>
-  <div class="navl"><a href="#mas">Lo más pedido</a><a href="#como">Cómo funciona</a><a href="#pago">Pago</a><a href="#preguntas">Preguntas</a></div>
-</nav>
-
-<header class="band" id="top">
-  <div class="wrap">
-    <h1>Lo que quieras de EE.UU., con precio todo incluido.</h1>
-    <p class="lead">Pega el link de Amazon, Shein, Temu o cualquier tienda. Te decimos cuánto es en pesos, puesto en tu casa en Santo Domingo. Sin sorpresas en el courier.</p>
+<div class="strip caps">Pedidos de Navidad hasta el 12 de diciembre</div>
+<header>
+  <div class="w bar">
+    <nav class="nav caps" aria-label="Menú"><a href="#cotiza">Cotizar</a><a href="#seleccion">Selección</a><a href="#servicio">El servicio</a></nav>
+    <a class="mark" href="#top" aria-label="Encárgalo, inicio">Encárgalo</a>
+    <div class="act caps"><a class="hide" href="#info">Información</a><a id="waTop" href="#" target="_blank" rel="noopener noreferrer">WhatsApp</a></div>
   </div>
 </header>
 
-<section class="band kraft" aria-label="Calculadora de precio">
-  <div class="tape" aria-hidden="true"></div>
-  <div class="wrap">
-    <form class="lbl" id="calc" novalidate>
-      <div class="lhead"><span>MIAMI ➜ SANTO DOMINGO</span><span class="stamp">TODO INCLUIDO</span></div>
-      <div>
-        <div class="f">
-          <label for="link">Link del producto</label>
-          <input id="link" type="url" inputmode="url" placeholder="https://www.amazon.com/..." autocomplete="off" maxlength="600">
-          <div class="err" id="linkErr" aria-live="polite"></div>
-        </div>
-        <div class="row2">
-          <div class="f"><label for="price">Precio en la tienda (US$)</label><input id="price" type="number" inputmode="decimal" min="0" step="0.01" value="25"></div>
-          <div class="f"><label for="qty">Cantidad</label><input id="qty" type="number" inputmode="numeric" min="1" max="20" step="1" value="1"></div>
-        </div>
-        <div class="row2 r2b">
-          <div class="f"><label for="cat">¿Qué es?</label>
-            <select id="cat">
-              <option value="0.5">Accesorios, fundas, maquillaje</option>
-              <option value="1" selected>Ropa ligera, audífonos, perfume</option>
-              <option value="2">Juguetes, cremas, carteras</option>
-              <option value="3">Tenis, zapatos, botas</option>
-              <option value="5">Pequeño electrodoméstico</option>
-              <option value="0">Otro: pongo el peso</option>
-            </select>
-          </div>
-          <div class="f"><label for="lb">Peso estimado (libras)</label><input id="lb" type="number" inputmode="decimal" min="0.1" step="0.1" value="1"></div>
-        </div>
-        <fieldset class="f" style="border:0;padding:0;margin:0 0 6px">
-          <legend style="font-weight:600;font-size:15px;margin-bottom:6px">Entrega</legend>
-          <div class="seg">
-            <label><input type="radio" name="del" value="250" checked> A domicilio en SD · RD$250</label>
-            <label><input type="radio" name="del" value="0"> Lo recojo · gratis</label>
-          </div>
-        </fieldset>
+<main id="top">
+<section class="hero" aria-label="Encárgalo">
+  <img src="https://images.unsplash.com/photo-1773859096265-b3f034c156f8?auto=format&fit=crop&w=1800&q=72" srcset="https://images.unsplash.com/photo-1773859096265-b3f034c156f8?auto=format&fit=crop&w=800&q=70 800w, https://images.unsplash.com/photo-1773859096265-b3f034c156f8?auto=format&fit=crop&w=1300&q=70 1300w, https://images.unsplash.com/photo-1773859096265-b3f034c156f8?auto=format&fit=crop&w=1800&q=72 1800w" sizes="100vw" alt="Mujer al atardecer con bolsas de compras" fetchpriority="high">
+  <div class="hcopy"><div class="w">
+    <p class="caps">Estados Unidos · Santo Domingo</p>
+    <h1>Lo que deseas, <i>a tu puerta.</i></h1>
+    <a class="link" href="#cotiza">Solicitar una cotización</a>
+  </div></div>
+</section>
+
+<section class="intro">
+  <div class="w">
+    <p class="caps">La casa</p>
+    <h2>Compramos por ti en las tiendas de Estados Unidos y te lo entregamos en Santo Domingo, a un solo precio en pesos.</h2>
+  </div>
+</section>
+
+<section class="cotiza" id="cotiza">
+  <div class="w cgrid">
+    <div class="side">
+      <p class="caps">Cotización</p>
+      <h2>Tu precio, antes de decidir.</h2>
+      <p>Indica el artículo. El total incluye la compra, el envío desde Miami, nuestro servicio y la entrega.</p>
+      <div class="meta">
+        <div><span class="caps">Plazo</span><span>De 7 a 12 días</span></div>
+        <div><span class="caps">Pago</span><span>Transferencia en RD o PayPal, después de confirmar el precio</span></div>
+        <div><span class="caps">Garantía</span><span>Reembolso total si el artículo no puede comprarse</span></div>
       </div>
-      <div class="out" aria-live="polite">
-        <div>
-          <div class="tsub">Total estimado puesto en tu casa</div>
-          <div class="total" id="total">RD$0</div>
-          <div class="tsub" id="days">Llega en 7 a 12 días</div>
-        </div>
-        <table aria-label="Desglose">
-          <tbody id="break"></tbody>
-        </table>
-        <div class="warn" id="warn">Tu compra pasa de US$200. Aduanas cobra impuestos a partir de ahí: te enviamos el precio exacto por WhatsApp antes de que pagues.</div>
-        <a class="btn bw" id="order" href="#" rel="noopener noreferrer" target="_blank">Pedir por WhatsApp</a>
-        <div class="small">Precio estimado. Te confirmamos el precio final antes de que pagues.</div>
+    </div>
+    <form id="calc" novalidate aria-label="Cotización">
+      <div class="f"><label for="link">Enlace del artículo</label><input id="link" type="url" inputmode="url" placeholder="https://" autocomplete="off" maxlength="600"><div class="err" id="linkErr" aria-live="polite"></div></div>
+      <div class="row">
+        <div class="f"><label for="price">Precio en tienda (US$)</label><input id="price" type="number" inputmode="decimal" min="0" step="0.01" value="25"></div>
+        <div class="f"><label for="qty">Cantidad</label><input id="qty" type="number" inputmode="numeric" min="1" max="20" step="1" value="1"></div>
+      </div>
+      <div class="row">
+        <div class="f"><label for="cat">Categoría</label>
+          <select id="cat">
+            <option value="0.5">Accesorios y maquillaje</option>
+            <option value="1" selected>Moda y perfumería</option>
+            <option value="2">Belleza y juguetes</option>
+            <option value="3">Calzado</option>
+            <option value="5">Hogar y pequeños aparatos</option>
+            <option value="0">Otro, indico el peso</option>
+          </select></div>
+        <div class="f"><label for="lb">Peso aproximado (lb)</label><input id="lb" type="number" inputmode="decimal" min="0.1" step="0.1" value="1"></div>
+      </div>
+      <div class="f"><span class="lbl">Entrega</span>
+        <div class="opts"><label><input type="radio" name="del" value="250" checked> A domicilio, RD$250</label><label><input type="radio" name="del" value="0"> Retiro, sin costo</label></div>
+      </div>
+      <div aria-live="polite">
+        <div class="lines" id="lines"></div>
+        <div class="tot"><span class="caps">Total</span><strong id="total">RD$0</strong></div>
+        <p class="small">Precio estimado. Te confirmamos el total antes de cualquier pago.</p>
+        <p class="warn" id="warn">Tu compra supera US$200 por envío: Aduanas aplica impuestos a partir de ese monto. Te enviamos el total exacto antes de pagar.</p>
+        <a class="btn" id="order" href="#" target="_blank" rel="noopener noreferrer">Enviar por WhatsApp</a>
       </div>
     </form>
   </div>
 </section>
 
-<div class="band xmas" style="padding-block:18px"><div class="wrap"><span>Para que llegue antes de Nochebuena, pídelo antes del 12 de diciembre.</span></div></div>
-
-<section class="band" id="mas">
-  <div class="wrap">
-    <h2>Lo más pedido</h2>
-    <div class="chips" id="chips"></div>
-    <p class="small">Ejemplos con precios típicos de tienda. Toca uno para calcularlo y cámbialo por tu link.</p>
+<section class="edit" id="seleccion">
+  <div class="w">
+    <div class="ehead"><div><p class="caps">Selección</p><h2 style="margin-top:18px">Lo más solicitado</h2></div><a class="link" href="#cotiza">Cotizar un artículo</a></div>
+    <div class="egrid" id="egrid"></div>
   </div>
 </section>
 
-<section class="band" id="como" style="padding-top:0">
-  <div class="wrap">
-    <h2>Cómo funciona</h2>
-    <div class="steps">
-      <div class="step"><b>1</b><h3>Mandas el link</h3><p>Desde esta página o directo por WhatsApp, con talla y color.</p></div>
-      <div class="step"><b>2</b><h3>Te confirmamos el precio</h3><p>Precio final en pesos, todo incluido. Si no te conviene, no pasa nada.</p></div>
-      <div class="step"><b>3</b><h3>Pagas y compramos</h3><p>Te enviamos la factura de la tienda y el número de rastreo.</p></div>
-      <div class="step"><b>4</b><h3>Te llega</h3><p>A tu casa en Santo Domingo o lo recoges, en 7 a 12 días.</p></div>
+<section class="serv" id="servicio">
+  <div class="w sgrid">
+    <div><p class="caps">I</p><h3>Un solo precio</h3><p>Compra, envío, servicio y entrega, en pesos. Lo que confirmamos es lo que pagas.</p></div>
+    <div><p class="caps">II</p><h3>Sin tarjeta internacional</h3><p>Pagas en República Dominicana. Nosotros compramos en Estados Unidos.</p></div>
+    <div><p class="caps">III</p><h3>Seguimiento</h3><p>Factura de la tienda, número de rastreo y aviso a la llegada de tu pedido.</p></div>
+  </div>
+</section>
+
+<section class="info" id="info">
+  <div class="w igrid">
+    <div><p class="caps">Información</p><h2>Preguntas frecuentes</h2></div>
+    <div>
+      <details><summary>¿Qué incluye el precio?</summary><p>El artículo, el impuesto de la tienda en Estados Unidos, el envío de Miami a Santo Domingo, nuestro servicio y la entrega si la eliges.</p></details>
+      <details><summary>¿Y si el paquete pesa más?</summary><p>El peso real se conoce en Miami. Si es mayor, te avisamos y pagas solo la diferencia de envío, sin cargo de servicio adicional.</p></details>
+      <details><summary>Impuestos de Aduanas</summary><p>Las compras personales de hasta US$200 por envío entran sin impuestos. Por encima, te indicamos los impuestos antes del pago.</p></details>
+      <details><summary>Cambios y reclamos</summary><p>Si el artículo llega dañado o no corresponde, gestionamos el reclamo con la tienda. Los cambios de talla dependen de cada tienda y te lo indicamos antes de comprar.</p></details>
+      <details><summary>Artículos no admitidos</summary><p>Armas y réplicas, medicamentos con receta, líquidos inflamables, aerosoles, baterías sueltas, alimentos frescos, plantas y falsificaciones.</p></details>
+      <details><summary>Pago</summary><p>Por transferencia a una cuenta en República Dominicana, cuyos datos te enviamos por WhatsApp con el precio final, o por PayPal desde el extranjero.</p></details>
     </div>
   </div>
 </section>
+</main>
 
-<section class="band" id="pago" style="padding-top:0">
-  <div class="wrap two">
-    <div class="box">
-      <h3>Pago seguro, por adelantado</h3>
-      <ul>
-        <li>Transferencia a nuestra cuenta en RD: te enviamos los datos por WhatsApp junto con el precio final.</li>
-        <li>¿Pagas desde el extranjero o con tarjeta? Por PayPal, en su página segura. Nunca vemos ni guardamos tu tarjeta.</li>
-        <li>Si la tienda cancela o no podemos comprarlo, te devolvemos el 100 %.</li>
-      </ul>
-      <p style="margin:14px 0 0"><a class="btn" id="payCard" href="#" rel="noopener noreferrer" target="_blank">Pagar por PayPal</a></p>
+<footer>
+  <div class="w">
+    <div class="fgrid">
+      <div><p class="caps" style="color:#fff">Encárgalo</p><p>Compras por encargo desde Estados Unidos, entregadas en Santo Domingo.</p></div>
+      <div><p class="caps" style="color:#fff">Servicio</p><a href="#cotiza">Cotización</a><a href="#seleccion">Selección</a><a href="#servicio">El servicio</a></div>
+      <div><p class="caps" style="color:#fff">Información</p><a href="#info">Preguntas frecuentes</a><a href="#info">Pago</a><a href="#info">Aduanas</a></div>
+      <div><p class="caps" style="color:#fff">Contacto</p><a id="waFoot" href="#" target="_blank" rel="noopener noreferrer">WhatsApp</a><p id="fwa"></p></div>
     </div>
-    <div class="box">
-      <h3>Lo que no podemos traer</h3>
-      <ul>
-        <li>Armas, municiones y réplicas</li>
-        <li>Medicinas y suplementos con receta</li>
-        <li>Líquidos inflamables, aerosoles y baterías sueltas</li>
-        <li>Alimentos frescos y plantas</li>
-        <li>Productos falsificados</li>
-      </ul>
-    </div>
-  </div>
-</section>
-
-<section class="band" id="preguntas" style="padding-top:0">
-  <div class="wrap">
-    <h2>Preguntas</h2>
-    <details><summary>¿Qué incluye el precio?</summary><p>El producto, el impuesto de la tienda en EE.UU., el courier de Miami a RD, nuestra comisión y la entrega si la eliges. Lo que ves es lo que pagas.</p></details>
-    <details><summary>¿Y si pesa más de lo que calculé?</summary><p>El peso real se conoce cuando el paquete llega a Miami. Si pesa más que lo estimado, te avisamos y pagas solo la diferencia del courier, sin comisión extra.</p></details>
-    <details><summary>¿Y los impuestos de Aduanas?</summary><p>Las compras personales de hasta US$200 por envío entran sin impuestos. Si tu pedido pasa de ese monto, te calculamos los impuestos antes de que pagues.</p></details>
-    <details><summary>¿Puedo devolver algo?</summary><p>Si llega dañado o no es lo que pediste, hacemos el reclamo a la tienda por ti. Las devoluciones por talla dependen de cada tienda: te lo decimos antes de comprar.</p></details>
-    <details><summary>¿Cuánto tarda?</summary><p>Entre 7 y 12 días en la mayoría de los casos: la tienda envía a Miami y el courier lo trae a Santo Domingo.</p></details>
-  </div>
-</section>
-
-<footer class="band">
-  <div class="wrap">
-    <p><strong>Encárgalo</strong> · Compras por encargo desde EE.UU. a Santo Domingo</p>
-    <p id="fwa"></p>
-    <p>Esta página no usa cookies ni rastreadores y no guarda tus datos: tu pedido viaja solo por tu WhatsApp.</p>
+    <div class="giant" aria-hidden="true">Encárgalo</div>
+    <div class="legal caps"><span>Santo Domingo</span><span>Sin cookies ni rastreadores</span><span>Fotografías: Unsplash</span></div>
   </div>
 </footer>
 
-<div class="bar" aria-hidden="true"><span id="barTotal">RD$0</span><a id="barOrder" href="#" rel="noopener noreferrer" target="_blank">Pedir</a></div>
+<div class="sticky" aria-hidden="true"><div><span class="caps" style="color:#8d8d8d">Total estimado</span><strong id="stTotal">RD$0</strong></div><a id="stOrder" href="#" target="_blank" rel="noopener noreferrer" tabindex="-1">Enviar</a></div>
 
 <script>
 {
-  /* ===== AJUSTES (Cédric) ===== */
-  const CFG = {
-    whatsapp: "18098778484", /* número dominicano sin + ni espacios, ej. 1809XXXXXXX ; vacío = número de respaldo */
-    fallbackWhatsapp: "590690391800",
-    paypal: "",              /* nombre del link paypal.me, ej. "encargalo" */
-    rate: 62,                /* pesos por dólar (BCRD ~60.3 + margen por la tarjeta) */
-    usTax: 0.07,             /* impuesto de venta en Miami */
-    courierPerLb: 4,         /* US$ por libra, courier Miami-RD */
-    feePct: 0.15,            /* comisión */
-    feeMin: 400,             /* comisión mínima RD$ */
-    deMinimis: 200           /* US$ por envío */
-  };
+  const CFG = { whatsapp: "18098778484", paypal: "", rate: 62, usTax: 0.07, courierPerLb: 4, feePct: 0.15, feeMin: 400, deMinimis: 200 };
+  const U = id => "https://images.unsplash.com/photo-" + id + "?auto=format&fit=crop&w=900&h=1200&q=70";
   const items = [
-    { n: "Audífonos inalámbricos", p: 25, lb: 0.5, c: "0.5" },
-    { n: "Tenis deportivos", p: 55, lb: 3, c: "3" },
-    { n: "Set de skincare", p: 32, lb: 1.5, c: "2" },
-    { n: "Vestido o conjunto", p: 18, lb: 0.8, c: "1" },
-    { n: "Juguete para Navidad", p: 30, lb: 2, c: "2" },
-    { n: "Freidora de aire pequeña", p: 60, lb: 9, c: "0" }
+    { n: "Calzado", d: "Tenis, en tienda US$55", p: 55, lb: 3, c: "3", img: U("1596505376266-21f87d226d7a"), alt: "Persona con tenis blancos en un pasillo rosado" },
+    { n: "Belleza", d: "Set de cuidado, en tienda US$32", p: 32, lb: 1.5, c: "2", img: U("1567721913486-6585f069b332"), alt: "Frascos negros de cuidado de la piel sobre piedra" },
+    { n: "Moda", d: "Conjunto, en tienda US$40", p: 40, lb: 1, c: "1", img: U("1773859096601-7d9b0a92bc7f"), alt: "Mujer vestida de negro con una bolsa de compras" }
   ];
   const $ = id => document.getElementById(id);
   const fmt = v => "RD$" + Math.round(v).toLocaleString("es-DO");
   const num = (el, d) => { const v = parseFloat(el.value); return isFinite(v) && v >= 0 ? v : d; };
-  const waNum = (/^\d{8,15}$/.test(CFG.whatsapp) ? CFG.whatsapp : CFG.fallbackWhatsapp);
-  const ppOk = n => /^[A-Za-z0-9]{3,40}$/.test(n);
-
+  const waNum = /^\d{8,15}$/.test(CFG.whatsapp) ? CFG.whatsapp : "590690391800";
+  const wa = t => "https://wa.me/" + waNum + "?text=" + encodeURIComponent(t);
   function quote(price, qty, lb, del) {
-    const sub = price * qty;
-    const tax = sub * CFG.usTax;
-    const lbs = Math.max(1, Math.ceil(lb * qty));
-    const courier = lbs * CFG.courierPerLb;
-    const goodsRD = (sub + tax) * CFG.rate;
-    const courierRD = courier * CFG.rate;
+    const sub = price * qty, lbs = Math.max(1, Math.ceil(lb * qty));
+    const goodsRD = sub * (1 + CFG.usTax) * CFG.rate, courierRD = lbs * CFG.courierPerLb * CFG.rate;
     const fee = Math.max(CFG.feeMin, goodsRD * CFG.feePct);
-    const raw = goodsRD + courierRD + fee + del;
-    const total = Math.ceil(raw / 50) * 50;
-    return { sub, lbs, goodsRD, courierRD, fee, del, total, over: sub > CFG.deMinimis };
+    return { sub, lbs, goodsRD, courierRD, fee, del, total: Math.ceil((goodsRD + courierRD + fee + del) / 50) * 50, over: sub > CFG.deMinimis };
   }
-
   function cleanLink() {
     const v = $("link").value.trim();
     if (!v) { $("linkErr").textContent = ""; return ""; }
-    try {
-      const u = new URL(v);
-      if (u.protocol !== "https:" && u.protocol !== "http:") throw 0;
-      $("linkErr").textContent = "";
-      return u.href;
-    } catch (e) { $("linkErr").textContent = "Ese link no parece válido. Cópialo completo desde la tienda."; return ""; }
+    try { const u = new URL(v); if (!/^https?:$/.test(u.protocol)) throw 0; $("linkErr").textContent = ""; return u.href; }
+    catch (e) { $("linkErr").textContent = "El enlace no parece válido. Cópialo completo desde la tienda."; return ""; }
   }
-
   function render() {
     const price = num($("price"), 0), qty = Math.min(20, Math.max(1, Math.round(num($("qty"), 1)))), lb = num($("lb"), 1);
     const del = parseInt(document.querySelector("input[name=del]:checked").value, 10);
     const q = quote(price, qty, lb, del);
-    const rows = [
-      ["Producto + impuesto tienda", q.goodsRD],
-      ["Courier Miami-RD (" + q.lbs + " lb)", q.courierRD],
-      ["Nuestra comisión", q.fee],
-      ["Entrega", q.del]
-    ];
-    const tb = $("break"); tb.textContent = "";
-    rows.forEach(r => { const tr = document.createElement("tr"); const a = document.createElement("td"); a.textContent = r[0]; const b = document.createElement("td"); b.className = "n"; b.textContent = r[1] ? fmt(r[1]) : "Gratis"; tr.append(a, b); tb.append(tr); });
-    $("total").textContent = price > 0 ? fmt(q.total) : "RD$0";
-    $("barTotal").textContent = $("total").textContent;
+    const rows = [["Artículo e impuesto de tienda", q.goodsRD], ["Envío Miami – Santo Domingo, " + q.lbs + " lb", q.courierRD], ["Servicio Encárgalo", q.fee], ["Entrega", q.del]];
+    const box = $("lines"); box.textContent = "";
+    rows.forEach(r => { const d = document.createElement("div"); const a = document.createElement("span"); a.textContent = r[0]; const b = document.createElement("span"); b.textContent = r[1] ? fmt(r[1]) : "Sin costo"; d.append(a, b); box.append(d); });
+    const t = price > 0 ? fmt(q.total) : "RD$0";
+    $("total").textContent = t; $("stTotal").textContent = t;
     $("warn").classList.toggle("on", q.over);
     const link = cleanLink();
-    const lines = ["Hola Encárgalo, quiero este pedido:", link ? "Link: " + link : "Link: (te lo mando aquí)", "Precio en tienda: US$" + price.toFixed(2) + " x " + qty, "Peso estimado: " + q.lbs + " lb", "Entrega: " + (del ? "a domicilio" : "lo recojo"), "Total estimado: " + fmt(q.total), "Talla / color: "];
-    const href = "https://wa.me/" + waNum + "?text=" + encodeURIComponent(lines.join("\n"));
-    $("order").href = href; $("barOrder").href = href;
-    $("total").classList.add("pulse"); setTimeout(() => $("total").classList.remove("pulse"), 300);
+    const m = ["Hola Encárgalo, quisiera esta cotización:", link ? "Enlace: " + link : "Enlace: (lo envío aquí)", "Precio en tienda: US$" + price.toFixed(2) + " x " + qty, "Peso aprox.: " + q.lbs + " lb", "Entrega: " + (del ? "a domicilio" : "retiro"), "Total estimado: " + t, "Talla / color: "].join("\n");
+    $("order").href = wa(m); $("stOrder").href = wa(m);
   }
-
   $("cat").addEventListener("change", () => { const v = parseFloat($("cat").value); if (v > 0) $("lb").value = v; else $("lb").focus(); render(); });
   ["link", "price", "qty", "lb"].forEach(id => $(id).addEventListener("input", render));
   document.querySelectorAll("input[name=del]").forEach(r => r.addEventListener("change", render));
   $("calc").addEventListener("submit", e => e.preventDefault());
 
-  const ch = $("chips");
+  const g = $("egrid");
   items.forEach(it => {
     const q = quote(it.p, 1, it.lb, 250);
-    const b = document.createElement("button");
-    b.type = "button"; b.className = "chip";
-    const n = document.createElement("strong"); n.textContent = it.n;
-    const s = document.createElement("span"); s.className = "s"; s.textContent = "Tienda: US$" + it.p + " · " + it.lb + " lb";
-    const p = document.createElement("span"); p.className = "p"; p.textContent = fmt(q.total);
-    const t = document.createElement("span"); t.className = "s"; t.textContent = "puesto en tu casa";
-    b.append(n, s, p, t);
-    b.addEventListener("click", () => { $("price").value = it.p; $("qty").value = 1; $("cat").value = it.c; $("lb").value = it.lb; render(); $("calc").scrollIntoView({ behavior: "smooth", block: "start" }); });
-    ch.append(b);
+    const fig = document.createElement("figure"); fig.tabIndex = 0; fig.setAttribute("role", "button");
+    const ph = document.createElement("div"); ph.className = "ph";
+    const img = document.createElement("img"); img.src = it.img; img.alt = it.alt; img.loading = "lazy"; img.width = 900; img.height = 1200;
+    ph.append(img);
+    const cap = document.createElement("figcaption"); cap.className = "caps";
+    const a = document.createElement("span"); a.textContent = it.n; const b = document.createElement("span"); b.textContent = "Desde " + fmt(q.total);
+    cap.append(a, b);
+    const d = document.createElement("p"); d.className = "small"; d.style.marginTop = "6px"; d.textContent = it.d + ", entregado";
+    fig.append(ph, cap, d);
+    const pick = () => { $("price").value = it.p; $("qty").value = 1; $("cat").value = it.c; $("lb").value = it.lb; render(); $("cotiza").scrollIntoView({ behavior: "smooth" }); };
+    fig.addEventListener("click", pick); fig.addEventListener("keydown", e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); pick(); } });
+    g.append(fig);
   });
 
-  if (ppOk(CFG.paypal)) { $("payCard").href = "https://www.paypal.me/" + CFG.paypal; }
-  else { $("payCard").href = "https://wa.me/" + waNum + "?text=" + encodeURIComponent("Hola, quiero pagar mi pedido por PayPal."); $("payCard").textContent = "Pagar por PayPal (te enviamos el link)"; }
-  $("fwa").textContent = "WhatsApp: +" + waNum;
+  const hello = wa("Hola Encárgalo, quisiera una cotización.");
+  $("waTop").href = hello; $("waFoot").href = hello;
+  $("fwa").textContent = "+" + waNum.replace(/^1(\d{3})(\d{3})(\d{4})$/, "1 $1 $2 $3");
   render();
 }
 </script>
