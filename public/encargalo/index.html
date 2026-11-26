@@ -220,9 +220,10 @@ footer{background:var(--ink);color:#fff;padding:96px 0 40px}
       </div>
     </div>
     <form id="calc" novalidate data-rv style="--d:.15s">
-      <div class="f"><label for="link"><span lang="fr">Lien de l'article</span><span lang="en">Item link</span><span lang="es">Enlace del artículo</span></label><input id="link" type="url" inputmode="url" placeholder="https://" autocomplete="off" maxlength="600"><div class="err" id="linkErr" aria-live="polite"></div></div>
+      <div class="f"><label for="link"><span lang="fr">Lien de l'article</span><span lang="en">Item link</span><span lang="es">Enlace del artículo</span></label><input id="link" type="text" inputmode="url" placeholder="https://" autocomplete="off" autocapitalize="off" spellcheck="false" maxlength="800"><div class="err" id="linkErr" aria-live="polite"></div></div>
+      <div class="f"><label for="notes"><span lang="fr">Taille, couleur, précisions</span><span lang="en">Size, colour, details</span><span lang="es">Talla, color, detalles</span></label><input id="notes" type="text" maxlength="200" autocomplete="off"></div>
       <div class="row">
-        <div class="f"><label for="price"><span lang="fr">Prix en boutique (US$)</span><span lang="en">Store price (US$)</span><span lang="es">Precio en tienda (US$)</span></label><input id="price" type="number" inputmode="decimal" min="0" step="0.01" value="25"></div>
+        <div class="f"><label for="price"><span lang="fr">Prix en boutique (US$)</span><span lang="en">Store price (US$)</span><span lang="es">Precio en tienda (US$)</span></label><input id="price" type="text" inputmode="decimal" autocomplete="off" maxlength="12" value="25"></div>
         <div class="f"><label for="qty"><span lang="fr">Quantité</span><span lang="en">Quantity</span><span lang="es">Cantidad</span></label><input id="qty" type="number" inputmode="numeric" min="1" max="20" step="1" value="1"></div>
       </div>
       <div class="row">
@@ -235,7 +236,7 @@ footer{background:var(--ink);color:#fff;padding:96px 0 40px}
             <option value="5" data-t="c5">Hogar y pequeños aparatos</option>
             <option value="0" data-t="c6">Otro, indico el peso</option>
           </select></div>
-        <div class="f"><label for="lb"><span lang="fr">Poids approximatif (lb)</span><span lang="en">Approximate weight (lb)</span><span lang="es">Peso aproximado (lb)</span></label><input id="lb" type="number" inputmode="decimal" min="0.1" step="0.1" value="1"></div>
+        <div class="f"><label for="lb"><span lang="fr">Poids approximatif (lb)</span><span lang="en">Approximate weight (lb)</span><span lang="es">Peso aproximado (lb)</span></label><input id="lb" type="text" inputmode="decimal" autocomplete="off" maxlength="6" value="1"></div>
       </div>
       <div class="f"><span class="lbl"><span lang="fr">Livraison</span><span lang="en">Delivery</span><span lang="es">Entrega</span></span>
         <div class="opts"><label><input type="radio" name="del" value="250" checked> <span lang="fr">À domicile, RD$250</span><span lang="en">To your door, RD$250</span><span lang="es">A domicilio, RD$250</span></label><label><input type="radio" name="del" value="0"> <span lang="fr">Retrait, sans frais</span><span lang="en">Pickup, free</span><span lang="es">Retiro, sin costo</span></label></div>
@@ -319,7 +320,7 @@ footer{background:var(--ink);color:#fff;padding:96px 0 40px}
   };
   const U = id => "https://images.unsplash.com/photo-" + id + "?auto=format&fit=crop&w=900&h=1200&q=70";
   const items = [
-    { k: "i1", p: 55, lb: 3, c: "3", img: U("1596505376266-21f87d226d7a") },
+    { k: "i1", p: 55, lb: 3, c: "3", img: U("1603808033192-082d6919d3e1") },
     { k: "i2", p: 32, lb: 1.5, c: "2", img: U("1567721913486-6585f069b332") },
     { k: "i3", p: 40, lb: 1, c: "1", img: U("1773859096601-7d9b0a92bc7f") }
   ];
@@ -327,7 +328,9 @@ footer{background:var(--ink);color:#fff;padding:96px 0 40px}
   let L = "es";
   const $ = id => document.getElementById(id);
   const fmt = v => "RD$" + Math.round(v).toLocaleString("en-US");
-  const num = (el, d) => { const v = parseFloat(el.value); return isFinite(v) && v >= 0 ? v : d; };
+  /* Accepte 55,99 / 55.99 / US$1,299.00 / 1 299 */
+  const parseNum = s => { s = String(s || "").replace(/[^\d.,]/g, ""); if (s.includes(",") && s.includes(".")) s = s.replace(/,/g, ""); else if (/,\d{3}$/.test(s) && !s.includes(".")) s = s.replace(/,/g, ""); else s = s.replace(",", "."); return parseFloat(s); };
+  const num = (el, d) => { const v = parseNum(el.value); return isFinite(v) && v >= 0 ? v : d; };
   const waNum = /^\d{8,15}$/.test(CFG.whatsapp) ? CFG.whatsapp : "590690391800";
   const wa = t => "https://wa.me/" + waNum + "?text=" + encodeURIComponent(t);
   function quote(price, qty, lb, del) {
@@ -336,10 +339,18 @@ footer{background:var(--ink);color:#fff;padding:96px 0 40px}
     const fee = Math.max(CFG.feeMin, goodsRD * CFG.feePct);
     return { sub, lbs, goodsRD, courierRD, fee, del, total: Math.ceil((goodsRD + courierRD + fee + del) / 50) * 50, over: sub > CFG.deMinimis };
   }
+  /* Lien collé depuis une appli (texte + lien), ou sans https:// */
+  function findLink(v) {
+    v = (v || "").trim();
+    const m = v.match(/https?:\/\/[^\s<>"']+/i);
+    if (m) return m[0].replace(/[),.;!?]+$/, "");
+    if (/^(www\.)?[a-z0-9-]+(\.[a-z0-9-]+)+(\/\S*)?$/i.test(v)) return "https://" + v;
+    return v;
+  }
   function cleanLink() {
-    const v = $("link").value.trim();
+    const v = findLink($("link").value);
     if (!v) { $("linkErr").textContent = ""; return ""; }
-    try { const u = new URL(v); if (!/^https?:$/.test(u.protocol)) throw 0; $("linkErr").textContent = ""; return u.href; }
+    try { const u = new URL(v); if (!/^https?:$/.test(u.protocol) || !u.hostname.includes(".")) throw 0; $("linkErr").textContent = ""; return u.href; }
     catch (e) { $("linkErr").textContent = T[L].err; return ""; }
   }
   let last = null;
@@ -355,9 +366,10 @@ footer{background:var(--ink);color:#fff;padding:96px 0 40px}
     countTo($("total"), $("stTotal"), price > 0 ? q.total : 0);
     $("warn").classList.toggle("on", q.over);
     const link = cleanLink(), m = t.m;
-    const msg = [m[0], m[1] + (link || m[2]), m[3] + price.toFixed(2) + " x " + qty, m[4] + q.lbs + " lb", m[5] + (del ? m[6] : m[7]), m[8] + tot, m[9]].join("\n");
+    const notes = $("notes").value.trim();
+    const msg = [m[0], m[1] + (link || m[2]), m[3] + price.toFixed(2) + " x " + qty, m[4] + q.lbs + " lb", m[5] + (del ? m[6] : m[7]), m[8] + tot, m[9] + notes].join("\n");
     $("order").href = wa(msg);
-    last = { link, price, qty, lb: q.lbs, delivery: del, total: price > 0 ? q.total : 0 };
+    last = { link, price, qty, lb: q.lbs, delivery: del, total: price > 0 ? q.total : 0, notes };
   }
   function renderItems() {
     const t = T[L], g = $("egrid"); g.textContent = "";
@@ -408,7 +420,9 @@ footer{background:var(--ink);color:#fff;padding:96px 0 40px}
     try { if ((JSON.parse(localStorage.getItem("ks-consent") || "{}")).prefs === true) localStorage.setItem("enc-lang", L); } catch (e) {}
   }
   $("cat").addEventListener("change", () => { const v = parseFloat($("cat").value); if (v > 0) $("lb").value = v; else $("lb").focus(); render(); });
-  ["link", "price", "qty", "lb"].forEach(id => $(id).addEventListener("input", render));
+  ["link", "price", "qty", "lb", "notes"].forEach(id => $(id).addEventListener("input", render));
+  $("link").addEventListener("blur", () => { const v = findLink($("link").value); if (v && v !== $("link").value.trim()) { $("link").value = v; render(); } });
+  $("link").addEventListener("paste", () => setTimeout(() => { const v = findLink($("link").value); if (v !== $("link").value.trim()) { $("link").value = v; render(); } }, 0));
   document.querySelectorAll("input[name=del]").forEach(r => r.addEventListener("change", render));
   $("calc").addEventListener("submit", e => e.preventDefault());
   function saveQuote() {

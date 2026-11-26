@@ -76,8 +76,14 @@ td a{color:#111}
   function rd(n) { return "RD$" + Math.round(n || 0).toLocaleString("en-US"); }
   function wa(p) { var n = String(p || "").replace(/\D/g, ""); return n.length >= 8 ? '<a href="https://wa.me/' + n + '" target="_blank" rel="noopener noreferrer">' + esc(p) + "</a>" : esc(p); }
   function safeLink(u) { return /^https?:\/\//i.test(u || "") ? '<a href="' + esc(u) + '" target="_blank" rel="noopener noreferrer nofollow">' + esc(u.length > 70 ? u.slice(0, 70) + "…" : u) + "</a>" : ""; }
+  var BL = [["nom","Entreprise"],["activite","Activité"],["slogan","Accroche"],["description","Présentation"],["clientele","Clientèle"],["telephone","Téléphone"],["whatsapp","WhatsApp"],["email_pub","E-mail public"],["adresse","Adresse"],["ville","Ville"],["google_maps","Google Maps"],["horaires","Horaires"],["instagram","Instagram"],["facebook","Facebook"],["tiktok","TikTok"],["site_actuel","Site actuel"],["offre","Offre / tarifs"],["fonctions","Fonctions"],["langues","Langues"],["ambiance","Ambiance"],["couleurs","Couleurs"],["sites_aimes","Sites aimés"],["a_eviter","À éviter"],["lien_photos","Lien photos"],["droits","Droits images"],["domaine_existant","Domaine existant"],["domaine","Domaine"],["raison_sociale","Raison sociale"],["siret","SIRET / RNC"],["rappel","Rappel"],["notes","Notes"]];
+  function img(id, dl) { return '<a href="/compte/api/file/' + esc(id) + '?dl" title="Télécharger"><img src="/compte/api/file/' + esc(id) + '" alt="" loading="lazy" style="width:84px;height:84px;object-fit:cover;border:1px solid #ddd;margin:4px 6px 0 0"></a>'; }
   function detail(r) {
     var x = r.data || {};
+    if (r.kind === "dossier") {
+      return '<div class="data"><span class="tag">Dossier complet</span>\n' + BL.map(function (k) { var v = x[k[0]]; if (Array.isArray(v)) v = v.join(", "); if (!v) return ""; return "<b>" + k[1] + " :</b> " + (/^https?:\/\//.test(v) ? safeLink(v) : esc(v)); }).filter(Boolean).join("\n") +
+        (x.logo ? "\n<b>Logo :</b>\n" + img(x.logo) : "") + (x.photos && x.photos.length ? "\n<b>Photos (" + x.photos.length + ") :</b>\n" + x.photos.map(function (id) { return img(id); }).join("") : "") + "</div>";
+    }
     if (r.kind === "pilote") return '<div class="data"><b>' + esc(x.company) + "</b>" + (x.sector ? "\nSecteur : " + esc(x.sector) : "") + (x.city ? "\nVille : " + esc(x.city) : "") + (x.website ? "\nSite / réseaux : " + esc(x.website) : "") + (x.message ? "\n\n" + esc(x.message) : "") + "</div>";
     return '<div class="data">' + safeLink(x.link) + "\nPrix : US$" + esc(x.price) + " × " + esc(x.qty) + " · " + esc(x.lb) + " lb\nLivraison : " + (x.delivery ? "à domicile" : "retrait") + "\nTotal estimé : <b>" + rd(x.total) + "</b>" + (x.notes ? "\n" + esc(x.notes) : "") + "</div>";
   }

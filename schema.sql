@@ -47,3 +47,21 @@ CREATE TABLE IF NOT EXISTS attempts (
 CREATE INDEX IF NOT EXISTS req_user ON requests (user_id);
 CREATE INDEX IF NOT EXISTS req_site ON requests (site, created_at);
 CREATE INDEX IF NOT EXISTS ses_user ON sessions (user_id);
+-- Dossier de création de site (Kapicua) et fichiers envoyés (logo, photos)
+CREATE TABLE IF NOT EXISTS briefs (
+  user_id TEXT PRIMARY KEY,
+  data TEXT NOT NULL,
+  submitted_at TEXT,
+  updated_at TEXT NOT NULL
+);
+CREATE TABLE IF NOT EXISTS files (
+  id TEXT PRIMARY KEY,
+  user_id TEXT NOT NULL,
+  kind TEXT NOT NULL,
+  name TEXT NOT NULL DEFAULT '',
+  mime TEXT NOT NULL,
+  size INTEGER NOT NULL,
+  b64 TEXT NOT NULL,
+  created_at TEXT NOT NULL
+);
+CREATE INDEX IF NOT EXISTS files_user ON files (user_id);

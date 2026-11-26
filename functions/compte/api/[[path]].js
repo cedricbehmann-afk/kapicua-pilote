@@ -14,6 +14,7 @@ const STATUSES = {
 const enc = new TextEncoder();
 const hex = (buf) => [...new Uint8Array(buf)].map((b) => b.toString(16).padStart(2, "0")).join("");
 const unhex = (s) => new Uint8Array(s.match(/../g).map((h) => parseInt(h, 16)));
+function unhexB64(b64) { const bin = atob(b64); const out = new Uint8Array(bin.length); for (let i = 0; i < bin.length; i++) out[i] = bin.charCodeAt(i); return out; }
 const now = () => new Date().toISOString();
 const rid = () => hex(crypto.getRandomValues(new Uint8Array(12)));
 
@@ -98,6 +99,50 @@ function cleanRequest(site, kind, d) {
     if (!out.link && !out.notes) return null;
     return out;
   }
+  return null;
+}
+
+
+// ---------- Dossier de création de site ----------
+const BRIEF_TEXT = { nom: 120, activite: 80, slogan: 160, description: 3000, clientele: 800, adresse: 200, ville: 80, google_maps: 400,
+  telephone: 40, whatsapp: 40, email_pub: 254, instagram: 200, facebook: 200, tiktok: 200, site_actuel: 300, horaires: 1500,
+  offre: 6000, couleurs: 300, ambiance: 20, sites_aimes: 800, a_eviter: 600, lien_photos: 500, domaine: 120, domaine_existant: 5,
+  raison_sociale: 160, siret: 40, rappel: 120, notes: 3000, droits: 5 };
+const BRIEF_LISTS = {
+  fonctions: ["reservations", "rdv", "click", "boutique", "devis", "galerie", "avis", "evenements", "menu", "newsletter", "livraison", "acces"],
+  langues: ["fr", "en", "es"],
+};
+const MAX_FILES = 15;
+function cleanBrief(d) {
+  d = d && typeof d === "object" ? d : {};
+  const out = {};
+  for (const [k, max] of Object.entries(BRIEF_TEXT)) out[k] = str(d[k], max);
+  for (const [k, allowed] of Object.entries(BRIEF_LISTS)) out[k] = Array.isArray(d[k]) ? [...new Set(d[k].filter((x) => allowed.includes(x)))] : [];
+  const ids = (v) => (Array.isArray(v) ? v : []).filter((x) => typeof x === "string" && /^[0-9a-f]{24}$/.test(x));
+  out.logo = ids([d.logo])[0] || "";
+  out.photos = [...new Set(ids(d.photos))].slice(0, MAX_FILES);
+  return out;
+}
+function briefMissing(b) {
+  const m = [];
+  if (!b.nom) m.push("nom");
+  if (!b.activite) m.push("activite");
+  if (!b.description) m.push("description");
+  if (!b.telephone && !b.email_pub && !b.whatsapp) m.push("contact");
+  if ((b.logo || b.photos.length) && b.droits !== "oui") m.push("droits");
+  return m;
+}
+async function ownFiles(db, uid, b) {
+  const { results } = await db.prepare("SELECT id, kind, name, mime, size FROM files WHERE user_id = ? ORDER BY created_at").bind(uid).all();
+  const mine = new Set(results.map((f) => f.id));
+  b.logo = mine.has(b.logo) ? b.logo : "";
+  b.photos = b.photos.filter((id) => mine.has(id));
+  return results;
+}
+function sniff(bytes) {
+  if (bytes[0] === 0xff && bytes[1] === 0xd8 && bytes[2] === 0xff) return "image/jpeg";
+  if (bytes[0] === 0x89 && bytes[1] === 0x50 && bytes[2] === 0x4e && bytes[3] === 0x47) return "image/png";
+  if (bytes[0] === 0x52 && bytes[1] === 0x49 && bytes[2] === 0x46 && bytes[3] === 0x46 && bytes[8] === 0x57 && bytes[9] === 0x45 && bytes[10] === 0x42 && bytes[11] === 0x50) return "image/webp";
   return null;
 }
 
@@ -191,7 +236,9 @@ export async function onRequest(ctx) {
       if (!u) return json({ ok: true, user: null });
       if (method === "GET") {
         const { results } = await db.prepare("SELECT id, kind, data, status, price, note, created_at, updated_at FROM requests WHERE user_id = ? ORDER BY created_at DESC LIMIT 50").bind(u.id).all();
-        return json({ ok: true, user: publicUser(u), requests: results.map((r) => ({ ...r, data: JSON.parse(r.data) })) });
+        const br = site === "kapicua" ? await db.prepare("SELECT submitted_at, updated_at FROM briefs WHERE user_id = ?").bind(u.id).first() : null;
+        return json({ ok: true, user: publicUser(u), brief: br || null, requests: results.filter((r) => r.kind !== "dossier").map((r) => ({ ...r, data: JSON.parse(r.data) })),
+          dossier: (results.find((r) => r.kind === "dossier") || null) && (({ id, status, price, note, created_at, updated_at }) => ({ id, status, price, note, created_at, updated_at }))(results.find((r) => r.kind === "dossier")) });
       }
       if (method === "PATCH") {
         const b = await body(req); if (!b) return fail("bad_request");
@@ -204,6 +251,8 @@ export async function onRequest(ctx) {
       if (method === "DELETE") {
         await db.batch([
           db.prepare("DELETE FROM requests WHERE user_id = ?").bind(u.id),
+          db.prepare("DELETE FROM files WHERE user_id = ?").bind(u.id),
+          db.prepare("DELETE FROM briefs WHERE user_id = ?").bind(u.id),
           db.prepare("DELETE FROM sessions WHERE user_id = ?").bind(u.id),
           db.prepare("DELETE FROM users WHERE id = ?").bind(u.id),
         ]);
@@ -226,6 +275,77 @@ export async function onRequest(ctx) {
       return json({ ok: true, id }, 201);
     }
 
+
+    // ---------- Dossier (Kapicua) ----------
+    if (path === "brief" || path === "brief/submit") {
+      const site = "kapicua";
+      const uid = await sessionUser(db, req, site);
+      if (!uid) return fail("login_required", 401);
+      if (path === "brief" && method === "GET") {
+        const row = await db.prepare("SELECT data, submitted_at, updated_at FROM briefs WHERE user_id = ?").bind(uid).first();
+        const b = row ? cleanBrief(JSON.parse(row.data)) : null;
+        const files = await ownFiles(db, uid, b || { logo: "", photos: [] });
+        return json({ ok: true, brief: b, submitted_at: row ? row.submitted_at : null, updated_at: row ? row.updated_at : null, files });
+      }
+      if (method === "PUT" || method === "POST") {
+        const bd = await body(req); if (!bd) return fail("bad_request");
+        if (await limited(db, "brief:" + uid, 400, 86400)) return fail("too_many", 429);
+        const b = cleanBrief(bd.data);
+        await ownFiles(db, uid, b);
+        const submit = path === "brief/submit" && method === "POST";
+        if (submit) { const miss = briefMissing(b); if (miss.length) return json({ ok: false, error: "incomplete", missing: miss }, 400); }
+        const t = now();
+        await db.prepare("INSERT INTO briefs (user_id, data, submitted_at, updated_at) VALUES (?, ?, ?, ?) ON CONFLICT(user_id) DO UPDATE SET data = excluded.data, updated_at = excluded.updated_at" + (submit ? ", submitted_at = excluded.submitted_at" : ""))
+          .bind(uid, JSON.stringify(b), submit ? t : null, t).run();
+        if (submit) {
+          const ex = await db.prepare("SELECT id FROM requests WHERE user_id = ? AND kind = 'dossier'").bind(uid).first();
+          if (ex) await db.prepare("UPDATE requests SET data = ?, updated_at = ? WHERE id = ?").bind(JSON.stringify(b), t, ex.id).run();
+          else await db.prepare("INSERT INTO requests (id, site, user_id, kind, data, status, created_at, updated_at) VALUES (?, ?, ?, 'dossier', ?, 'new', ?, ?)").bind(rid(), site, uid, JSON.stringify(b), t, t).run();
+        }
+        return json({ ok: true, saved_at: t, submitted_at: submit ? t : undefined });
+      }
+    }
+
+    // ---------- Fichiers (logo, photos) ----------
+    if (path === "file" && method === "POST") {
+      const uid = await sessionUser(db, req, "kapicua");
+      if (!uid) return fail("login_required", 401);
+      const bd = await body(req); if (!bd) return fail("bad_request");
+      const kind = bd.kind === "logo" ? "logo" : "photo";
+      const m = /^data:image\/(jpeg|png|webp);base64,([A-Za-z0-9+/=]+)$/.exec(typeof bd.data === "string" ? bd.data : "");
+      if (!m) return fail("bad_file");
+      if (m[2].length > 1400000) return fail("file_too_big", 413);
+      let bytes;
+      try { bytes = unhexB64(m[2]); } catch (e) { return fail("bad_file"); }
+      const mime = sniff(bytes);
+      if (!mime) return fail("bad_file");
+      const n = await db.prepare("SELECT COUNT(*) AS n FROM files WHERE user_id = ?").bind(uid).first();
+      if (n.n >= MAX_FILES + 1) return fail("too_many_files");
+      if (await limited(db, "up:" + uid, 60, 86400)) return fail("too_many", 429);
+      const id = rid();
+      await db.prepare("INSERT INTO files (id, user_id, kind, name, mime, size, b64, created_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?)")
+        .bind(id, uid, kind, str(bd.name, 120), mime, bytes.length, m[2], now()).run();
+      return json({ ok: true, id, kind, mime, size: bytes.length }, 201);
+    }
+    if (path.startsWith("file/") && /^file\/[0-9a-f]{24}$/.test(path)) {
+      const id = path.slice(5);
+      const f = await db.prepare("SELECT f.*, u.site FROM files f JOIN users u ON u.id = f.user_id WHERE f.id = ?").bind(id).first();
+      if (!f) return fail("not_found", 404);
+      const owner = (await sessionUser(db, req, f.site)) === f.user_id;
+      const admin = !owner && (await sessionUser(db, req, "admin")) === "admin";
+      if (!owner && !admin) return fail("login_required", 401);
+      if (method === "GET") {
+        const ext = f.mime.split("/")[1].replace("jpeg", "jpg");
+        const safe = (f.name || "fichier").replace(/\.[a-z0-9]+$/i, "").replace(/[^\w\- ]+/g, "").slice(0, 60) || "fichier";
+        return new Response(unhexB64(f.b64), { headers: { "content-type": f.mime, "cache-control": "private, max-age=3600", "x-content-type-options": "nosniff",
+          "content-security-policy": "default-src 'none'", "content-disposition": (url.searchParams.has("dl") ? "attachment" : "inline") + '; filename="' + safe + "." + ext + '"' } });
+      }
+      if (method === "DELETE" && owner) {
+        await db.prepare("DELETE FROM files WHERE id = ?").bind(id).run();
+        return json({ ok: true });
+      }
+    }
+
     // ---------- Administration ----------
     if (path === "admin/login" && method === "POST") {
       const b = await body(req); if (!b) return fail("bad_request");
@@ -241,7 +361,8 @@ export async function onRequest(ctx) {
         const reqs = await db.prepare("SELECT r.*, u.email, u.name, u.company, u.phone, u.lang FROM requests r JOIN users u ON u.id = r.user_id ORDER BY r.created_at DESC LIMIT 500").all();
         const users = await db.prepare("SELECT site, email, name, company, phone, lang, newsletter, created_at FROM users ORDER BY created_at DESC LIMIT 1000").all();
         const subs = await db.prepare("SELECT site, email, lang, created_at FROM subscribers ORDER BY created_at DESC LIMIT 2000").all();
-        return json({ ok: true, requests: reqs.results.map((r) => ({ ...r, data: JSON.parse(r.data) })), users: users.results, subscribers: subs.results, statuses: STATUSES });
+        const files = await db.prepare("SELECT id, user_id, kind, name, mime, size FROM files ORDER BY created_at").all();
+        return json({ ok: true, requests: reqs.results.map((r) => ({ ...r, data: JSON.parse(r.data) })), users: users.results, subscribers: subs.results, files: files.results, statuses: STATUSES });
       }
       if (path === "admin/request" && method === "PATCH") {
         const b = await body(req); if (!b) return fail("bad_request");

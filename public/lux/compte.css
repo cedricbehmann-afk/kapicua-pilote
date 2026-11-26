@@ -97,3 +97,4 @@
 .ks-panel input[type=checkbox]:focus-visible,.ks-cookie input[type=checkbox]:focus-visible,[data-ks-newsletter] input[type=checkbox]:focus-visible{outline:1px solid currentColor;outline-offset:3px}
 [data-ks-newsletter] .ks-nl-row input{border:0;min-height:0;padding:12px 0;font:300 15px Inter,sans-serif;color:#fff;-webkit-appearance:none;appearance:none}
 .ks-panel button,.ks-cookie button{-webkit-appearance:none;appearance:none;border-radius:0}
+.ks-b{text-decoration:none;box-sizing:border-box}

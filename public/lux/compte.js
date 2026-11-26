@@ -19,15 +19,16 @@
       hello: "Bonjour", myRequests: "Mes demandes", none: "Aucune demande pour l’instant.", newReq: "Nouvelle demande",
       myInfo: "Mes informations", save: "Enregistrer", saved: "Enregistré.", prefs: "Préférences", nlToggle: "Recevoir les nouveautés par e-mail",
       logout: "Se déconnecter", del: "Supprimer mon espace", delConfirm: "Confirmer la suppression définitive", deleted: "Votre espace a été supprimé.",
-      sent: "Demande envoyée. Nous revenons vers vous rapidement.", priceLbl: "Prix", noteLbl: "Message",
+      sent: "Demande envoyée. Pour aller plus vite, remplissez le dossier de votre site ci-dessous.", priceLbl: "Prix", noteLbl: "Message",
       pendingNote: "Créez votre espace ou connectez-vous : votre demande sera enregistrée juste après.",
-      e: { invalid_email: "Adresse e-mail invalide.", weak_password: "Le mot de passe doit contenir au moins 8 caractères.", terms_required: "Merci d’accepter la politique de confidentialité.", email_taken: "Un espace existe déjà avec cet e-mail. Connectez-vous.", bad_credentials: "E-mail ou mot de passe incorrect.", too_many: "Trop de tentatives. Réessayez dans quelques minutes.", consent_required: "Merci de cocher la case de consentement.", login_required: "Merci de vous connecter.", invalid_request: "Merci de compléter les champs obligatoires.", generic: "Le service est momentanément indisponible. Réessayez plus tard." },
+      e: { invalid_email: "Adresse e-mail invalide.", weak_password: "Le mot de passe doit contenir au moins 8 caractères.", terms_required: "Merci d’accepter la politique de confidentialité.", email_taken: "Un espace existe déjà avec cet e-mail. Connectez-vous.", bad_credentials: "E-mail ou mot de passe incorrect.", too_many: "Trop de tentatives. Réessayez dans quelques minutes.", consent_required: "Merci de cocher la case de consentement.", login_required: "Merci de vous connecter.", invalid_request: "Merci de compléter les champs obligatoires.", phone: "Indiquez un numéro de téléphone valide.", generic: "Le service est momentanément indisponible. Réessayez plus tard." },
       nlTitle: "Newsletter", nlLead: "Nouveautés et conseils, une à deux fois par mois.", nlPh: "Votre e-mail", nlConsent: "J’accepte de recevoir la newsletter. <a href=\"/confidentialite/\">Confidentialité</a>", nlBtn: "S’inscrire", nlOk: "Merci, votre inscription est enregistrée.",
       ck: "Nous utilisons uniquement les cookies nécessaires (connexion à votre espace) et, avec votre accord, une préférence de langue enregistrée sur votre appareil. Aucun traceur publicitaire.",
       ckAccept: "Tout accepter", ckRefuse: "Refuser", ckCustom: "Personnaliser", ckSave: "Enregistrer mes choix", ckNeeded: "Nécessaires — connexion et sécurité (toujours actifs)", ckPrefs: "Préférences — mémoriser la langue choisie", ckMore: "En savoir plus",
       pTitle: "Demander mon site pilote", pLead: "Quelques informations pour préparer votre site pilote, offert et sans engagement.", sector: "Secteur d’activité", city: "Ville / île", website: "Site, Instagram ou Facebook actuel", message: "Ce que vous souhaitez (réservations, boutique, rendez-vous…)", pSend: "Envoyer ma demande", req: "obligatoire",
       kind: { pilote: "Site pilote", cotizacion: "Devis" },
       st: { "new": "Reçue", preparing: "En préparation", ready: "Site pilote prêt", won: "Validée", closed: "Clôturée", quoted: "Devis envoyé", paid: "Payée", ordered: "Achetée", shipped: "En route", delivered: "Livrée", cancelled: "Annulée" },
+      dTitle: "Dossier de mon site", dNone: "Toutes les informations pour créer votre site : textes, horaires, offre, style, photos et logo. Comptez 10 minutes, en plusieurs fois si besoin.", dDraft: "Brouillon enregistré, pas encore envoyé.", dSent: "Envoyé le", dStart: "Remplir mon dossier", dOpen: "Ouvrir mon dossier", phoneWa: "WhatsApp",
       encNew: "Faire un devis", encSaved: "Devis enregistré dans votre espace. Nous le confirmons avant tout paiement."
     },
     en: {
@@ -41,15 +42,16 @@
       hello: "Hello", myRequests: "My requests", none: "No requests yet.", newReq: "New request",
       myInfo: "My details", save: "Save", saved: "Saved.", prefs: "Preferences", nlToggle: "Receive news by email",
       logout: "Sign out", del: "Delete my account", delConfirm: "Confirm permanent deletion", deleted: "Your account has been deleted.",
-      sent: "Request sent. We will get back to you shortly.", priceLbl: "Price", noteLbl: "Message",
+      sent: "Request sent. To speed things up, fill in your website file below.", priceLbl: "Price", noteLbl: "Message",
       pendingNote: "Create your account or sign in: your request will be saved right after.",
-      e: { invalid_email: "Invalid email address.", weak_password: "The password must be at least 8 characters long.", terms_required: "Please accept the privacy policy.", email_taken: "An account already exists with this email. Please sign in.", bad_credentials: "Incorrect email or password.", too_many: "Too many attempts. Please try again in a few minutes.", consent_required: "Please tick the consent box.", login_required: "Please sign in.", invalid_request: "Please fill in the required fields.", generic: "The service is temporarily unavailable. Please try again later." },
+      e: { invalid_email: "Invalid email address.", weak_password: "The password must be at least 8 characters long.", terms_required: "Please accept the privacy policy.", email_taken: "An account already exists with this email. Please sign in.", bad_credentials: "Incorrect email or password.", too_many: "Too many attempts. Please try again in a few minutes.", consent_required: "Please tick the consent box.", login_required: "Please sign in.", invalid_request: "Please fill in the required fields.", phone: "Please enter a valid WhatsApp number.", generic: "The service is temporarily unavailable. Please try again later." },
       nlTitle: "Newsletter", nlLead: "News and tips, once or twice a month.", nlPh: "Your email", nlConsent: "I agree to receive the newsletter. <a href=\"/confidentialite/\">Privacy</a>", nlBtn: "Subscribe", nlOk: "Thank you, you are subscribed.",
       ck: "We only use necessary cookies (signing in to your account) and, with your consent, a language preference stored on your device. No advertising trackers.",
       ckAccept: "Accept all", ckRefuse: "Decline", ckCustom: "Customise", ckSave: "Save my choices", ckNeeded: "Necessary — sign-in and security (always on)", ckPrefs: "Preferences — remember the chosen language", ckMore: "Learn more",
       pTitle: "Request my pilot site", pLead: "A few details to prepare your pilot site, complimentary and with no commitment.", sector: "Line of business", city: "Town / island", website: "Current website, Instagram or Facebook", message: "What you need (bookings, shop, appointments…)", pSend: "Send my request", req: "required",
       kind: { pilote: "Pilot site", cotizacion: "Quote" },
       st: { "new": "Received", preparing: "In preparation", ready: "Pilot site ready", won: "Confirmed", closed: "Closed", quoted: "Quote sent", paid: "Paid", ordered: "Purchased", shipped: "On its way", delivered: "Delivered", cancelled: "Cancelled" },
+      dTitle: "My website file", dNone: "Everything we need to build your site: texts, hours, offer, style, photos and logo. Allow 10 minutes, in several sittings if needed.", dDraft: "Draft saved, not sent yet.", dSent: "Sent on", dStart: "Fill in my file", dOpen: "Open my file", phoneWa: "WhatsApp",
       encNew: "Get a quote", encSaved: "Quote saved in your account. We confirm it before any payment."
     },
     es: {
@@ -63,15 +65,16 @@
       hello: "Hola", myRequests: "Mis pedidos", none: "Todavía no hay pedidos.", newReq: "Nuevo pedido",
       myInfo: "Mis datos", save: "Guardar", saved: "Guardado.", prefs: "Preferencias", nlToggle: "Recibir novedades por correo",
       logout: "Cerrar sesión", del: "Eliminar mi cuenta", delConfirm: "Confirmar la eliminación definitiva", deleted: "Tu cuenta ha sido eliminada.",
-      sent: "Pedido enviado. Te respondemos muy pronto.", priceLbl: "Precio", noteLbl: "Mensaje",
+      sent: "Solicitud enviada. Para ir más rápido, complete el expediente de su sitio aquí abajo.", priceLbl: "Precio", noteLbl: "Mensaje",
       pendingNote: "Crea tu cuenta o inicia sesión: tu pedido se guarda justo después.",
-      e: { invalid_email: "Correo no válido.", weak_password: "La contraseña debe tener al menos 8 caracteres.", terms_required: "Acepta la política de privacidad.", email_taken: "Ya existe una cuenta con este correo. Inicia sesión.", bad_credentials: "Correo o contraseña incorrectos.", too_many: "Demasiados intentos. Vuelve a intentarlo en unos minutos.", consent_required: "Marca la casilla de consentimiento.", login_required: "Inicia sesión.", invalid_request: "Completa los campos obligatorios.", generic: "El servicio no está disponible por el momento. Inténtalo más tarde." },
+      e: { invalid_email: "Correo no válido.", weak_password: "La contraseña debe tener al menos 8 caracteres.", terms_required: "Acepta la política de privacidad.", email_taken: "Ya existe una cuenta con este correo. Inicia sesión.", bad_credentials: "Correo o contraseña incorrectos.", too_many: "Demasiados intentos. Vuelve a intentarlo en unos minutos.", consent_required: "Marca la casilla de consentimiento.", login_required: "Inicia sesión.", invalid_request: "Completa los campos obligatorios.", phone: "Escribe un número de WhatsApp válido.", generic: "El servicio no está disponible por el momento. Inténtalo más tarde." },
       nlTitle: "Boletín", nlLead: "Novedades y consejos, una o dos veces al mes.", nlPh: "Tu correo", nlConsent: "Acepto recibir el boletín. <a href=\"/confidentialite/\">Privacidad</a>", nlBtn: "Suscribirme", nlOk: "Gracias, tu suscripción está registrada.",
       ck: "Solo usamos las cookies necesarias (inicio de sesión en tu cuenta) y, con tu permiso, una preferencia de idioma guardada en tu dispositivo. Ningún rastreador publicitario.",
       ckAccept: "Aceptar todo", ckRefuse: "Rechazar", ckCustom: "Personalizar", ckSave: "Guardar mis opciones", ckNeeded: "Necesarias — inicio de sesión y seguridad (siempre activas)", ckPrefs: "Preferencias — recordar el idioma elegido", ckMore: "Más información",
       pTitle: "Solicitar mi sitio piloto", pLead: "Algunos datos para preparar su sitio piloto, de cortesía y sin compromiso.", sector: "Sector de actividad", city: "Ciudad / isla", website: "Sitio, Instagram o Facebook actual", message: "Lo que necesita (reservas, tienda, citas…)", pSend: "Enviar mi solicitud", req: "obligatorio",
       kind: { pilote: "Sitio piloto", cotizacion: "Cotización" },
       st: { "new": "Recibido", preparing: "En preparación", ready: "Sitio piloto listo", won: "Validado", closed: "Cerrado", quoted: "Cotizado", paid: "Pagado", ordered: "Comprado", shipped: "En camino", delivered: "Entregado", cancelled: "Cancelado" },
+      dTitle: "Expediente de mi sitio", dNone: "Toda la información para crear su sitio: textos, horarios, oferta, estilo, fotos y logo. Unos 10 minutos, en varias veces si hace falta.", dDraft: "Borrador guardado, aún no enviado.", dSent: "Enviado el", dStart: "Completar mi expediente", dOpen: "Abrir mi expediente", phoneWa: "WhatsApp",
       encNew: "Hacer una cotización", encSaved: "Cotización guardada en tu cuenta. La confirmamos antes de cualquier pago."
     }
   };
@@ -158,7 +161,7 @@
     state.msg = ""; state.err = "";
     load().then(function () {
       if (state.user) state.view = view === "pilote" ? "pilote" : "home";
-      else { state.wantPilote = view === "pilote"; state.view = view === "pilote" || state.pending ? "register" : "login"; }
+      else { state.wantPilote = view === "pilote"; state.view = view === "pilote" || view === "register" || state.pending ? "register" : "login"; }
       render(true);
     });
   }
@@ -173,7 +176,10 @@
     return api("me?site=" + SITE).then(function (r) {
       state.user = r && r.ok ? r.user : null;
       state.requests = r && r.ok && r.requests ? r.requests : [];
+      state.brief = r && r.ok ? r.brief || null : null;
+      state.dossier = r && r.ok ? r.dossier || null : null;
       syncHeader();
+      try { document.dispatchEvent(new CustomEvent("ks:user", { detail: state.user })); } catch (e) {}
     });
   }
   function syncHeader() {
@@ -207,7 +213,7 @@
         (reg ? field("ks-name", x.name, "text", "", false, ' autocomplete="name" maxlength="100"') + (SITE === "kapicua" ? field("ks-company", x.company, "text", "", false, ' autocomplete="organization" maxlength="120"') : "") : "") +
         field("ks-email", x.email, "email", "", true, ' autocomplete="email" maxlength="254"') +
         field("ks-pw", x.password + (reg ? " — " + x.pwHint : ""), "password", "", true, ' autocomplete="' + (reg ? "new-password" : "current-password") + '" minlength="' + (reg ? 8 : 1) + '" maxlength="200"') +
-        (reg ? field("ks-phone", x.phone, "tel", "", false, ' autocomplete="tel" maxlength="40"') +
+        (reg ? field("ks-phone", SITE === "encargalo" ? x.phoneWa : x.phone, "tel", "", SITE === "encargalo", ' autocomplete="tel" maxlength="40"') +
           '<label class="ks-c"><input type="checkbox" id="ks-nl"> <span>' + esc(x.nlOpt) + '</span></label><label class="ks-c"><input type="checkbox" id="ks-terms" required> <span>' + x.terms + '</span></label>' : "") +
         '<button class="ks-b ks-full" type="submit">' + esc(reg ? x.doRegister : x.doLogin) + '</button></form>' +
         '<button type="button" class="ks-link" data-go="' + (reg ? "login" : "register") + '">' + esc(reg ? x.toLogin : x.toRegister) + '</button>' +
@@ -225,6 +231,9 @@
           return '<li><div class="ks-rq"><span class="ks-caps">' + esc((x.kind[r.kind] || r.kind) + " · " + fdate(r.created_at)) + '</span>' + summary(r) + '</div><span class="ks-st s-' + esc(r.status) + '">' + esc(x.st[r.status] || r.status) + '</span>' +
             (r.price || r.note ? '<p class="ks-adm">' + (r.price ? '<b>' + esc(x.priceLbl) + ' :</b> ' + esc(r.price) + (r.note ? "<br>" : "") : "") + (r.note ? esc(r.note) : "") + '</p>' : "") + '</li>';
         }).join("") + '</ul>' : '<p class="ks-small">' + esc(x.none) + '</p>') + '</section>' +
+        (SITE === "kapicua" ? '<section class="ks-sec ks-dos"><h3>' + esc(x.dTitle) + '</h3><p class="ks-small" style="margin:0 0 16px">' + esc(state.brief && state.brief.submitted_at ? x.dSent + " " + fdate(state.brief.submitted_at) + (state.dossier ? " · " + (x.st[state.dossier.status] || "") : "") : state.brief ? x.dDraft : x.dNone) + '</p>' +
+          (state.dossier && (state.dossier.price || state.dossier.note) ? '<p class="ks-adm" style="margin:0 0 16px">' + (state.dossier.price ? "<b>" + esc(x.priceLbl) + " :</b> " + esc(state.dossier.price) + (state.dossier.note ? "<br>" : "") : "") + esc(state.dossier.note || "") + "</p>" : "") +
+          '<a class="ks-b ks-full" href="/offre/dossier/">' + esc(state.brief ? x.dOpen : x.dStart) + '</a></section>' : "") +
         '<section class="ks-sec"><h3>' + esc(x.myInfo) + '</h3><form class="ks-form" data-f="profile" novalidate>' + field("ks-name", x.name, "text", u.name, false, ' autocomplete="name" maxlength="100"') + (SITE === "kapicua" ? field("ks-company", x.company, "text", u.company, false, ' autocomplete="organization" maxlength="120"') : "") + field("ks-phone", x.phone, "tel", u.phone, false, ' autocomplete="tel" maxlength="40"') +
         '<p class="ks-small">' + esc(x.email) + ' : ' + esc(u.email) + '</p><button class="ks-b o" type="submit">' + esc(x.save) + '</button></form></section>' +
         '<section class="ks-sec"><h3>' + esc(x.prefs) + '</h3><label class="ks-c"><input type="checkbox" id="ks-nlt"' + (u.newsletter ? " checked" : "") + '> <span>' + esc(x.nlToggle) + '</span></label></section>' +
@@ -249,7 +258,10 @@
           state.err = errText(r.error);
         });
       }
-    }).then(function () { state.view = state.wantPilote ? "pilote" : "home"; state.wantPilote = false; render(true); });
+    }).then(function () {
+      if (!state.wantPilote && !state.msg && document.body.getAttribute("data-ks-after") === "stay") { state.view = "home"; render(); return close(); }
+      state.view = state.wantPilote ? "pilote" : "home"; state.wantPilote = false; render(true);
+    });
   }
   function onSubmit(ev) {
     ev.preventDefault();
@@ -262,6 +274,7 @@
     } else if (f === "register") {
       if (!document.getElementById("ks-terms").checked) { busy(form, false); state.err = x.e.terms_required; return render(); }
       var pw = document.getElementById("ks-pw").value;
+      if (SITE === "encargalo" && val("ks-phone").replace(/\D/g, "").length < 7) { busy(form, false); state.err = x.e.phone; return render(); }
       if (pw.length < 8) { busy(form, false); state.err = x.e.weak_password; return render(); }
       api("register", "POST", { site: SITE, email: val("ks-email"), password: pw, name: val("ks-name"), company: val("ks-company"), phone: val("ks-phone"), lang: lang(), newsletter: document.getElementById("ks-nl").checked, terms: true })
         .then(done).then(function (r) { if (r.ok) afterAuth(); });
