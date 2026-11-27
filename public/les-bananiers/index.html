@@ -61,6 +61,11 @@ h2{font-size:clamp(32px,5vw,48px);margin-bottom:18px}
 footer{padding:36px 0 90px;font-size:14px;border-top:1px solid var(--line)}
 footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px;opacity:.75}
 .callbar{display:none}
+.kp-hphoto{width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:var(--radius);box-shadow:0 20px 50px rgba(0,0,0,.18)}
+.galerie{padding-top:20px}
+.gal{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:30px}
+.gal img{width:100%;aspect-ratio:1;object-fit:cover;border-radius:var(--radius)}
+@media (max-width:760px){.gal{grid-template-columns:1fr 1fr}}
 @media (max-width:760px){
  body{font-size:16px}
  .navlinks a{display:none}
@@ -87,7 +92,6 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px;
 </style>
 </head>
 <body>
-<div class="pilote"><span lang="fr">Aperçu — site pilote pour Les Bananiers</span><span lang="en">Preview — pilot website for Les Bananiers</span></div>
 <header class="nav"><div class="wrap">
  <a class="logo" href="#top">Les Bananiers</a>
  <nav class="navlinks">
@@ -161,6 +165,7 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px;
  <h2><span lang="fr">On y vient, et on revient</span><span lang="en">Come once, come back often</span></h2>
  <p class="lead"><span lang="fr">À Colombier, Les Bananiers cultive l'esprit d'une vraie table de quartier : on s'y retrouve pour un plat du jour, une suggestion du chef ou l'une des pizzas fines de Luigi. La carte mêle recettes françaises, créoles, italiennes et méditerranéennes, à des prix doux, sur une terrasse entourée de verdure.</span><span lang="en">In Colombier, Les Bananiers has the spirit of a true neighbourhood spot: come for a dish of the day, a chef's suggestion or one of Luigi's thin-crust pizzas. The menu blends French, Creole, Italian and Mediterranean recipes at friendly prices, on a terrace surrounded by greenery.</span></p>
 </div></section>
+
 <section id="carte" class="menu"><div class="wrap">
  <p class="kicker"><span lang="fr">À la carte</span><span lang="en">On the menu</span></p>
  <h2><span lang="fr">Simple, généreux, convivial</span><span lang="en">Simple, generous, friendly</span></h2>

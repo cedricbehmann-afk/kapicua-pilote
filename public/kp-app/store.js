@@ -45,8 +45,8 @@
     });
     e.depenses.push({ id: uid(), date: plus(-3), montant: 540, categorie: "Marchandises", fournisseur: f.id, note: "Exemple", exemple: true });
     if (C.type !== "boutique") {
-      e.rdv.push({ id: uid(), date: plus(0), heure: C.type === "salon" ? "10:30" : "12:30", personnes: C.type === "salon" ? "" : "4", prestation: C.type === "salon" ? (C.site.cartes[0] || {}).fr || "" : "", nom: cl[0].nom, tel: cl[0].tel, client: cl[0].id, statut: "demandée", note: "", source: "site", exemple: true });
-      e.rdv.push({ id: uid(), date: plus(1), heure: C.type === "salon" ? "15:00" : "19:30", personnes: C.type === "salon" ? "" : "2", prestation: C.type === "salon" ? (C.site.cartes[1] || {}).fr || "" : "", nom: cl[1].nom, tel: cl[1].tel, client: cl[1].id, statut: "confirmée", note: "", source: "téléphone", exemple: true });
+      e.rdv.push({ id: uid(), date: plus(0), heure: C.type === "btp" ? "" : C.type === "salon" ? "10:30" : "12:30", personnes: C.type === "restaurant" ? "4" : "", prestation: C.type !== "restaurant" ? (C.site.cartes[0] || {}).fr || "" : "", nom: cl[0].nom, tel: cl[0].tel, client: cl[0].id, statut: "demandée", note: "", source: "site", exemple: true });
+      e.rdv.push({ id: uid(), date: plus(1), heure: C.type === "btp" ? "" : C.type === "salon" ? "15:00" : "19:30", personnes: C.type === "restaurant" ? "2" : "", prestation: C.type !== "restaurant" ? (C.site.cartes[1] || {}).fr || "" : "", nom: cl[1].nom, tel: cl[1].tel, client: cl[1].id, statut: C.type === "btp" ? "devis envoyé" : "confirmée", note: "", source: "téléphone", exemple: true });
     }
     if (e.produits[0]) {
       e.commandes.push({ id: uid(), cree: new Date().toISOString(), retrait: plus(0) + " " + "17:00", nom: cl[2].nom, tel: cl[2].tel, client: cl[2].id,
@@ -78,7 +78,7 @@
   function verser(e, d) {
     var cid = upsertClient(e, d.nom, d.tel, d.email);
     if (d.genre === "rdv") {
-      e.rdv.push({ id: d.id, date: d.date, heure: d.heure, personnes: d.personnes || "", prestation: d.prestation || "", nom: d.nom, tel: d.tel, client: cid, statut: "demandée", note: d.note || "", source: "site" });
+      e.rdv.push({ id: d.id, date: d.date, heure: d.heure, email: d.email || "", personnes: d.personnes || "", prestation: d.prestation || "", nom: d.nom, tel: d.tel, client: cid, statut: "demandée", note: d.note || "", source: "site" });
     } else if (d.genre === "commande") {
       e.commandes.push({ id: d.id, cree: d.cree, retrait: d.retrait, nom: d.nom, tel: d.tel, client: cid, lignes: d.lignes, statut: "nouvelle", note: d.note || "" });
     }

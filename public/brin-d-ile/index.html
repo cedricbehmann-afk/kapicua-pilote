@@ -60,6 +60,11 @@ h2{font-size:clamp(32px,5vw,48px);margin-bottom:18px}
 footer{padding:36px 0 90px;font-size:14px;border-top:1px solid var(--line)}
 footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px;opacity:.75}
 .callbar{display:none}
+.kp-hphoto{width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:var(--radius);box-shadow:0 20px 50px rgba(0,0,0,.18)}
+.galerie{padding-top:20px}
+.gal{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:30px}
+.gal img{width:100%;aspect-ratio:1;object-fit:cover;border-radius:var(--radius)}
+@media (max-width:760px){.gal{grid-template-columns:1fr 1fr}}
 @media (max-width:760px){
  body{font-size:16px}
  .navlinks a{display:none}
@@ -80,7 +85,6 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px;
 </style>
 </head>
 <body>
-<div class="pilote"><span lang="fr">Aperçu — site pilote pour Brin d'Île</span><span lang="en">Preview — pilot website for Brin d'Île</span></div>
 <header class="nav"><div class="wrap">
  <a class="logo" href="#top">Brin d'Île</a>
  <nav class="navlinks">
@@ -126,6 +130,7 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px;
  <h2><span lang="fr">Des chaussures pour la vie sur l'île</span><span lang="en">Shoes for island life</span></h2>
  <p class="lead"><span lang="fr">Au centre commercial L'Îlot, à Lorient, Brin d'Île vous accueille du lundi au samedi. Prenez le temps d'essayer : on vous conseille pour trouver la bonne paire, pour la plage comme pour la ville.</span><span lang="en">At L'Îlot shopping centre in Lorient, Brin d'Île welcomes you Monday to Saturday. Take your time trying on: we'll help you find the right pair, for the beach or for town.</span></p>
 </div></section>
+
 <section id="carte" class="menu"><div class="wrap">
  <p class="kicker"><span lang="fr">Chez Brin d'Île</span><span lang="en">At Brin d'Île</span></p>
  <h2><span lang="fr">Venez essayer</span><span lang="en">Come and try on</span></h2>

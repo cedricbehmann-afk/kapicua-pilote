@@ -8,7 +8,9 @@
   function fdate(s) { return s ? new Date(s + "T12:00").toLocaleDateString("fr-FR", { weekday: "short", day: "numeric", month: "short" }) : ""; }
   var dloc = S.dloc;
   var RESA = C.type !== "boutique";
-  var MOT_RDV = C.type === "salon" ? "Rendez-vous" : "Réservations";
+  var BTP = C.type === "btp";
+  var MOT_RDV = C.type === "salon" ? "Rendez-vous" : BTP ? "Devis & chantiers" : "Réservations";
+  var MOT_CC = BTP ? "Location de matériel" : "Click & collect";
 
   /* ───────── icônes ───────── */
   var I = {
@@ -31,7 +33,7 @@
   var MODULES = [
     ["accueil", "Accueil"],
     RESA ? ["rdv", MOT_RDV] : null,
-    ["commandes", "Click & collect"],
+    ["commandes", MOT_CC],
     ["produits", "Produits"],
     ["caisse", "Caisse"],
     ["stock", "Stock"],
@@ -54,7 +56,7 @@
   var timer;
   function toast(m) { var t = $("#toast"); t.textContent = m; t.classList.add("on"); clearTimeout(timer); timer = setTimeout(function () { t.classList.remove("on"); }, 2600); }
   async function sauver(m) { try { await S.sauver(E); if (m) toast(m); } catch (e) { toast("Enregistrement impossible : " + e.message); } }
-  function chip(s) { var k = { "demandée": "or", "nouvelle": "or", "confirmée": "ok", "prête": "bleu", "retirée": "gris", "venue": "gris", "refusée": "rouge", "annulée": "rouge" }[s] || "gris"; return '<span class="chip ' + k + '">' + esc(s) + "</span>"; }
+  function chip(s) { var k = { "demandée": "or", "nouvelle": "or", "confirmée": "ok", "devis envoyé": "bleu", "accepté": "ok", "en cours": "bleu", "terminé": "gris", "prête": "bleu", "retirée": "gris", "venue": "gris", "refusée": "rouge", "annulée": "rouge" }[s] || "gris"; return '<span class="chip ' + k + '">' + esc(s) + "</span>"; }
   var Reco = window.SpeechRecognition || window.webkitSpeechRecognition;
 
   /* ───────── formulaire générique ───────── */
@@ -144,15 +146,17 @@
     clients: { titre: "Client", champs: [{ k: "nom", l: "Nom", t: "text", large: true }, { k: "tel", l: "Téléphone", t: "tel" }, { k: "email", l: "E-mail", t: "email" }, { k: "note", l: "Note (préférences, allergies…)", t: "textarea", large: true }],
       cols: ["Nom", "Téléphone", "Visites", "Note"], tri: function (a, b) { return a.nom.localeCompare(b.nom); },
       ligne: function (v) { var n = E.rdv.filter(function (r) { return r.client === v.id; }).length + E.commandes.filter(function (r) { return r.client === v.id; }).length; return [esc(v.nom), v.tel ? '<a href="' + telh(v.tel) + '">' + esc(v.tel) + "</a>" : "", String(n), esc(v.note)]; } },
-    produits: { titre: "Produit (click & collect)", champs: [{ k: "nom", l: "Nom", t: "text", large: true }, { k: "desc", l: "Description", t: "textarea", large: true }, { k: "prix", l: "Prix (€)", t: "money" }, { k: "dispo", l: "En vente sur le site", t: "checkbox", def: true }, { k: "stockId", l: "Lié au stock", t: "select", o: function () { return [["", "— (pas de suivi)"]].concat(E.stock.map(function (s) { return [s.id, s.nom]; })); } }, { k: "photo", l: "Photo", t: "photo", large: true }],
+    produits: { titre: BTP ? "Matériel à louer" : "Produit (click & collect)", champs: [{ k: "nom", l: "Nom", t: "text", large: true }, { k: "desc", l: "Description", t: "textarea", large: true }, { k: "prix", l: "Prix (€)", t: "money" }, { k: "dispo", l: "En vente sur le site", t: "checkbox", def: true }, { k: "stockId", l: "Lié au stock", t: "select", o: function () { return [["", "— (pas de suivi)"]].concat(E.stock.map(function (s) { return [s.id, s.nom]; })); } }, { k: "photo", l: "Photo", t: "photo", large: true }],
       cols: ["Produit", "Prix", "Sur le site", "Stock"], tri: function (a, b) { return a.nom.localeCompare(b.nom); },
       ligne: function (v) { var s = E.stock.find(function (x) { return x.id === v.stockId; }); return [(v.photo ? '<img class="mini" src="' + v.photo + '" alt="">' : "") + esc(v.nom), v.prix == null ? '<span class="muted">à définir</span>' : eur(v.prix), v.dispo ? '<span class="chip ok">oui</span>' : '<span class="chip gris">non</span>', s ? esc(s.qte + " " + (s.unite || "")) : "—"]; } }
   };
   if (RESA) DEF.rdv = {
-    titre: MOT_RDV === "Rendez-vous" ? "Rendez-vous" : "Réservation",
-    champs: [{ k: "date", l: "Date", t: "date", def: dloc }, { k: "heure", l: "Heure", t: "time" }]
-      .concat(C.type === "salon" ? [{ k: "prestation", l: "Prestation", t: "select", o: function () { return E.site.cartes.map(function (c) { return c.fr; }); } }] : [{ k: "personnes", l: "Personnes", t: "number", def: 2 }])
-      .concat([{ k: "nom", l: "Client", t: "text" }, { k: "tel", l: "Téléphone", t: "tel" }, { k: "statut", l: "Statut", t: "select", o: ["demandée", "confirmée", "venue", "refusée", "annulée"], def: "confirmée" }, { k: "note", l: "Note", t: "textarea", large: true }])
+    titre: MOT_RDV === "Rendez-vous" ? "Rendez-vous" : BTP ? "Demande de devis" : "Réservation",
+    champs: [{ k: "date", l: BTP ? "Date souhaitée" : "Date", t: "date", def: dloc }].concat(BTP ? [] : [{ k: "heure", l: "Heure", t: "time" }])
+      .concat(C.type === "salon" || BTP ? [{ k: "prestation", l: BTP ? "Type de travaux" : "Prestation", t: "select", o: function () { return E.site.cartes.map(function (c) { return c.fr; }); } }] : [{ k: "personnes", l: "Personnes", t: "number", def: 2 }])
+      .concat([{ k: "nom", l: "Client", t: "text" }, { k: "tel", l: "Téléphone", t: "tel" }, { k: "statut", l: "Statut", t: "select", o: BTP ? ["demandée", "devis envoyé", "accepté", "en cours", "terminé", "refusée"] : ["demandée", "confirmée", "venue", "refusée", "annulée"], def: BTP ? "demandée" : "confirmée" }])
+      .concat(BTP ? [{ k: "montant", l: "Montant du devis (€)", t: "money" }] : [])
+      .concat([{ k: "note", l: BTP ? "Description / adresse du chantier" : "Note", t: "textarea", large: true }])
   };
 
   function liste(cle, zone, opts) {
@@ -184,7 +188,7 @@
     var caJ = sum(E.ventes.filter(function (v) { return v.date === auj; }), "montant");
     var caM = sum(E.ventes.filter(function (v) { return String(v.date).slice(0, 7) === mois; }), "montant");
     var dpM = sum(E.depenses.filter(function (v) { return String(v.date).slice(0, 7) === mois; }), "montant");
-    var rdvJ = E.rdv.filter(function (r) { return r.date === auj && ["refusée", "annulée"].indexOf(r.statut) < 0; }).sort(function (a, b) { return String(a.heure).localeCompare(b.heure); });
+    var rdvJ = E.rdv.filter(function (r) { return BTP ? ["terminé", "refusée"].indexOf(r.statut) < 0 : (r.date === auj && ["refusée", "annulée"].indexOf(r.statut) < 0); }).sort(function (a, b) { return String(a.heure).localeCompare(b.heure); });
     var aTraiter = E.rdv.filter(function (r) { return r.statut === "demandée"; }).length;
     var cmd = E.commandes.filter(function (c) { return ["nouvelle", "prête"].indexOf(c.statut) >= 0; });
     var alertes = E.stock.filter(function (s) { return Number(s.qte) <= Number(s.seuil); });
@@ -195,12 +199,12 @@
       kpi("Ventes du jour", eur(caJ)) + kpi("Ventes du mois", eur(caM)) + kpi("Dépenses du mois", eur(dpM)) + kpi("Résultat du mois", eur(caM - dpM), caM - dpM < 0 ? "neg" : "pos") +
       "</div>" +
       '<div class="cols">' +
-      (RESA ? '<section class="panel"><h3>' + MOT_RDV + " aujourd'hui " + (aTraiter ? '<span class="chip or">' + aTraiter + " à confirmer</span>" : "") + "</h3>" + (rdvJ.length ? rdvJ.map(function (r) { return '<div class="row"><b>' + esc(r.heure) + "</b> " + esc(r.nom) + (r.personnes ? " · " + esc(r.personnes) + " pers." : "") + (r.prestation ? " · " + esc(r.prestation) : "") + " " + chip(r.statut) + "</div>"; }).join("") : '<p class="muted">Aucun pour aujourd\'hui.</p>') + '<a class="lien" href="#/rdv">Tout voir →</a></section>' : "") +
-      '<section class="panel"><h3>Click & collect en cours</h3>' + (cmd.length ? cmd.map(function (c) { var rd = String(c.retrait).slice(0, 10), rh = String(c.retrait).slice(11); return '<div class="row"><b>' + (rd === auj ? "" : esc(fdate(rd)) + " ") + esc(rh) + "</b> " + esc(c.nom) + " · " + c.lignes.reduce(function (a, l) { return a + l.qte; }, 0) + " article(s) " + chip(c.statut) + "</div>"; }).join("") : '<p class="muted">Aucune commande en attente.</p>') + '<a class="lien" href="#/commandes">Tout voir →</a></section>' +
+      (RESA ? '<section class="panel"><h3>' + (BTP ? "Devis & chantiers en cours " : MOT_RDV + " aujourd'hui ") + (aTraiter ? '<span class="chip or">' + aTraiter + " à confirmer</span>" : "") + "</h3>" + (rdvJ.length ? rdvJ.map(function (r) { return '<div class="row">' + (r.heure ? "<b>" + esc(r.heure) + "</b> " : "") + esc(r.nom) + (r.personnes ? " · " + esc(r.personnes) + " pers." : "") + (r.prestation ? " · " + esc(r.prestation) : "") + " " + chip(r.statut) + "</div>"; }).join("") : '<p class="muted">Aucun pour aujourd\'hui.</p>') + '<a class="lien" href="#/rdv">Tout voir →</a></section>' : "") +
+      '<section class="panel"><h3>' + MOT_CC + ' en cours</h3>' + (cmd.length ? cmd.map(function (c) { var rd = String(c.retrait).slice(0, 10), rh = String(c.retrait).slice(11); return '<div class="row"><b>' + (rd === auj ? "" : esc(fdate(rd)) + " ") + esc(rh) + "</b> " + esc(c.nom) + " · " + c.lignes.reduce(function (a, l) { return a + l.qte; }, 0) + " article(s) " + chip(c.statut) + "</div>"; }).join("") : '<p class="muted">Aucune commande en attente.</p>') + '<a class="lien" href="#/commandes">Tout voir →</a></section>' +
       '<section class="panel"><h3>Ventes des 7 derniers jours</h3><div class="bars">' + j7.map(function (x) { return '<div class="bar"><i style="height:' + Math.round(x[1] / max * 100) + '%"></i><span>' + new Date(x[0] + "T12:00").toLocaleDateString("fr-FR", { weekday: "narrow" }) + "</span></div>"; }).join("") + "</div></section>" +
       '<section class="panel"><h3>Stock à surveiller</h3>' + (alertes.length ? alertes.map(function (s) { return '<div class="row">' + esc(s.nom) + ' <span class="chip rouge">' + esc(s.qte) + " " + esc(s.unite || "") + "</span></div>"; }).join("") : '<p class="muted">Tout va bien.</p>') + '<a class="lien" href="#/stock">Stock →</a></section>' +
       "</div>" +
-      '<div class="raccourcis"><button class="b" data-go="vente">+ Vente</button><button class="b" data-go="depense">+ Dépense</button>' + (RESA ? '<button class="b" data-go="rdv">+ ' + (C.type === "salon" ? "Rendez-vous" : "Réservation") + "</button>" : "") + '<a class="b" href="../" target="_blank">Voir mon site ↗</a></div>';
+      '<div class="raccourcis"><button class="b" data-go="vente">+ Vente</button><button class="b" data-go="depense">+ Dépense</button>' + (RESA ? '<button class="b" data-go="rdv">+ ' + (C.type === "salon" ? "Rendez-vous" : BTP ? "Demande de devis" : "Réservation") + "</button>" : "") + '<a class="b" href="../" target="_blank">Voir mon site ↗</a></div>';
     $$("[data-go]", z).forEach(function (b) {
       b.onclick = function () {
         var k = { vente: "ventes", depense: "depenses", rdv: "rdv" }[b.dataset.go];
@@ -221,9 +225,10 @@
     z.innerHTML = '<div class="tools"><div class="seg">' + [["jour", "Aujourd'hui"], ["avenir", "À venir"], ["passes", "Passés"], ["tout", "Tout"]].map(function (x) { return '<button data-f="' + x[0] + '"' + (filtreRdv === x[0] ? ' class="on"' : "") + ">" + x[1] + "</button>"; }).join("") + '</div><button class="b main" data-add>+ Ajouter</button></div>' +
       (items.length ? Object.keys(parJour).map(function (d) {
         return '<h4 class="jour">' + fdate(d) + "</h4>" + parJour[d].map(function (r) {
-          return '<div class="carte" data-id="' + r.id + '"><div class="h"><b>' + esc(r.heure) + "</b> " + esc(r.nom) + " " + chip(r.statut) + (r.exemple ? ' <span class="ex">exemple</span>' : "") + '</div><div class="muted">' + (r.personnes ? esc(r.personnes) + " personne(s)" : "") + (r.prestation ? esc(r.prestation) : "") + (r.source === "site" ? " · via le site" : "") + (r.note ? " · " + esc(r.note) : "") + '</div><div class="acts">' +
-            (r.statut === "demandée" ? '<a class="b main" data-a="ok" href="' + wa(r.tel, "Bonjour " + r.nom + ", c'est " + C.nom + " : votre " + (C.type === "salon" ? "rendez-vous" : "réservation") + " du " + fdate(r.date) + " à " + r.heure + " est confirmé(e). À bientôt !") + '" target="_blank">Confirmer ' + ico("wa") + '</a><button class="b" data-a="non">Refuser</button>' : "") +
-            (r.statut === "confirmée" && r.date <= auj ? '<button class="b" data-a="venue">Venu(e)</button>' : "") +
+          return '<div class="carte" data-id="' + r.id + '"><div class="h">' + (r.heure ? "<b>" + esc(r.heure) + "</b> " : "") + esc(r.nom) + " " + chip(r.statut) + (r.exemple ? ' <span class="ex">exemple</span>' : "") + '</div><div class="muted">' + (r.personnes ? esc(r.personnes) + " personne(s)" : "") + (r.prestation ? esc(r.prestation) : "") + (r.montant != null && r.montant !== "" ? " · devis " + eur(r.montant) : "") + (r.source === "site" ? " · via le site" : "") + (r.note ? " · " + esc(r.note) : "") + '</div><div class="acts">' +
+            (BTP ? (r.statut === "demandée" ? '<a class="b main" data-a="recu" href="' + wa(r.tel, "Bonjour " + r.nom + ", c'est " + C.nom + " : nous avons bien reçu votre demande (" + (r.prestation || "travaux") + "). Nous vous rappelons pour convenir d'une visite et vous envoyer le devis.") + '" target="_blank">Accuser réception ' + ico("wa") + '</a><button class="b" data-a="devis">Devis envoyé</button>' : r.statut === "devis envoyé" ? '<button class="b main" data-a="accepte">Devis accepté</button><button class="b" data-a="non">Refusé</button>' : r.statut === "accepté" ? '<button class="b main" data-a="encours">Chantier commencé</button>' : r.statut === "en cours" ? '<button class="b main" data-a="fini">Chantier terminé</button>' : "") : "") +
+            (!BTP && r.statut === "demandée" ? '<a class="b main" data-a="ok" href="' + wa(r.tel, "Bonjour " + r.nom + ", c'est " + C.nom + " : votre " + (C.type === "salon" ? "rendez-vous" : "réservation") + " du " + fdate(r.date) + " à " + r.heure + " est confirmé(e). À bientôt !") + '" target="_blank">Confirmer ' + ico("wa") + '</a><button class="b" data-a="non">Refuser</button>' : "") +
+            (!BTP && r.statut === "confirmée" && r.date <= auj ? '<button class="b" data-a="venue">Venu(e)</button>' : "") +
             '<a class="b" href="' + telh(r.tel) + '">' + ico("tel") + "</a><button class=\"b\" data-a=\"edit\">Modifier</button></div></div>";
         }).join("");
       }).join("") : '<p class="vide">Rien ici.</p>');
@@ -235,6 +240,12 @@
         b.addEventListener("click", function () {
           var a = b.dataset.a;
           if (a === "ok") { r.statut = "confirmée"; delete r.exemple; sauver("Confirmé — message WhatsApp prêt"); setTimeout(route, 50); }
+          if (a === "recu") { delete r.exemple; sauver("Message WhatsApp prêt"); return; }
+          if (a === "devis") { var m = prompt("Montant du devis (€) — facultatif :", r.montant == null ? "" : r.montant); if (m === null) return; if (m !== "") r.montant = Number(String(m).replace(",", ".")) || 0; r.statut = "devis envoyé"; delete r.exemple; sauver("Devis noté comme envoyé"); route(); return; }
+          if (a === "accepte") { r.statut = "accepté"; sauver("Devis accepté"); route(); return; }
+          if (a === "encours") { r.statut = "en cours"; sauver("Chantier en cours"); route(); return; }
+          if (a === "fini") { r.statut = "terminé"; sauver("Chantier terminé"); if (r.montant && confirm("Ajouter " + eur(r.montant) + " aux ventes ?")) { E.ventes.push({ id: S.uid(), date: dloc(), montant: r.montant, mode: "Virement", note: "Chantier — " + r.nom, ref: r.id }); sauver("Ajouté aux ventes"); } route(); return; }
+          if (a === "non" && BTP) { r.statut = "refusée"; sauver("Noté"); route(); return; }
           if (a === "non") { r.statut = "refusée"; sauver("Refusé"); window.open(wa(r.tel, "Bonjour " + r.nom + ", c'est " + C.nom + " : désolé, nous ne pouvons pas vous accueillir le " + fdate(r.date) + " à " + r.heure + ". Voulez-vous un autre créneau ?"), "_blank"); route(); }
           if (a === "venue") { r.statut = "venue"; sauver("Noté"); route(); }
           if (a === "edit") ouvrir(DEF.rdv.titre, DEF.rdv.champs, r, function (o) { Object.assign(r, o); delete r.exemple; sauver("Enregistré"); route(); }, function () { E.rdv = E.rdv.filter(function (x) { return x !== r; }); sauver("Supprimé"); route(); });
@@ -254,11 +265,11 @@
     var items = E.commandes.filter(function (c) { return filtreCmd === "tout" || (filtreCmd === "cours" ? ["nouvelle", "prête"].indexOf(c.statut) >= 0 : ["retirée", "annulée"].indexOf(c.statut) >= 0); })
       .sort(function (a, b) { return String(a.retrait).localeCompare(b.retrait); });
     z.innerHTML = '<div class="tools"><div class="seg">' + [["cours", "En cours"], ["fini", "Terminées"], ["tout", "Tout"]].map(function (x) { return '<button data-f="' + x[0] + '"' + (filtreCmd === x[0] ? ' class="on"' : "") + ">" + x[1] + "</button>"; }).join("") + '</div><a class="b" href="#/produits">Gérer les produits</a></div>' +
-      '<p class="muted petit">Les clients commandent sur votre site et paient au retrait. Le click & collect est ' + (E.site.cc ? "<b>ouvert</b>" : "<b>fermé</b>") + ' (Mon site).</p>' +
+      '<p class="muted petit">' + (BTP ? "Vos clients réservent du matériel sur votre site ; vous confirmez la disponibilité et le tarif." : "Les clients commandent sur votre site et paient au retrait.") + " " + MOT_CC + " : " + (E.site.cc ? "<b>ouvert</b>" : "<b>fermé</b>") + ' (Mon site).</p>' +
       (items.length ? items.map(function (c) {
         var t = total(c);
         return '<div class="carte" data-id="' + c.id + '"><div class="h"><b>Retrait ' + esc(fdate(String(c.retrait).slice(0, 10)) + " à " + String(c.retrait).slice(11)) + "</b> · " + esc(c.nom) + " " + chip(c.statut) + (c.exemple ? ' <span class="ex">exemple</span>' : "") + '</div><ul class="lignes">' + c.lignes.map(function (l) { return "<li>" + l.qte + " × " + esc(l.nom) + (l.prix != null ? " — " + eur(l.prix * l.qte) : "") + "</li>"; }).join("") + '</ul><div class="muted">Total : ' + (t == null ? "à calculer (prix à définir)" : eur(t)) + (c.note ? " · " + esc(c.note) : "") + '</div><div class="acts">' +
-          (c.statut === "nouvelle" ? '<a class="b main" data-a="prete" href="' + wa(c.tel, "Bonjour " + c.nom + ", c'est " + C.nom + " : votre commande est prête ! Vous pouvez passer la récupérer. À tout de suite.") + '" target="_blank">Prête ' + ico("wa") + "</a>" : "") +
+          (c.statut === "nouvelle" ? '<a class="b main" data-a="prete" href="' + wa(c.tel, "Bonjour " + c.nom + ", c'est " + C.nom + (BTP ? " : votre matériel est prêt. Vous pouvez passer le récupérer." : " : votre commande est prête ! Vous pouvez passer la récupérer. À tout de suite.")) + '" target="_blank">Prête ' + ico("wa") + "</a>" : "") +
           (c.statut === "prête" ? '<button class="b main" data-a="retiree">Retirée et payée</button>' : "") +
           (["nouvelle", "prête"].indexOf(c.statut) >= 0 ? '<button class="b" data-a="annuler">Annuler</button>' : "") +
           '<a class="b" href="' + telh(c.tel) + '">' + ico("tel") + "</a></div></div>";
@@ -333,14 +344,14 @@
       champHTML({ k: "ferme_msg", l: "Message de fermeture", t: "text", large: true }, s.ferme_msg || "") +
       "</div></section>" +
       '<section class="panel"><h3>En ligne</h3><div class="grid">' +
-      (RESA ? champHTML({ k: "resa", l: (C.type === "salon" ? "Prise de rendez-vous" : "Réservations") + " sur le site", t: "checkbox" }, !!s.resa) : "") +
-      champHTML({ k: "cc", l: "Click & collect sur le site", t: "checkbox" }, !!s.cc) +
+      (RESA ? champHTML({ k: "resa", l: (C.type === "salon" ? "Prise de rendez-vous" : BTP ? "Demandes de devis" : "Réservations") + " sur le site", t: "checkbox" }, !!s.resa) : "") +
+      champHTML({ k: "cc", l: MOT_CC + " sur le site", t: "checkbox" }, !!s.cc) +
       champHTML({ k: "ouv", l: "Premier créneau", t: "time" }, s.creneaux.ouv) + champHTML({ k: "fer", l: "Dernier créneau", t: "time" }, s.creneaux.fer) +
       champHTML({ k: "pas", l: "Créneau toutes les (min)", t: "select", o: ["15", "30", "60"] }, String(s.creneaux.pas)) +
       champHTML({ k: "jours", l: "Jours fermés (créneaux)", t: "text" }, (s.creneaux.fermes || []).join(", ")) +
       '</div><p class="muted petit">Jours fermés : numéros séparés par des virgules (0 = dimanche, 1 = lundi…).</p></section>' +
       '<section class="panel"><h3>Horaires affichés</h3><div id="hrs">' + s.horaires.map(ligneH).join("") + '</div><button class="b" id="addh">+ Ligne</button></section>' +
-      '<section class="panel"><h3>' + (C.type === "salon" ? "Prestations" : C.type === "boutique" ? "Rayons" : "La carte") + '</h3><div id="crt">' + s.cartes.map(ligneC).join("") + '</div><button class="b" id="addc">+ Ajouter</button></section>' +
+      '<section class="panel"><h3>' + (C.type === "salon" ? "Prestations" : BTP ? "Nos métiers" : C.type === "boutique" ? "Rayons" : "La carte") + '</h3><div id="crt">' + s.cartes.map(ligneC).join("") + '</div><button class="b" id="addc">+ Ajouter</button></section>' +
       '<div class="raccourcis"><button class="b main" id="save">Enregistrer et publier</button><a class="b" href="../" target="_blank">Voir mon site ↗</a></div>';
     brancherMicros(z);
     function lire() {

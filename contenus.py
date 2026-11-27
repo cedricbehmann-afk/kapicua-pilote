@@ -384,11 +384,11 @@ SITES.append(dict(
     slug="ti-salon", name="Ti Salon", logo="Ti Salon",
     title="Ti Salon — Coiffure à La Pointe, Gustavia, Saint-Barth",
     meta_desc="Ti Salon, 35 rue Victor Schoelcher, La Pointe, Gustavia : coupes, couleurs, balayages, lissage brésilien et soins profonds. Sur rendez-vous.",
-    theme_color="#3B2A24", favicon=fav("T", "#3B2A24", "#F7F1EC"),
+    theme_color="#1F4A3A", favicon=fav("T", "#1F4A3A", "#E9D9B8"),
     fonts=[("Cormorant Garamond", "cormorant-garamond-latin-500-normal.woff2", 500), ("Cormorant Garamond", "cormorant-garamond-latin-600-normal.woff2", 600),
            ("Cormorant Garamond", "cormorant-garamond-latin-500-italic.woff2", 500, "italic"),
            ("Jost", "jost-latin-300-normal.woff2", 300), ("Jost", "jost-latin-400-normal.woff2", 400), ("Jost", "jost-latin-500-normal.woff2", 500)],
-    vars="--display:'Cormorant Garamond',Georgia,serif;--body:'Jost',system-ui,sans-serif;--bg:#F7F1EC;--ink:#3B2A24;--accent:#3B2A24;--onaccent:#F7F1EC;--accent2:#B07A5F;--card:#FFFBF7;--line:rgba(59,42,36,.14);--navbg:rgba(247,241,236,.92);--radius:2px;--dw:500",
+    vars="--display:'Cormorant Garamond',Georgia,serif;--body:'Jost',system-ui,sans-serif;--bg:#F6F1E8;--ink:#1E2B25;--accent:#1F4A3A;--onaccent:#F6F1E8;--accent2:#B8935A;--card:#FFFCF6;--line:rgba(30,43,37,.14);--navbg:rgba(246,241,232,.92);--radius:2px;--dw:500",
     css="""
 body{font-weight:300}
 .logo{font-style:italic;font-size:28px}
@@ -400,7 +400,9 @@ body{font-weight:300}
 .card{text-align:left}
 .card h3{font-size:28px}
 .kicker{font-weight:500}
-.menu{background:#EFE3D8}
+.menu{background:#1F4A3A;color:#F6F1E8}.menu .card{background:#24533F;border-color:rgba(233,217,184,.18)}.menu .card .ico,.menu .kicker{color:#E2C48E}
+.hero{background:linear-gradient(135deg,#F6F1E8 55%,#E9DFCB)}
+.hero .kp-hphoto{aspect-ratio:4/5;max-height:620px;border:10px solid #fff;outline:1px solid #B8935A}
 @media (max-width:760px){.hero .wrap{grid-template-columns:1fr}.hero svg{max-width:340px;margin:0 auto}}
 """,
     hero=f"""<section class="hero"><div class="wrap">
@@ -633,7 +635,7 @@ play_svg = """
 SITES.append(dict(
     slug="we-play", name="We Play", logo="We Play<span style='color:var(--accent)'>!</span>",
     title="We Play — Boutique de jouets et de jeux à Saint-Jean, Saint-Barth",
-    meta_desc="We Play, centre Neptune à Saint-Jean : la boutique de jouets et de jeux de Saint-Barth, pour tous les âges. Ouvert du lundi au samedi.",
+    meta_desc="We Play, centre Neptune à Saint-Jean : jeux de société, puzzles, flippers et arcades, baby-foot, jouets. Livraison, montage et SAV dans les îles du Nord.",
     theme_color="#22223B", favicon=fav("W", "#FF5A5F", "#FFFDF6"),
     fonts=[("Poppins", "poppins-latin-400-normal.woff2", 400), ("Poppins", "poppins-latin-600-normal.woff2", 600),
            ("Caveat", "caveat-latin-600-normal.woff2", 600)],
@@ -653,8 +655,8 @@ SITES.append(dict(
     hero=f"""<section class="hero"><div class="wrap">
  <div>
   <p class="kicker"><span lang="fr">Centre Neptune · Saint-Jean</span><span lang="en">Neptune centre · Saint-Jean</span></p>
-  <h1><span lang="fr">Ici, on joue <span class="s">pour de vrai !</span></span><span lang="en">Where play <span class="s">gets real!</span></span></h1>
-  <p><span lang="fr">La boutique de jouets et de jeux de Saint-Barth, pour les petits, les grands et tous ceux qui ont gardé l'envie de jouer.</span><span lang="en">St. Barth's toy and game shop, for little ones, big ones and anyone who still loves to play.</span></p>
+  <h1><span lang="fr">Le jeu, <span class="s">pour tous !</span></span><span lang="en">Games, <span class="s">for everyone!</span></span></h1>
+  <p><span lang="fr">Jeux de société, puzzles, flippers, baby-foot et jouets : We Play rend le jeu accessible à tous dans les îles du nord de la Caraïbe.</span><span lang="en">Board games, puzzles, pinball, table football and toys: We Play makes games accessible to everyone in the northern Caribbean islands.</span></p>
   <div class="actions">
    <a class="btn main" href="tel:+590690559268"><span lang="fr">Appeler · 06 90 55 92 68</span><span lang="en">Call · +590 690 55 92 68</span></a>
    <a class="btn ghost" href="#infos"><span lang="fr">Horaires</span><span lang="en">Opening hours</span></a>
@@ -664,20 +666,20 @@ SITES.append(dict(
 </div></section>""",
     nav_menu=("La boutique", "The shop"),
     about_kicker=("La boutique", "The shop"),
-    about_title=("Des jouets à deux pas de chez vous", "Toys right here on the island"),
-    about=("Au centre Neptune, à Saint-Jean, We Play réunit jouets et jeux pour tous les âges. "
-           "Un anniversaire, Noël, une journée de pluie ou des vacances en famille : passez nous voir, on vous aide à trouver le bon cadeau.",
-           "At the Neptune centre in Saint-Jean, We Play brings together toys and games for all ages. "
-           "A birthday, Christmas, a rainy day or a family holiday: drop by and we'll help you find the right gift."),
+    about_title=("Toute l'année, des arrivages", "New arrivals all year round"),
+    about=("Au centre Neptune, à Saint-Jean, We Play réunit jeux et jouets pour tous les âges, des jeux de société aux flippers. "
+           "On livre et on monte les gros jeux chez vous, et on assure le service après-vente et les réparations. On nous retrouve aussi sur les marchés et événements de l'île.",
+           "At the Neptune centre in Saint-Jean, We Play brings together games and toys for all ages, from board games to pinball machines. "
+           "We deliver and set up large games at your home, and provide after-sales service and repairs. You'll also find us at the island's markets and events."),
     menu_kicker=("Chez We Play", "At We Play"),
-    menu_title=("Pour toutes les envies de jouer", "Something for every kind of play"),
+    menu_title=("De quoi jouer à tout âge", "Play at any age"),
     cards=[
-        dict(fr="Pour les tout-petits", en="For little ones", dfr="Des premiers jouets pour éveiller et amuser.", den="First toys to stimulate and delight.", ico=I_STAR),
-        dict(fr="Jeux de société", en="Board games", dfr="Pour les soirées en famille ou entre amis.", den="For evenings with family or friends.", ico=I_SPARK),
-        dict(fr="Créer & imaginer", en="Create & imagine", dfr="De quoi construire, dessiner et inventer.", den="Things to build, draw and invent.", ico=I_PIE),
-        dict(fr="Idées cadeaux", en="Gift ideas", dfr="Anniversaires, Noël, petites attentions.", den="Birthdays, Christmas, little treats.", ico=I_BAG),
-        dict(fr="Pour les vacances", en="Holiday fun", dfr="Pour occuper les enfants en vacances sur l'île.", den="To keep kids busy on their island holiday.", ico=I_SUN),
-        dict(fr="Des conseils", en="Friendly advice", dfr="On vous aide à choisir selon l'âge et les goûts.", den="We'll help you choose by age and interests.", ico=I_DROP),
+        dict(fr="Jeux de société & puzzles", en="Board games & puzzles", dfr="Pour les soirées en famille ou entre amis, et les puzzles vintage.", den="For evenings with family or friends, plus vintage puzzles.", ico=I_SPARK),
+        dict(fr="Flippers & arcades", en="Pinball & arcade", dfr="Des machines à installer chez soi, pour retrouver le plaisir des salles de jeux.", den="Machines for your home, with all the fun of the arcade.", ico=I_STAR),
+        dict(fr="Baby-foot", en="Table football", dfr="Le classique des parties endiablées, pour la maison ou la villa.", den="The classic for heated matches, at home or in your villa.", ico=I_SUN),
+        dict(fr="Jouets & construction", en="Toys & building sets", dfr="Pour les tout-petits comme pour les grands constructeurs.", den="For little ones and big builders alike.", ico=I_PIE),
+        dict(fr="Livraison & montage", en="Delivery & set-up", dfr="On livre et on installe les gros jeux chez vous.", den="We deliver and set up large games at your place.", ico=I_BAG),
+        dict(fr="SAV & réparation", en="Repairs & after-sales", dfr="Un souci avec un jeu ? On s'en occupe.", den="A problem with a game? We'll take care of it.", ico=I_DROP),
     ],
     hours=[("Lundi – samedi", "Monday – Saturday", "9h30 – 13h · 15h – 19h", "9:30 am – 1 pm · 3 – 7 pm"),
            ("Dimanche", "Sunday", "Fermé", "Closed")],
@@ -763,31 +765,120 @@ SITES.append(dict(
     cta_call=("Appeler", "Call"),
 ))
 
+# ───────────────────────── 10. LAPLACE SERVICES ─────────────────────────
+laplace_svg = """
+<svg viewBox="0 0 520 400" role="img" aria-label="Pelleteuse sur un chantier">
+ <rect x="0" y="0" width="520" height="400" rx="28" fill="#2A2D33"/>
+ <circle cx="420" cy="90" r="40" fill="#F2B705" opacity=".9"/>
+ <path d="M0 300 C120 270 220 290 320 280 C400 272 460 285 520 290 V400 H0Z" fill="#8C6A4A"/>
+ <path d="M0 330 C140 315 300 330 520 322 V400 H0Z" fill="#6E5238"/>
+ <g transform="translate(70 170)">
+  <rect x="0" y="90" width="210" height="34" rx="17" fill="#1B1D21"/>
+  <g fill="#3A3D44"><circle cx="24" cy="107" r="11"/><circle cx="64" cy="107" r="11"/><circle cx="104" cy="107" r="11"/><circle cx="144" cy="107" r="11"/><circle cx="184" cy="107" r="11"/></g>
+  <rect x="30" y="40" width="150" height="52" rx="8" fill="#F2B705"/>
+  <path d="M110 40 V0 H170 L180 40Z" fill="#F2B705"/>
+  <path d="M120 8 H162 L169 36 H120Z" fill="#9FD3E6" opacity=".85"/>
+  <rect x="40" y="52" width="52" height="10" rx="4" fill="#1B1D21" opacity=".35"/>
+  <path d="M175 55 L270 -10" stroke="#F2B705" stroke-width="18" stroke-linecap="round"/>
+  <path d="M270 -10 L330 70" stroke="#F2B705" stroke-width="14" stroke-linecap="round"/>
+  <path d="M312 60 L352 62 L346 104 L318 96Z" fill="#1B1D21"/>
+  <circle cx="270" cy="-10" r="9" fill="#1B1D21"/><circle cx="175" cy="55" r="9" fill="#1B1D21"/>
+ </g>
+ <g fill="#B89571"><path d="M380 300 l40 -38 l44 38Z"/><path d="M420 300 l30 -26 l34 26Z" fill="#A3825F"/></g>
+</svg>"""
+
+SITES.append(dict(
+    slug="laplace-services", name="Laplace Services", logo="LAPLACE<span style='color:var(--accent)'> SERVICES</span>",
+    title="Laplace Services — Terrassement, maçonnerie, location de matériel et transport à Saint-Barth",
+    meta_desc="Laplace Services, Grand Cul-de-Sac, Saint-Barthélemy : terrassement, maçonnerie et gros œuvre, location de matériel et transport de matériaux. Devis sur demande.",
+    theme_color="#2A2D33", favicon=fav("L", "#F2B705", "#2A2D33"),
+    fonts=[("Bebas Neue", "bebas-neue-latin-400-normal.woff2", 400),
+           ("DM Sans", "dm-sans-latin-400-normal.woff2", 400), ("DM Sans", "dm-sans-latin-500-normal.woff2", 500), ("DM Sans", "dm-sans-latin-700-normal.woff2", 700)],
+    vars="--display:'Bebas Neue',Impact,sans-serif;--body:'DM Sans',system-ui,sans-serif;--bg:#F4F2EE;--ink:#1F2228;--accent:#E0A100;--onaccent:#1F2228;--accent2:#B07A00;--card:#fff;--line:rgba(31,34,40,.13);--navbg:rgba(244,242,238,.94);--radius:6px",
+    css="""
+.logo{font-size:30px;letter-spacing:.03em}
+.hero{background:#1F2228;color:#F4F2EE}
+.hero .wrap{display:grid;grid-template-columns:1fr 1.05fr;gap:28px;align-items:center;padding-top:56px;padding-bottom:56px}
+.hero h1{font-size:clamp(56px,9vw,112px);line-height:.9;letter-spacing:.01em}
+.hero h1 span.j{color:#F2B705}
+.hero p{font-size:19px;margin:18px 0 28px;max-width:480px;opacity:.9}
+.hero .kicker{color:#F2B705}
+.hero .btn.ghost{color:#F4F2EE}
+h2{letter-spacing:.02em;font-size:clamp(40px,6vw,64px)}
+.card h3{font-size:30px;letter-spacing:.02em}
+.card{border-left:5px solid var(--accent)}
+.cards{grid-template-columns:repeat(2,1fr)}
+@media (max-width:760px){.cards{grid-template-columns:1fr}}
+.box h3{font-size:30px}
+.menu{background:#E9E6E0}
+@media (max-width:760px){.hero .wrap{grid-template-columns:1fr}.hero svg{max-width:440px;margin:0 auto}}
+""",
+    hero=f"""<section class="hero"><div class="wrap">
+ <div>
+  <p class="kicker"><span lang="fr">Grand Cul-de-Sac · Saint-Barthélemy</span><span lang="en">Grand Cul-de-Sac · St. Barthélemy</span></p>
+  <h1><span lang="fr">Vos chantiers,<br><span class="j">de A à Z.</span></span><span lang="en">Your build,<br><span class="j">start to finish.</span></span></h1>
+  <p><span lang="fr">Terrassement, maçonnerie et gros œuvre, location de matériel et transport de matériaux sur toute l'île.</span><span lang="en">Earthworks, masonry and structural work, equipment rental and materials transport across the island.</span></p>
+  <div class="actions">
+   <a class="btn main" href="#reserver"><span lang="fr">Demander un devis</span><span lang="en">Request a quote</span></a>
+   <a class="btn ghost" href="tel:+590690589985"><span lang="fr">06 90 58 99 85</span><span lang="en">+590 690 58 99 85</span></a>
+  </div>
+ </div>
+ {laplace_svg}
+</div></section>""",
+    nav_menu=("Nos métiers", "What we do"),
+    about_kicker=("L'entreprise", "The company"),
+    about_title=("Une entreprise de Saint-Barth, pour les chantiers de Saint-Barth", "A St. Barth company, for St. Barth projects"),
+    about=("Installée à Grand Cul-de-Sac et dirigée par Jérémy et Lionel Laplace, Laplace Services intervient sur les chantiers de l'île : préparation des terrains, maçonnerie et gros œuvre, "
+           "mise à disposition de matériel et transport des matériaux jusqu'à votre chantier.",
+           "Based in Grand Cul-de-Sac and run by Jérémy and Lionel Laplace, Laplace Services works on building sites across the island: site preparation, masonry and structural work, "
+           "equipment hire and delivery of materials to your site."),
+    menu_kicker=("Nos métiers", "What we do"),
+    menu_title=("Du terrain nu au bâtiment", "From bare land to building"),
+    cards=[
+        dict(fr="Terrassement", en="Earthworks", dfr="Préparation des terrains, fouilles et plateformes avant construction.", den="Site preparation, excavation and platforms before building.", ico=I_WAVE),
+        dict(fr="Maçonnerie & gros œuvre", en="Masonry & structural work", dfr="Fondations, murs, dalles : la structure de votre projet.", den="Foundations, walls and slabs: the backbone of your project.", ico=I_STAR),
+        dict(fr="Location de matériel", en="Equipment rental", dfr="Du matériel de chantier à disposition, selon vos besoins.", den="Building equipment available to suit your needs.", ico=I_BAG),
+        dict(fr="Transport de matériaux", en="Materials transport", dfr="Livraison des matériaux jusqu'à votre chantier, partout sur l'île.", den="Materials delivered to your site anywhere on the island.", ico=I_SUN),
+    ],
+    hours_title=("Nous joindre", "Get in touch"),
+    hours=[("Bureau", "Office", "05 90 27 61 75", "+590 590 27 61 75"),
+           ("Portable", "Mobile", "06 90 58 99 85", "+590 690 58 99 85"),
+           ("Devis", "Quotes", "Sur demande", "On request")],
+    address=("Grand Cul-de-Sac<br>97133 Saint-Barthélemy", "Grand Cul-de-Sac<br>97133 St. Barthélemy"),
+    tel_e164="+590590276175", tel_display="05 90 27 61 75", email="contact@entrepriseslaplace.fr",
+    maps="https://www.google.com/maps/search/?api=1&query=" + quote("Grand Cul-de-Sac, Saint-Barthélemy"),
+    cta_call=("Appeler", "Call"),
+))
+
 # ───────── Paramètres de l'espace de gestion (type, créneaux, exemples) ─────────
 GESTION = {
     "les-bananiers": dict(type="restaurant", gestion_couleur="#2F6B45",
         creneaux=dict(ouv="11:30", fer="21:30", pas=30, fermes=[0, 1]),
-        exemples=dict(produits=[["Pizza du moment (exemple)", "À emporter, pâte fine."], ["Plat du jour à emporter (exemple)", "Selon les suggestions du chef."]],
+        exemples=dict(produits=[["Pizza de Luigi", "Pâte fine, à emporter."], ["Plat du jour à emporter", "Selon les suggestions du chef."]],
                       stock=[["Farine (exemple)", 3, "sac(s)", 2], ["Mozzarella (exemple)", 4, "kg", 5], ["Vin rouge (exemple)", 24, "bouteille(s)", 12], ["Boîtes à pizza (exemple)", 60, "pièce(s)", 50]])),
-    "ti-salon": dict(type="salon", gestion_couleur="#8A5A44",
+    "ti-salon": dict(type="salon", gestion_couleur="#1F4A3A", galerie_titre=("Nos réalisations", "Our work"),
         creneaux=dict(ouv="10:00", fer="18:00", pas=30, fermes=[0, 1]),
-        exemples=dict(produits=[["Soin réparateur (exemple)", "À utiliser à la maison après votre passage au salon."], ["Shampooing doux (exemple)", "Pour cheveux exposés au soleil et au sel."]],
+        exemples=dict(produits=[["Soin Olaplex", "Disponible au salon, pour prolonger le soin à la maison."], ["Soin réparateur", "Pour cheveux exposés au soleil et au sel."]],
                       stock=[["Soin réparateur (exemple)", 6, "flacon(s)", 3], ["Shampooing doux (exemple)", 2, "flacon(s)", 3], ["Coloration (exemple)", 12, "tube(s)", 5]])),
-    "ti-corail": dict(type="restaurant", gestion_couleur="#138A8A",
+    "ti-corail": dict(type="restaurant", gestion_couleur="#138A8A", galerie_titre=("Sur la plage", "On the beach"),
         creneaux=dict(ouv="12:00", fer="14:30", pas=30, fermes=[0, 1, 2]),
-        exemples=dict(produits=[["Plat du jour à emporter (exemple)", "Selon la pêche du jour."], ["Tartare de poisson à emporter (exemple)", "Avec le poisson du jour."]],
+        exemples=dict(produits=[["Plat du jour à emporter", "Selon la pêche du jour."], ["Tartare de poisson", "Avec le poisson du jour, à emporter."]],
                       stock=[["Poisson du jour (exemple)", 6, "kg", 3], ["Barquettes à emporter (exemple)", 30, "pièce(s)", 40], ["Citrons verts (exemple)", 50, "pièce(s)", 20]])),
-    "we-play": dict(type="boutique", gestion_couleur="#3A86FF",
+    "we-play": dict(type="boutique", gestion_couleur="#3A86FF", galerie_titre=("En boutique", "In store"),
         creneaux=dict(ouv="09:30", fer="18:30", pas=30, fermes=[0]),
-        exemples=dict(produits=[["Jeu de société (exemple)", "Pour jouer en famille."], ["Jouet d'éveil (exemple)", "Pour les tout-petits."], ["Jeu de plage (exemple)", "Pour s'amuser au bord de l'eau."]],
+        exemples=dict(produits=[["Jeux de société", "Pour jouer en famille."], ["Jouets d'éveil", "Pour les tout-petits."], ["Jeux de plage", "Pour s'amuser au bord de l'eau."]],
                       stock=[["Jeu de société (exemple)", 5, "pièce(s)", 2], ["Jouet d'éveil (exemple)", 1, "pièce(s)", 2], ["Jeu de plage (exemple)", 12, "pièce(s)", 4]])),
     "brin-d-ile": dict(type="boutique", gestion_couleur="#1F5F5B",
         creneaux=dict(ouv="09:30", fer="18:00", pas=30, fermes=[0]),
-        exemples=dict(produits=[["Sandales (exemple)", "Légères, pour la plage et la ville."], ["Baskets (exemple)", "Pour tous les jours."]],
+        exemples=dict(produits=[["Sandales", "Légères, pour la plage et la ville."], ["Baskets", "Pour tous les jours."]],
                       stock=[["Sandales — pointure 38 (exemple)", 3, "paire(s)", 2], ["Sandales — pointure 40 (exemple)", 1, "paire(s)", 2], ["Baskets — pointure 42 (exemple)", 4, "paire(s)", 2]])),
+    "laplace-services": dict(type="btp", gestion_couleur="#B07A00",
+        creneaux=dict(ouv="07:00", fer="16:00", pas=60, fermes=[0, 6]),
+        exemples=dict(produits=[["Matériel de chantier", "À la journée ou à la semaine, selon disponibilité."], ["Transport de matériaux", "Livraison sur votre chantier."]],
+                      stock=[["Ciment (exemple)", 40, "sac(s)", 30], ["Parpaings (exemple)", 300, "pièce(s)", 200], ["Gravier (exemple)", 6, "m³", 4]])),
 }
 for _s in SITES:
     if _s["slug"] in GESTION:
         _s.update(GESTION[_s["slug"]])
 
-LOT = ["les-bananiers", "ti-salon", "ti-corail", "we-play", "brin-d-ile"]
+LOT = ["les-bananiers", "ti-salon", "ti-corail", "we-play", "brin-d-ile", "laplace-services"]
