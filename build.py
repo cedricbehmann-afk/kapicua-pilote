@@ -63,6 +63,11 @@ h2{font-size:clamp(32px,5vw,48px);margin-bottom:18px}
 footer{padding:36px 0 90px;font-size:14px;border-top:1px solid var(--line)}
 footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px;opacity:.75}
 .callbar{display:none}
+.kp-hphoto{width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:var(--radius);box-shadow:0 20px 50px rgba(0,0,0,.18)}
+.galerie{padding-top:20px}
+.gal{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:30px}
+.gal img{width:100%;aspect-ratio:1;object-fit:cover;border-radius:var(--radius)}
+@media (max-width:760px){.gal{grid-template-columns:1fr 1fr}}
 @media (max-width:760px){
  body{font-size:16px}
  .navlinks a{display:none}
@@ -80,7 +85,23 @@ ICONS = {
 }
 
 
+def photos(s):
+    d = os.path.join(ICI, "photos", s["slug"])
+    return sorted(f for f in os.listdir(d) if f.lower().endswith((".jpg", ".jpeg", ".webp", ".png"))) if os.path.isdir(d) else []
+
+
+def galerie(s):
+    g = [f for f in photos(s) if not f.startswith("hero")]
+    if not g: return ""
+    imgs = "".join(f'<img src="photos/{f}" alt="{html.escape(s["name"])}" loading="lazy">' for f in g[:6])
+    return f'''<section class="galerie"><div class="wrap"><p class="kicker">{t("En images", "In pictures")}</p><h2>{t(*s.get("galerie_titre", ("Chez nous", "Come and see")))}</h2><div class="gal">{imgs}</div></div></section>'''
+
+
 def page(s):
+    import re as _re
+    if any(f.startswith("hero") for f in photos(s)):
+        h = [f for f in photos(s) if f.startswith("hero")][0]
+        s = dict(s, hero=_re.sub(r'<svg[^>]*role="img".*?</svg>', f'<img class="kp-hphoto" src="photos/{h}" alt="{html.escape(s["name"])}">', s["hero"], count=1, flags=_re.S))
     tel_href = "tel:" + s["tel_e164"]
     carte = "".join(
         f'<article class="card">{c.get("ico","")}<h3>{t(c["fr"], c["en"])}</h3><p>{t(c["dfr"], c["den"])}</p></article>'
@@ -107,7 +128,6 @@ def page(s):
 </style>
 </head>
 <body>
-<div class="pilote">{t('Aperçu — site pilote pour ' + s['name'], 'Preview — pilot website for ' + s['name'])}</div>
 <header class="nav"><div class="wrap">
  <a class="logo" href="#top">{s['logo']}</a>
  <nav class="navlinks">
@@ -124,6 +144,7 @@ def page(s):
  <h2>{t(*s['about_title'])}</h2>
  <p class="lead">{t(*s['about'])}</p>
 </div></section>
+{galerie(s)}
 <section id="carte" class="menu"><div class="wrap">
  <p class="kicker">{t(*s['menu_kicker'])}</p>
  <h2>{t(*s['menu_title'])}</h2>
@@ -135,7 +156,7 @@ def page(s):
  <p class="kicker">{t('Infos pratiques', 'Practical info')}</p>
  <h2>{t('Horaires & accès', 'Hours & directions')}</h2>
  <div class="infos">
-  <div class="box"><h3>{t('Horaires', 'Opening hours')}</h3><table class="hours"><tbody id="kp-h">{heures}</tbody></table>{note_h}</div>
+  <div class="box"><h3>{t(*s.get('hours_title', ('Horaires', 'Opening hours')))}</h3><table class="hours"><tbody id="kp-h">{heures}</tbody></table>{note_h}</div>
   <div class="box" id="contact"><h3>{t('Nous trouver', 'Find us')}</h3>
    <ul class="contact-list">
     <li>{t(*s['address'])}</li>
@@ -238,6 +259,9 @@ if __name__ == "__main__":
     for s in m.SITES:
         if lot and s["slug"] not in lot: continue
         d = os.path.join(pub, s["slug"]); g = os.path.join(d, "gestion"); os.makedirs(g, exist_ok=True)
+        if photos(s):
+            os.makedirs(os.path.join(d, "photos"), exist_ok=True)
+            for f in photos(s): shutil.copy(os.path.join(ICI, "photos", s["slug"], f), os.path.join(d, "photos", f))
         open(os.path.join(d, "index.html"), "w", encoding="utf-8").write(page(s))
         open(os.path.join(d, "config.js"), "w", encoding="utf-8").write(config(s))
         open(os.path.join(g, "index.html"), "w", encoding="utf-8").write(gestion(s))

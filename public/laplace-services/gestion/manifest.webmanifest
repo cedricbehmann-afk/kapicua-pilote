@@ -1,0 +1,17 @@
+{
+ "name": "Gestion — Laplace Services",
+ "short_name": "Laplace Serv",
+ "start_url": "./",
+ "scope": "./",
+ "display": "standalone",
+ "background_color": "#f5f6f8",
+ "theme_color": "#B07A00",
+ "icons": [
+  {
+   "src": "icone.svg",
+   "sizes": "any",
+   "type": "image/svg+xml",
+   "purpose": "any"
+  }
+ ]
+}
