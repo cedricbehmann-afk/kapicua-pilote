@@ -75,7 +75,7 @@ html.menu-open .ov-r img{transform:scale(1)}
 .dev-l img{width:100%;aspect-ratio:16/10;object-fit:cover;object-position:top}
 .dev-p{width:min(300px,62%);border:7px solid #111;border-radius:34px;overflow:hidden;background:#111;box-shadow:0 50px 90px -40px rgba(0,0,0,.55)}
 .dev-p img{width:100%;aspect-ratio:1/2;object-fit:cover;object-position:top;border-radius:27px}
-.big-num{font:500 clamp(140px,22vw,320px)/.8 "Cormorant Garamond",Georgia,serif;color:#111;letter-spacing:-.02em}
+.big-num{font:500 clamp(140px,22vw,320px)/.8 "Cormorant Garamond",Georgia,serif;color:#111;letter-spacing:-.02em;font-variant-numeric:lining-nums;font-feature-settings:"lnum"}
 .prog{position:absolute;left:0;bottom:0;display:flex;gap:8px}
 .prog i{width:28px;height:1px;background:#cfcfcf;transition:background .5s,width .5s var(--ease)}
 .prog i.on{background:#111;width:56px}
